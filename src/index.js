@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 //router
-//var router = express.Router();
+var routes = require('./routes');
+
 
 
 
@@ -13,11 +14,13 @@ const path = require('path');
 const app = express();
 
 
-//app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');
+
+
 
 //Home page
 app.get('/', function (req, res){
-    res.sendFile(__dirname + '/index.html');
+    res.render(__dirname + '/index.ejs');
 })
 
 
