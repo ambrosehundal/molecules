@@ -55,12 +55,7 @@ con.connect(function(err){
     if (err) throw err;
     console.log("Connected to molecules database");
     console.log("connected!");
-    con.query("ALTER TABLE plate CHANGE `384_plate_ID` `plate_ID_384` VARCHAR(45)", function (err, result) {
-        if (err) {
-        throw err;
-        } 
-       console.log("column name changed.");
-      });
+    
 
    
     
@@ -79,7 +74,7 @@ app.get('/plate', function (req, res){
         throw err;
         } else {
             plate_obj = {print: result};
-            console.log(plate_obj);
+            //console.log(plate_obj);
             res.render('plate', plate_obj);
             
         }

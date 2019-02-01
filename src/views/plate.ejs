@@ -1,15 +1,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
 <table class="table">
         <thead>
           <tr>
@@ -29,17 +20,24 @@
                 <td class="timeline-yellow">
                     <div class="timeline-time">
                         <span class="date" style="text-align:left">
-                        <%= print[i].UCSC_CSC_plate_ID %>
+                      <a href= ""><%= print[i].UCSC_CSC_plate_ID %></a>  
                         </span>
-                        <span class="time" style="font-weight:700;font-size:25px;line-height:20px;text-align:left;">
-                        <%= print[i].type %> </span>
+                       
                     </div>
+                </td>
+
+                <td class="timeline-yellow">
+                        <div class="timeline-time">
+                            <span class="date" style="text-align:left">
+                                    <%= print[i].plate_ID_384 %> 
+                            </span>
+                           
+                        </div>
                 </td>
             </tr>
                 <br>
                 <% } %>
         
-
           
         </tbody>
       </table>
