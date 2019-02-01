@@ -5,7 +5,11 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 //router
-var routes = require('./routes');
+//var routes = require('./routes');
+
+//var router = express.Router();
+
+
 
 
 
@@ -16,12 +20,17 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
+app.set('views', path.join(__dirname, 'views'));
+
 
 
 //Home page
 app.get('/', function (req, res){
     res.render(__dirname + '/index.ejs');
 })
+
+
+
 
 
 
@@ -45,17 +54,32 @@ con.connect(function(err){
     if (err) throw err;
     console.log("Connected to molecules database");
     console.log("connected!");
-    con.query("SELECT * FROM plate", function (err, result, fields) {
-        if (err) throw err;
-        console.log(result);
-      });
+   
     
 });
 
 
+var plate_obj = {};
 
+//plate page
+app.get('/plate', function (req, res){
 
+    //query to get plate table from molecules db
 
+    con.query("SELECT * FROM plate", function (err, result) {
+        if (err) {
+        throw err;
+        } else {
+            plate_obj = {print: result};
+            console.log(plate_obj);
+            res.render('plate', plate_obj);
+            
+        }
+        console.log(result);
+      });
+
+   // res.render(__dirname + '/plate.ejs' );
+})
 
 
 
