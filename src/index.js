@@ -55,6 +55,13 @@ con.connect(function(err){
     if (err) throw err;
     console.log("Connected to molecules database");
     console.log("connected!");
+    con.query("ALTER TABLE plate CHANGE `384_plate_ID` `plate_ID_384` VARCHAR(45)", function (err, result) {
+        if (err) {
+        throw err;
+        } 
+       console.log("column name changed.");
+      });
+
    
     
 });

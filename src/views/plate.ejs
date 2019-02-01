@@ -14,43 +14,33 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Plate ID</th>
+            <th scope="col">384 Plate ID</th>
+            
           </tr>
         </thead>
+
+
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+        
+                <% for (var i = 0; i < print.length; i++) { %>
+                    <tr class="timeline"></tr>
+                    <td><%= i + 1 %></td>
+                <td class="timeline-yellow">
+                    <div class="timeline-time">
+                        <span class="date" style="text-align:left">
+                        <%= print[i].UCSC_CSC_plate_ID %>
+                        </span>
+                        <span class="time" style="font-weight:700;font-size:25px;line-height:20px;text-align:left;">
+                        <%= print[i].type %> </span>
+                    </div>
+                </td>
+            </tr>
+                <br>
+                <% } %>
+        
+
+          
         </tbody>
       </table>
 
-<ul class="timeline">
-        <% for (var i = 0; i < print.length; i++) { %>
-        <li class="timeline-yellow">
-            <div class="timeline-time">
-                <span class="date" style="text-align:left">
-                <%= print[i].UCSC_CSC_plate_ID %>
-                </span>
-                <span class="time" style="font-weight:700;font-size:25px;line-height:20px;text-align:left;">
-                <%= print[i].type %> </span>
-            </div>
-        </li>
-        <% } %>
-    </ul>
