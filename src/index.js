@@ -69,7 +69,7 @@ app.get('/plate', function (req, res){
 
     //query to get plate table from molecules db
 
-    con.query("SELECT * FROM plate", function (err, result) {
+    con.query("SELECT * FROM plate ORDER BY UCSC_CSC_plate_ID ASC", function (err, result) {
         if (err) {
         throw err;
         } else {
@@ -87,18 +87,18 @@ app.get('/plate', function (req, res){
 
 
 //code snipped to check code syntax errors
-var fs = require('fs');
-var check = require('syntax-error');
+//var fs = require('fs');
+//var check = require('syntax-error');
 
-var file = __dirname + '/views/plate.ejs';
-var src = fs.readFileSync(file);
+//var file = __dirname + '/views/plate.ejs';
+//var src = fs.readFileSync(file);
 
-var err = check(src, file);
-if (err) {
-    console.error('ERROR DETECTED' + Array(62).join('!'));
-    console.error(err);
-    console.error(Array(76).join('-'));
-}
+//var err = check(src, file);
+//if (err) {
+//    console.error('ERROR DETECTED' + Array(62).join('!'));
+  //  console.error(err);
+ //   console.error(Array(76).join('-'));
+//}
 
 
 
