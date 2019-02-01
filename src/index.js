@@ -3,6 +3,7 @@ const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const path = require('path');
+const ejsLint = require('ejs-lint');
 
 //router
 //var routes = require('./routes');
@@ -75,11 +76,27 @@ app.get('/plate', function (req, res){
             res.render('plate', plate_obj);
             
         }
-        console.log(result);
+       // console.log(result);
       });
 
    // res.render(__dirname + '/plate.ejs' );
+
 })
+
+
+//code snipped to check code syntax errors
+var fs = require('fs');
+var check = require('syntax-error');
+
+var file = __dirname + '/views/plate.ejs';
+var src = fs.readFileSync(file);
+
+var err = check(src, file);
+if (err) {
+    console.error('ERROR DETECTED' + Array(62).join('!'));
+    console.error(err);
+    console.error(Array(76).join('-'));
+}
 
 
 
