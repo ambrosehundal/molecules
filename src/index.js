@@ -56,14 +56,14 @@ con.connect(function(err){
     console.log("Connected to molecules database");
     console.log("connected!");
 
-    con.query("ALTER TABLE plate ADD Magnification varchar(255)"
-    ,function (err, result) {
-        if (err) {
-        throw err;
-        } 
+   // con.query("ALTER TABLE plate MODIFY COLUMN plate_ID_384 varchar(255)"
+   // ,function (err, result) {
+   //     if (err) {
+   //     throw err;
+    //    } 
             
-        console.log("new columns added");
-      });
+    //    console.log("plate columns changed");
+    //  });
     
 
    
@@ -87,10 +87,21 @@ app.get('/plate', function (req, res){
             res.render('plate', plate_obj);
             
         }
-       // console.log(result);
+       console.log(result);
       });
 
    // res.render(__dirname + '/plate.ejs' );
+
+})
+
+app.get('/plate/:id', function (req, res){
+
+    //query to get plate table from molecules db
+       console.log('ID:', req.params.id);
+       res.send(req.params.id);
+     
+
+  
 
 })
 
