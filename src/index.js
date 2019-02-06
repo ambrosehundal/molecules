@@ -55,6 +55,15 @@ con.connect(function(err){
     if (err) throw err;
     console.log("Connected to molecules database");
     console.log("connected!");
+
+    con.query("ALTER TABLE plate ADD Magnification varchar(255)"
+    ,function (err, result) {
+        if (err) {
+        throw err;
+        } 
+            
+        console.log("new columns added");
+      });
     
 
    
