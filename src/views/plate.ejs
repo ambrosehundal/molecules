@@ -5,7 +5,7 @@
 <table class="table" style="width:50%;margin-left:10%;">
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col">ID</th>
             <th scope="col">Plate ID</th>
             <th scope="col">384 Plate ID</th>
             
@@ -17,11 +17,11 @@
         
                 <% for (var i = 0; i < print.length; i++) { %>
                     <tr class="timeline"></tr>
-                    <td><%= i + 1 %></td>
+                    <td><%= print[i].id%></td>
                 <td class="timeline-yellow">
                     <div class="timeline-time">
                         <span style="text-align:left">
-                      <a href= "/plate/:id"><%= print[i].UCSC_CSC_plate_ID %></a>  
+                      <a href= "/plate/1"><%= print[i].UCSC_CSC_plate_ID %></a>  
                         </span>
                        
                     </div>

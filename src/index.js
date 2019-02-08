@@ -25,10 +25,6 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 
-//Home page
-app.get('/', function (req, res){
-    res.render(__dirname + '/index.ejs');
-})
 
 
 
@@ -71,6 +67,15 @@ con.connect(function(err){
 });
 
 
+
+//Home page
+app.get('/', function (req, res){
+    res.render(__dirname + '/index.ejs');
+    
+
+})
+
+
 var plate_obj = {};
 
 //plate page
@@ -94,33 +99,28 @@ app.get('/plate', function (req, res){
 
 })
 
-app.get('/plate/:id', function (req, res){
+app.get('/plate/id', function (req, res){
 
     //query to get plate table from molecules db
-       console.log('ID:', req.params.id);
-       res.send(req.params.id);
-     
+    var var_id = req.params.id;
 
-  
+    var queryString = 'SELECT * FROM plate WHERE id=' + var_id;
+
+
+
+    con.query(queryString, function(err, result, fields) {
+        if (err) {
+            throw err;
+            } else {
+                single_plate_obj = {single_plate: result};
+                res.render('oneplate', single_plate_obj);
+                
+            }
+           console.log(result);
+     
+    });
 
 })
-
-
-//code snipped to check code syntax errors
-//var fs = require('fs');
-//var check = require('syntax-error');
-
-//var file = __dirname + '/views/plate.ejs';
-//var src = fs.readFileSync(file);
-
-//var err = check(src, file);
-//if (err) {
-//    console.error('ERROR DETECTED' + Array(62).join('!'));
-  //  console.error(err);
- //   console.error(Array(76).join('-'));
-//}
-
-
 
 
 
