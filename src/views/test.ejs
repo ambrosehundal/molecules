@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-
+<h1>Scroll down to see paired plates and their data</h1>
 
 <table class="table" style="width:50%;margin-left:10%;">
         <thead>
@@ -19,13 +19,13 @@
 
         <tbody>
         
-                <% for (var i = 0; i < single_plate.length; i++) { %>
+                <% for (var i = 0; i < testing.length; i++) { %>
                     <tr class="timeline"></tr>
-                    <td><%= single_plate[i].id%></td>
+                    <td><%= testing[i].id%></td>
                 <td class="timeline-yellow">
                     <div class="timeline-time">
                         <span style="text-align:left">
-                      <a href= "/plate"><%= single_plate[i].UCSC_CSC_plate_ID %></a>  
+                      <a href= "/plate"><%= testing[i].UCSC_CSC_plate_ID %></a>  
                         </span>
                        
                     </div>
@@ -34,7 +34,7 @@
                 <td class="timeline-yellow">
                         <div class="timeline-time">
                             <span style="text-align:left">
-                                    <%= single_plate[i].plate_ID_384 %> 
+                                    <%= testing[i].plate_ID_384 %> 
                             </span>
                            
                         </div>
@@ -43,7 +43,7 @@
                 <td class="timeline-yellow">
                     <div class="timeline-time">
                         <span style="text-align:left">
-                                <%= single_plate[i].Cell_lines %> 
+                                <%= testing[i].Cell_lines %> 
                         </span>
                        
                     </div>
@@ -52,7 +52,7 @@
                 <td class="timeline-yellow">
                     <div class="timeline-time">
                         <span style="text-align:left">
-                                <%= single_plate[i].TimePoint %> 
+                                <%= testing[i].TimePoint %> 
                         </span>
                        
                     </div>
@@ -61,7 +61,7 @@
                 <td class="timeline-yellow">
                     <div class="timeline-time">
                         <span style="text-align:left">
-                                <%= single_plate[i].Magnification %> 
+                                <%= testing[i].Magnification %> 
                         </span>
                        
                     </div>
@@ -75,4 +75,3 @@
           
         </tbody>
       </table>
-
