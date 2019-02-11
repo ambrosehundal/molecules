@@ -21,7 +21,7 @@ const app = express();
 
 app.use(bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended: true
+  extended: false
 }));
 
 
@@ -33,15 +33,8 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 
-
-
-
-
-
-
 //local port
 const port = 3000;
-
 
 
 //create connection with MySQL database
@@ -50,7 +43,6 @@ var con = mysql.createConnection({
     user: "ambrose",
     password: "",
     database: 'molecules'
-
 });
 
 
@@ -69,8 +61,6 @@ con.connect(function(err){
 //Home page
 app.get('/', function (req, res){
     res.render(__dirname + '/index.ejs');
-    
-
 })
 
 
@@ -81,7 +71,7 @@ app.get('/plates', function (req, res){
 
     //query to get plate table from molecules db
 
-    con.query("SELECT DISTINCT UCSC_CSC_plate_ID FROM plate ORDER BY UCSC_CSC_plate_ID ASC", function (err, result) {
+    con.query("SELECT * from plate_directory", function (err, result) {
         if (err) {
         throw err;
         } else {
@@ -105,7 +95,7 @@ app.get('/plates/:id', function (req, res){
 
     //query to get plate table from molecules db
     var var_id = req.params.id;
-    
+    console.log("Var ID is: " + var_id);
 
     var queryString = 'SELECT * FROM plate WHERE id=' + var_id;
 
@@ -119,7 +109,7 @@ app.get('/plates/:id', function (req, res){
                 res.render('oneplate', single_plate_obj);
                 
             }
-           console.log(result);
+         //  console.log(result);
      
     });
 
@@ -128,24 +118,29 @@ app.get('/plates/:id', function (req, res){
 //test page
 app.get('/test', function (req, res){
 
+
+    var req_id = req.params.id;
+
+    console.log(req_id);
    
   
 
- // var queryString = 'SELECT * FROM plate WHERE id=' + var_id;
+  //var queryString = 'SELECT * FROM plate WHERE id=' + var_id;
    
    con.query("SELECT * FROM plate WHERE UCSC_CSC_plate_ID = 'SP0127' ", function (err, result) {
        if (err) {
        throw err;
        } else {
-        console.log(req.body);
+           
            test_obj = {testing: result};
            
-          // console.log(plate_ID);
-          console.log(res.json(req.body));
+
            res.render('test', test_obj);
            
        }
-      //console.log(result);
+       
+      // console.log(result);
+     
      });
 
   
