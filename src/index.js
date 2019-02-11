@@ -16,9 +16,14 @@ const ejsLint = require('ejs-lint');
 
 
 
-
 //initialize app
 const app = express();
+
+app.use(bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+}));
+
 
 
 //set the view engine
@@ -72,17 +77,17 @@ app.get('/', function (req, res){
 var plate_obj = {};
 
 //plate page
-app.get('/plate', function (req, res){
+app.get('/plates', function (req, res){
 
     //query to get plate table from molecules db
 
-    con.query("SELECT * FROM plate ORDER BY UCSC_CSC_plate_ID ASC", function (err, result) {
+    con.query("SELECT DISTINCT UCSC_CSC_plate_ID FROM plate ORDER BY UCSC_CSC_plate_ID ASC", function (err, result) {
         if (err) {
         throw err;
         } else {
             plate_obj = {print: result};
             //console.log(plate_obj);
-            res.render('plate', plate_obj);
+            res.render('plates', plate_obj);
             
         }
        console.log(result);
@@ -93,29 +98,10 @@ app.get('/plate', function (req, res){
 })
 
 
-//test page
-app.get('/test', function (req, res){
 
-    //query to get plate table from molecules db
-
-    con.query("SELECT * FROM plate WHERE  Cell_lines = 'MCF7' AND TimePoint = '0' AND Magnification = '10x' AND UCSC_CSC_plate_ID = 'SP0127' ", function (err, result) {
-        if (err) {
-        throw err;
-        } else {
-            test_obj = {testing: result};
-            //console.log(plate_obj);
-            res.render('test', test_obj);
-            
-        }
-       console.log(result);
-      });
-
-   
-
-})
 
 //individual page for a plate
-app.get('/plate/:id', function (req, res){
+app.get('/plates/:id', function (req, res){
 
     //query to get plate table from molecules db
     var var_id = req.params.id;
@@ -136,6 +122,33 @@ app.get('/plate/:id', function (req, res){
            console.log(result);
      
     });
+
+})
+
+//test page
+app.get('/test', function (req, res){
+
+   
+  
+
+ // var queryString = 'SELECT * FROM plate WHERE id=' + var_id;
+   
+   con.query("SELECT * FROM plate WHERE UCSC_CSC_plate_ID = 'SP0127' ", function (err, result) {
+       if (err) {
+       throw err;
+       } else {
+        console.log(req.body);
+           test_obj = {testing: result};
+           
+          // console.log(plate_ID);
+          console.log(res.json(req.body));
+           res.render('test', test_obj);
+           
+       }
+      //console.log(result);
+     });
+
+  
 
 })
 
