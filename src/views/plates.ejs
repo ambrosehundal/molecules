@@ -11,6 +11,9 @@
                           <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Plate ID</th>
+                            <th scope="col">Cell_lines</th>
+                            <th scope="col">TimePoint</th>
+                            <th scope="col">Magnification</th>
                            
                             
                           </tr>
@@ -25,7 +28,34 @@
                                 <td class="timeline-yellow">
                                     <div class="timeline-time">
                                         <span style="text-align:left">
-                                      <a href= ""><%= print[i].UCSC_CSC_plate_ID %></a>  
+                                      <a href= "/plates/"><%= print[i].UCSC_CSC_plate_ID %></a>  
+                                        </span>
+                                       
+                                    </div>
+                                </td>
+
+                                <td class="timeline-yellow">
+                                    <div class="timeline-time">
+                                        <span style="text-align:left">
+                                                <%= print[i].Cell_lines %> 
+                                        </span>
+                                       
+                                    </div>
+                                </td>
+                
+                                <td class="timeline-yellow">
+                                    <div class="timeline-time">
+                                        <span style="text-align:left">
+                                                <%= print[i].TimePoint %> 
+                                        </span>
+                                       
+                                    </div>
+                                </td>
+                
+                                <td class="timeline-yellow">
+                                    <div class="timeline-time">
+                                        <span style="text-align:left">
+                                                <%= print[i].Magnification %> 
                                         </span>
                                        
                                     </div>

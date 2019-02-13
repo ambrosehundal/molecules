@@ -56,7 +56,7 @@ con.connect(function(err){
 
 
 
-//****************PAGE ROUTES********************** */
+//***************************INDIVIDUAL PAGE ROUTES******************************************* */
 
 //Home page
 app.get('/', function (req, res){
@@ -66,8 +66,26 @@ app.get('/', function (req, res){
 
 var plate_obj = {};
 
-//plate page
+//page to display all plates
+
 app.get('/plates', function (req, res){
+
+    //query to get plate table from molecules db
+
+    con.query("SELECT * from plate", function (err, result) {
+        if (err) {
+        throw err;
+        } else {
+            plate_obj = {print: result};
+            //console.log(plate_obj);
+            res.render('plates', plate_obj);
+            
+        }
+       console.log(result);
+      });
+})
+
+app.get('/plate', function (req, res){
 
     //query to get plate table from molecules db
 
@@ -106,10 +124,11 @@ app.get('/plates/:id', function (req, res){
             throw err;
             } else {
                 single_plate_obj = {single_plate: result};
+               
                 res.render('oneplate', single_plate_obj);
                 
             }
-         //  console.log(result);
+           console.log(result);
      
     });
 
@@ -121,13 +140,13 @@ app.get('/test', function (req, res){
 
     var req_id = req.params.id;
 
-    console.log(req_id);
+   // console.log(req_id);
    
   
 
   //var queryString = 'SELECT * FROM plate WHERE id=' + var_id;
    
-   con.query("SELECT * FROM plate WHERE UCSC_CSC_plate_ID = 'SP0127' ", function (err, result) {
+   con.query("SELECT DISTINCT A.UCSC_CSC_plate_ID AS PlateNumber, A.Cell_lines as Plate_Cell_line, A.TimePoint, A.Magnification FROM plate A, plate B WHERE A.UCSC_CSC_plate_ID = 'SP0127' AND A.Cell_lines = B.Cell_lines AND A.TimePoint = B.TimePoint AND A.Magnification = B.Magnification ", function (err, result) {
        if (err) {
        throw err;
        } else {
@@ -139,7 +158,7 @@ app.get('/test', function (req, res){
            
        }
        
-      // console.log(result);
+       console.log(result);
      
      });
 
@@ -202,5 +221,5 @@ app.get('/plate/plateid/', function (req, res){
 
 app.listen(port, () => {
     console.log(`Server running on port: ${port}`);
-    //res.write('Hello Molecules!');
+    
 });
