@@ -52,6 +52,18 @@ con.connect(function(err){
     console.log("Running in :"  + process.env.NODE_ENV);
     console.log("Connected to molecules database");
     console.log("connected!");
+
+    con.query("UPDATE platelist set unique_plate_id = id where id IS NOT NULL AND unique_plate_id IS NULL", function (err, result) {
+        if (err) {
+        throw err;
+        } else {
+           console.log("Updated values");
+            
+        }
+    
+      });
+
+    
 });
 
 
@@ -85,17 +97,17 @@ app.get('/plates', function (req, res){
       });
 })
 
-app.get('/plate', function (req, res){
+app.get('/platelist', function (req, res){
 
     //query to get plate table from molecules db
 
-    con.query("SELECT * from plate_directory", function (err, result) {
+    con.query("SELECT * from platelist", function (err, result) {
         if (err) {
         throw err;
         } else {
-            plate_obj = {print: result};
+            platelist_obj = {print: result};
             //console.log(plate_obj);
-            res.render('plates', plate_obj);
+            res.render('platelist', platelist_obj);
             
         }
        console.log(result);
