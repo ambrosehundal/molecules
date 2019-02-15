@@ -41,7 +41,7 @@ const port = 3000;
 var con = mysql.createConnection({
     host:"localhost",
     user: "ambrose",
-    password: "",
+    password: "Molecules82",
     database: 'molecules'
 });
 
@@ -53,15 +53,21 @@ con.connect(function(err){
     console.log("Connected to molecules database");
     console.log("connected!");
 
-    con.query("UPDATE platelist set unique_plate_id = id where id IS NOT NULL AND unique_plate_id IS NULL", function (err, result) {
+    con.query("ALTER TABLE plate ADD FOREIGN KEY (`unique_plate_id`) REFERENCES platelist(`unique_plate_id`)", function (err, result) {
         if (err) {
         throw err;
-        } else {
-           console.log("Updated values");
+        } else { 
+            console.log("Foreign key added");
             
         }
-    
+       
       });
+
+    
+
+
+
+    
 
     
 });
@@ -97,6 +103,10 @@ app.get('/plates', function (req, res){
       });
 })
 
+
+
+// UNIQUE PLATE NAME LIST PAGE
+
 app.get('/platelist', function (req, res){
 
     //query to get plate table from molecules db
@@ -117,6 +127,30 @@ app.get('/platelist', function (req, res){
 
 })
 
+
+
+// GET ALL PLATES RELATED TO UNIQUE PLATE NAME
+
+
+app.get('/platelist/:id', function (req, res){
+
+    //query to get plate table from molecules db
+
+    con.query("SELECT * from platelist", function (err, result) {
+        if (err) {
+        throw err;
+        } else {
+            platelist_obj = {print: result};
+            //console.log(plate_obj);
+            res.render('platelist', platelist_obj);
+            
+        }
+       console.log(result);
+      });
+
+   
+
+})
 
 
 
@@ -158,7 +192,7 @@ app.get('/test', function (req, res){
 
   //var queryString = 'SELECT * FROM plate WHERE id=' + var_id;
    
-   con.query("SELECT DISTINCT A.UCSC_CSC_plate_ID AS PlateNumber, A.Cell_lines as Plate_Cell_line, A.TimePoint, A.Magnification FROM plate A, plate B WHERE A.UCSC_CSC_plate_ID = 'SP0127' AND A.Cell_lines = B.Cell_lines AND A.TimePoint = B.TimePoint AND A.Magnification = B.Magnification ", function (err, result) {
+   con.query("SELECT DISTINCT A.UCSC_CSC_plate_ID AS PlateNumber, A.Cell_lines as Plate_Cell_line, A.TimePoint, A.Magnification FROM plate A JOIN plate B ON (A.Cell_lines = B.Cell_lines AND A.TimePoint = B.TimePoint AND A.Magnification = B.Magnification ) ORDER BY A.UCSC_CSC_plate_ID ASC ", function (err, result) {
        if (err) {
        throw err;
        } else {
@@ -201,31 +235,6 @@ app.get('/wells/:id', function (req, res){
     });
 
 })
-
-app.get('/plate/plateid/', function (req, res){
-
-    //query to get plate table from molecules db
-    var well_id = req.params.id;
-    
-
-    var queryString = 'SELECT * FROM Wells WHERE UCSC_CSC_plate_ID = SP0127'; 
-
-
-
-    con.query(queryString, function(err, result, fields) {
-        if (err) {
-            throw err;
-            } else {
-                single_well_obj = {single_well: result};
-                res.render('onewell', single_well_obj);
-                
-            }
-           console.log(result);
-     
-    });
-
-})
-
 
 
 
