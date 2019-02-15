@@ -1,0 +1,90 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<br>
+<br>
+
+
+<% for (var i = 0; i < 1; i++) { %>
+  <h1 style="text-align:center;font-size: 72px;"> <%= print[0].UCSC_CSC_plate_ID %> </h1>
+<% } %>
+
+
+<table class="table" style="width:50%;margin-left:10%;">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+           
+            <th scope="col">UCSC_CSC_plate_ID</th>
+            <th scope="col">Cell Line</th>
+            <th scope="col">Timepoint</th>
+            <th scope="col">Magnification</th>
+            <th scope="col">Unique Plate ID</th>
+            
+            
+          </tr>
+        </thead>
+
+
+        <tbody>
+        
+                <% for (var i = 0; i < print.length; i++) { %>
+                    <tr class="timeline"></tr>
+                    <td><%= i +1%></td>
+
+                <td class="timeline-yellow">
+                    <div class="timeline-time">
+                        <span style="text-align:left">
+                      <a href= "/test"><%= print[i].UCSC_CSC_plate_ID %></a>  
+                        </span>
+                       
+                    </div>
+                </td>
+
+                
+
+                <td class="timeline-yellow">
+                    <div class="timeline-time">
+                        <span style="text-align:left">
+                                <%= print[i].Cell_lines %> 
+                        </span>
+                       
+                    </div>
+                </td>
+
+                <td class="timeline-yellow">
+                    <div class="timeline-time">
+                        <span style="text-align:left">
+                                <%= print[i].TimePoint %> 
+                        </span>
+                       
+                    </div>
+                </td>
+
+                <td class="timeline-yellow">
+                    <div class="timeline-time">
+                        <span style="text-align:left">
+                                <%= print[i].Magnification %> 
+                        </span>
+                       
+                    </div>
+                </td>
+
+                <td class="timeline-yellow">
+                    <div class="timeline-time">
+                        <span style="text-align:left">
+                      <a href= "/test"><%= print[i].unique_plate_id %></a>  
+                        </span>
+                       
+                    </div>
+                </td>
+
+                
+            </tr>
+                <br>
+                <% } %>
+        
+          
+        </tbody>
+      </table>
+

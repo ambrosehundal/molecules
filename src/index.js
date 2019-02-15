@@ -53,20 +53,6 @@ con.connect(function(err){
     console.log("Connected to molecules database");
     console.log("connected!");
 
-    con.query("ALTER TABLE plate ADD FOREIGN KEY (`unique_plate_id`) REFERENCES platelist(`unique_plate_id`)", function (err, result) {
-        if (err) {
-        throw err;
-        } else { 
-            console.log("Foreign key added");
-            
-        }
-       
-      });
-
-    
-
-
-
     
 
     
@@ -134,15 +120,22 @@ app.get('/platelist', function (req, res){
 
 app.get('/platelist/:id', function (req, res){
 
-    //query to get plate table from molecules db
+    //query to get all plates related to a unique_plate_ID eg. SP0127 gets all 16 instances
+    var plate_unique_id = req.params.id;
+    console.log("plate unique ID is: " + plate_unique_id);
+   
+    //var platequeryString = 'SELECT * FROM platelist WHERE id=' + var_id;
+   
+    var platelistquery = 'SELECT plate.unique_plate_id, plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification FROM plate INNER JOIN platelist ON (platelist.unique_plate_id=plate.unique_plate_id) WHERE plate.unique_plate_id=' + plate_unique_id;
+   
 
-    con.query("SELECT * from platelist", function (err, result) {
+
+    con.query(platelistquery, function (err, result) {
         if (err) {
         throw err;
         } else {
             platelist_obj = {print: result};
-            //console.log(plate_obj);
-            res.render('platelist', platelist_obj);
+            res.render('oneplatelist', platelist_obj);
             
         }
        console.log(result);
