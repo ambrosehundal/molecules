@@ -6,7 +6,7 @@
                 <h1 style="text-align:center">Home page to browse Plates</h1>
                 <br>
                 <br>
-                <table class="table tpos" style="width:50%;margin-left:10%;">
+                <table class="table tpos" style="width:70%;margin-left:10%;">
                         <thead>
                           <tr>
                             <th scope="col">ID</th>
@@ -14,6 +14,8 @@
                             <th scope="col">Cell_lines</th>
                             <th scope="col">TimePoint</th>
                             <th scope="col">Magnification</th>
+                            <th scope="col">Experiment Date</th>
+                            <th scope="col">Plate pair ID </th>
                            
                             
                           </tr>
@@ -60,15 +62,24 @@
                                        
                                     </div>
                                 </td>
+                                <td class="timeline-yellow">
+                                    <div class="timeline-time">
+                                        <span style="text-align:left">
+                                                <%= print[i].experiment_date %> 
+                                        </span>
+                                       
+                                    </div>
+                                </td>
+                                <td class="timeline-yellow">
+                                    <div class="timeline-time">
+                                        <span style="text-align:left">
+                                                <%= print[i].plate_pair_id %> 
+                                        </span>
+                                       
+                                    </div>
+                                </td>
                 
-                               <!-- <td class="timeline-yellow">
-                                        <div class="timeline-time">
-                                            <span style="text-align:left">
-                                                    <%= print[i].plate_ID_384 %> 
-                                            </span>
-                                           
-                                        </div>
-                                </td> -->
+                               
                             </tr>
                                 <br>
                                 <% } %>

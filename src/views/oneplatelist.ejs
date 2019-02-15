@@ -10,7 +10,7 @@
 <% } %>
 
 
-<table class="table" style="width:50%;margin-left:10%;">
+<table class="table" style="width:80%;margin-left:10%;">
         <thead>
           <tr>
             <th scope="col">ID</th>
@@ -19,7 +19,8 @@
             <th scope="col">Cell Line</th>
             <th scope="col">Timepoint</th>
             <th scope="col">Magnification</th>
-            <th scope="col">Unique Plate ID</th>
+            <th scope="col">Experiment date</th>
+            <th scope="col">Paired plate ID</th>
             
             
           </tr>
@@ -70,10 +71,20 @@
                     </div>
                 </td>
 
+            
+
                 <td class="timeline-yellow">
                     <div class="timeline-time">
                         <span style="text-align:left">
-                      <a href= "/test"><%= print[i].unique_plate_id %></a>  
+                                <%= print[i].experiment_date %> 
+                        </span>
+                       
+                    </div>
+                </td>
+                <td class="timeline-yellow">
+                    <div class="timeline-time">
+                        <span style="text-align:left">
+                                <%= print[i].plate_pair_id %> 
                         </span>
                        
                     </div>

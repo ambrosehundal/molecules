@@ -9,9 +9,9 @@
                 <table class="table tpos" style="width:50%;margin-left:10%;">
                         <thead>
                           <tr>
-                            <th scope="col">Index ID</th>
+                            <th scope="col"> ID</th>
+                            <th scope="col">_CSC_plate_ID</th>
                             <th scope="col">Unique Plate ID</th>
-                            <th scope="col">UCSC_CSC_plate_ID</th>
                             
                            
                             
@@ -27,19 +27,20 @@
                                     <td class="timeline-yellow">
                                         <div class="timeline-time">
                                             <span style="text-align:left">
+                                          <a href= "/plates/"><%= print[i].UCSC_CSC_plate_ID %></a>  
+                                            </span>
+                                           
+                                        </div>
+                                    </td>
+                                    <td class="timeline-yellow">
+                                        <div class="timeline-time">
+                                            <span style="text-align:left">
                                                     <%= print[i].unique_plate_id%> 
                                             </span>
                                            
                                         </div>
                                     </td>
-                                <td class="timeline-yellow">
-                                    <div class="timeline-time">
-                                        <span style="text-align:left">
-                                      <a href= "/plates/"><%= print[i].UCSC_CSC_plate_ID %></a>  
-                                        </span>
-                                       
-                                    </div>
-                                </td>
+                               
                             </tr>
                                 <br>
                                 <% } %>
