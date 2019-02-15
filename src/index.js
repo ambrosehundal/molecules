@@ -126,7 +126,7 @@ app.get('/platelist/:id', function (req, res){
    
     var pair_order = ' ORDER BY plate_pair_id ASC' 
    
-    var platelistquery = 'SELECT plate.unique_plate_id, plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date, plate.plate_pair_id FROM plate INNER JOIN platelist ON (platelist.unique_plate_id=plate.unique_plate_id) WHERE plate.unique_plate_id=' + plate_unique_id + pair_order;
+    var platelistquery = 'SELECT DISTINCT plate.plate_pair_id, plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date FROM plate INNER JOIN platelist ON (platelist.unique_plate_id=plate.unique_plate_id) WHERE plate.unique_plate_id=' + plate_unique_id + pair_order;
    
 
 
@@ -143,6 +143,34 @@ app.get('/platelist/:id', function (req, res){
 
    
 
+})
+
+
+app.get('/platelist/:id/datasets', function (req, res){
+
+
+    //try creating a separate table for pair plates
+
+    //query to get all plates related to a unique_plate_ID eg. SP0127 gets all 16 instances
+    var plate_unique_id = req.params.id;
+    console.log("plate unique ID is: " + plate_unique_id);
+   
+    var pair_order = ' ORDER BY plate_pair_id ASC' 
+   
+    var platelistquery = 'SELECT DISTINCT plate.unique_plate_id, plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date, plate.plate_pair_id FROM plate INNER JOIN platelist ON (platelist.unique_plate_id=plate.unique_plate_id) WHERE plate.unique_plate_id=' + plate_unique_id + pair_order;
+   
+
+
+    con.query(platelistquery, function (err, result) {
+        if (err) {
+        throw err;
+        } else {
+            platelist_obj = {print: result};
+            res.render('oneplatelist', platelist_obj);
+            
+        }
+       console.log(result);
+      });
 })
 
 
