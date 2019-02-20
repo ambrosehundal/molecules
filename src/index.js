@@ -56,6 +56,8 @@ con.connect(function(err){
     
 
     
+
+    
 });
 
 
@@ -126,7 +128,7 @@ app.get('/platelist/:id', function (req, res){
    
     var pair_order = ' ORDER BY plate_pair_id ASC' 
    
-    var platelistquery = 'SELECT DISTINCT plate.plate_pair_id, plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date FROM plate INNER JOIN platelist ON (platelist.unique_plate_id=plate.unique_plate_id) WHERE plate.unique_plate_id=' + plate_unique_id + pair_order;
+    var platelistquery = 'SELECT plate.plate_pair_id, plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date FROM plate INNER JOIN platelist ON (platelist.unique_plate_id=plate.unique_plate_id) WHERE plate.unique_plate_id=' + plate_unique_id + pair_order;
    
 
 
@@ -201,6 +203,37 @@ app.get('/plates/:id', function (req, res){
 
 })
 
+
+
+//*******************************Plates by pair page*************************************
+app.get('/platepairs', function (req, res){
+
+   con.query("SELECT * FROM paired_plates", function (err, result) {
+       if (err) {
+       throw err;
+       } else {
+           
+           paired_plates_obj = {paired: result};
+           
+
+           res.render('platepairs', paired_plates_obj);
+           
+       }
+       
+       console.log(result);
+     
+     });
+
+  
+
+})
+
+
+
+
+
+
+
 //test page
 app.get('/test', function (req, res){
 
@@ -257,6 +290,8 @@ app.get('/wells/:id', function (req, res){
 
 })
 
+
+//******************************************ROUTES END HERE*********************************************** */
 
 
 
