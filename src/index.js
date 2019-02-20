@@ -41,7 +41,7 @@ const port = 3000;
 var con = mysql.createConnection({
     host:"localhost",
     user: "ambrose",
-    password: "",
+    password: "Molecules82",
     database: 'molecules'
 });
 
@@ -141,6 +141,22 @@ app.get('/platelist/:id', function (req, res){
             
         }
        console.log(result);
+      });
+
+      con.query("SELECT * FROM paired_plates", function (err, result) {
+        if (err) {
+        throw err;
+        } else {
+            
+            paired_plates_obj = {paired: result};
+            
+ 
+           res.render('oneplatelist', paired_plates_obj);
+            
+        }
+        
+        console.log(result);
+      
       });
 
    
