@@ -228,6 +228,33 @@ app.get('/platepairs', function (req, res){
 
 })
 
+//******************************ACCESSING A INDIVIDUAL PAIR **************************/
+app.get('/platepairs/:id', function (req, res){
+
+    var pair_id = req.params.id;
+
+    con.query("SELECT * FROM paired_plates WHERE plate_pair_id=" + pair_id, function (err, result) {
+        if (err) {
+        throw err;
+        } else {
+            
+            paired_test_obj = {pairedtest: result};
+            
+ 
+            res.render('pairedtest', paired_test_obj);
+            
+        }
+        
+        console.log(result);
+      
+      });
+ 
+   
+ 
+ })
+
+
+
 
 
 
