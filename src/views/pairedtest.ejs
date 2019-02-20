@@ -9,8 +9,15 @@
                 <table class="table tpos" style="width:70%;margin-left:10%;">
                         <thead>
                           <tr>
-                            <th scope="col">ID </th>
-                            <th scope="col">Plate pair ID </th>
+                               
+                            <th scope="col">Index</th>  
+                            <th scope="col">UCSC Plate ID</th>
+                            <th scope="col">Cell_lines</th>
+                            <th scope="col">TimePoint</th>
+                            <th scope="col">Magnification</th>
+                            <th scope="col">Experiment Date</th>
+                            <th scope="col">Plate pair ID </th> 
+                            
                           </tr>
                         </thead>
                 
@@ -21,13 +28,59 @@
                                     <tr class="timeline"></tr>
                                     <td><%= i + 1%></td>
                                 <td class="timeline-yellow">
-                                    <div class="timeline-time">
-                                        <span style="text-align:left">
-                                      <a href= "/platepairs/"><%= pairedtest[i].plate_pair_id %></a>  
-                                        </span>
-                                       
-                                    </div>
-                                </td>                
+                                            <div class="timeline-time">
+                                                <span style="text-align:left">
+                                              <a href= "/platepairs/"><%= pairedtest[i].UCSC_CSC_plate_ID %></a>  
+                                                </span>
+                                               
+                                            </div>
+                                 </td> 
+                                
+                                <td class="timeline-yellow">
+                                        <div class="timeline-time">
+                                            <span style="text-align:left">
+                                          <a href= "/platepairs/"><%= pairedtest[i].Cell_lines %></a>  
+                                            </span>
+                                           
+                                        </div>
+                                </td>
+                                
+                                <td class="timeline-yellow">
+                                        <div class="timeline-time">
+                                            <span style="text-align:left">
+                                          <a href= "/platepairs/"><%= pairedtest[i].TimePoint %></a>  
+                                            </span>
+                                           
+                                        </div>
+                                </td>
+                                
+                                <td class="timeline-yellow">
+                                        <div class="timeline-time">
+                                            <span style="text-align:left">
+                                          <a href= "/platepairs/"><%= pairedtest[i].Magnification %></a>  
+                                            </span>
+                                           
+                                        </div>
+                                </td>   
+
+                                <td class="timeline-yellow">
+                                        <div class="timeline-time">
+                                            <span style="text-align:left">
+                                          <a href= "/platepairs/"><%= pairedtest[i].experiment_date %></a>  
+                                            </span>
+                                           
+                                        </div>
+                                </td>
+
+                                <td class="timeline-yellow">
+                                        <div class="timeline-time">
+                                            <span style="text-align:left">
+                                          <a href= "/platepairs/"><%= pairedtest[i].plate_pair_id %></a>  
+                                            </span>
+                                           
+                                        </div>
+                                </td>   
+
                                
                             </tr>
                                 <br>

@@ -41,7 +41,7 @@ const port = 3000;
 var con = mysql.createConnection({
     host:"localhost",
     user: "ambrose",
-    password: "Molecules82",
+    password: "",
     database: 'molecules'
 });
 
@@ -231,9 +231,17 @@ app.get('/platepairs', function (req, res){
 //******************************ACCESSING A INDIVIDUAL PAIR **************************/
 app.get('/platepairs/:id', function (req, res){
 
+   
+    var pair_order = ' ORDER BY plate_pair_id ASC' ;
+   
+    
     var pair_id = req.params.id;
 
-    con.query("SELECT * FROM paired_plates WHERE plate_pair_id=" + pair_id, function (err, result) {
+    var pairQuery = 'SELECT plate.plate_pair_id, plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date FROM plate INNER JOIN paired_plates ON (plate.plate_pair_id=paired_plates.plate_pair_id) WHERE paired_plates.plate_pair_id=' + pair_id;
+
+
+
+    con.query(pairQuery, function (err, result) {
         if (err) {
         throw err;
         } else {
@@ -273,7 +281,7 @@ app.get('/test', function (req, res){
 
   //var queryString = 'SELECT * FROM plate WHERE id=' + var_id;
    
-   con.query("SELECT DISTINCT A.UCSC_CSC_plate_ID AS PlateNumber, A.Cell_lines as Plate_Cell_line, A.TimePoint, A.Magnification FROM plate A JOIN plate B ON (A.Cell_lines = B.Cell_lines AND A.TimePoint = B.TimePoint AND A.Magnification = B.Magnification ) ORDER BY A.UCSC_CSC_plate_ID ASC ", function (err, result) {
+   con.query("SELECT DISTINCT A.UCSC_CSC_plate_ID AS PlateNumber, A.Cell_lines as Plate_Cell_line, A.TimePoint, A.Magnification, A.experiment_date FROM plate A JOIN plate B ON (A.Cell_lines = B.Cell_lines AND A.TimePoint = B.TimePoint AND A.Magnification = B.Magnification AND A.experiment_date = B.experiment_date ) ORDER BY A.UCSC_CSC_plate_ID ASC ", function (err, result) {
        if (err) {
        throw err;
        } else {
