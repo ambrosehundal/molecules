@@ -10,7 +10,9 @@
                         <thead>
                           <tr>
                             <th scope="col">Plate pair ID </th>  
-                            <th scope="col">ID </th>
+                            <th scope="col">UCSC_CSC_Plate_ID</th>
+                            <th scope="col"> ID </th>
+
                             
                           </tr>
                         </thead>
@@ -18,16 +20,26 @@
                 
                         <tbody>
                         
-                                <% for (var i = 0; i < paired.length; i++) { %>
-                                    <tr class="timeline"></tr>
+                                <% for (var i = 0; i < print.length; i++) { %>
+                                    <tr class=""></tr>
                                     <td class="timeline-yellow">
                                             <div class="timeline-time">
                                                 
-                                              <a href= "/datasets/<%= i + 1%>"><%= paired[i].plate_pair_id %></a>  
+                                              <a href= "/datasets/<%= i + 1%>"><%= print[i].plate_pair_id %></a>  
                                                
                                                
                                             </div>
                                         </td>   
+                                   
+
+                                    <td class="timeline-yellow">
+                                            <div class="">
+                                                
+                                              <a href= "/datasets/<%= i + 1%>"><%= print[i].UCSC_CSC_plate_ID %></a>  
+                                               
+                                               
+                                            </div>
+                                    </td> 
                                     <td><%= i + 1%></td>
                                             
                                

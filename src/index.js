@@ -167,10 +167,12 @@ app.get('/platelist/:id', function (req, res){
    
     var pair_order = ' ORDER BY plate_pair_id ASC' 
    
-    var platelistquery = 'SELECT plate.plate_pair_id, plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date FROM plate INNER JOIN platelist ON (platelist.unique_plate_id=plate.unique_plate_id) WHERE plate.unique_plate_id=' + plate_unique_id + pair_order;
+    var platelistquery = 'SELECT plate.plate_pair_id, plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date FROM plate INNER JOIN platelist ON (platelist.unique_plate_id=plate.unique_plate_id) WHERE platelist.unique_plate_id=' + plate_unique_id + pair_order;
    
-    var plate_datasets = 'SELECT paired_plates.plate_pair_id, '
+   
+    
 
+   // INNER JOIN platelist ON (plate.unique_plate_id=platelist.unique_plate_id)
     con.query(platelistquery, function (err, result) {
         if (err) {
         throw err;
@@ -195,21 +197,57 @@ app.get('/platelist/:id/datasets', function (req, res){
    
     var pair_order = ' ORDER BY plate_pair_id ASC' 
    
-    var platelistquery = 'SELECT DISTINCT plate.unique_plate_id, plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date, plate.plate_pair_id FROM plate INNER JOIN platelist ON (platelist.unique_plate_id=plate.unique_plate_id) WHERE plate.unique_plate_id=' + plate_unique_id + pair_order;
+   // var platelistquery = 'SELECT DISTINCT plate.unique_plate_id, plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date, plate.plate_pair_id FROM plate INNER JOIN platelist ON (platelist.unique_plate_id=plate.unique_plate_id) WHERE plate.unique_plate_id=' + plate_unique_id + pair_order;
    
+    var plate_datasets = 'SELECT paired_plates.plate_pair_id, platelist.UCSC_CSC_plate_ID FROM platelist INNER JOIN paired_plates ON (platelist.unique_plate_id = paired_plates.unique_plate_id) WHERE platelist.unique_plate_id=' + plate_unique_id + pair_order;
 
 
-    con.query(platelistquery, function (err, result) {
+    con.query(plate_datasets, function (err, result) {
         if (err) {
         throw err;
         } else {
             platelist_obj = {print: result};
-            res.render('oneplatelist', platelist_obj);
+            res.render('datasets', platelist_obj);
             
         }
        console.log(result);
       });
 })
+
+
+//*************************SINGLE DATASET RETRIEVING PAGE **************************/
+app.get('platelist/:id/datasets/:id', function (req, res){
+
+   
+    var pair_order = ' ORDER BY plate_pair_id ASC' ;
+   
+    
+    var pair_id = req.params.id;
+
+    var pairQuery = 'SELECT plate.plate_pair_id, plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date FROM plate INNER JOIN paired_plates ON (plate.plate_pair_id=paired_plates.plate_pair_id) WHERE paired_plates.plate_pair_id=' + pair_id;
+
+
+
+    con.query(pairQuery, function (err, result) {
+        if (err) {
+        throw err;
+        } else {
+            
+            paired_test_obj = {pairedtest: result};
+            
+ 
+            res.render('pairedtest', paired_test_obj);
+            
+        }
+        
+        console.log(result);
+      
+      });
+ 
+   
+ 
+ })
+
 
 
 
