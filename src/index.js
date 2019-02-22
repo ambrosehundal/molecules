@@ -66,7 +66,7 @@ app.get('/', function (req, res){
 
 var plate_obj = {};
 
-//page to display all plates
+//page to display all plates with all datasets
 
 app.get('/plates', function (req, res){
 
@@ -86,33 +86,54 @@ app.get('/plates', function (req, res){
 })
 
 
+//individual page for a plate 
+app.get('/plates/:id', function (req, res){
 
-// UNIQUE PLATE NAME LIST PAGE
+    //query to get plate table from molecules db
+    var var_id = req.params.id;
+    console.log("Var ID is: " + var_id);
+
+    var queryString = 'SELECT * FROM plate WHERE id=' + var_id;
+
+
+
+    con.query(queryString, function(err, result, fields) {
+        if (err) {
+            throw err;
+            } else {
+                single_plate_obj = {single_plate: result};
+               
+                res.render('oneplate', single_plate_obj);
+                
+            }
+           console.log(result);
+     
+    });
+
+})
+
+
+
+//*********************** HOME PAGE and UNIQUE PLATE NAME LIST PAGE**************************************** 
 
 app.get('/platelist', function (req, res){
 
-    //query to get plate table from molecules db
-
+    //query to get platelist table from molecules db which has plate names by unique name
     con.query("SELECT * from platelist", function (err, result) {
         if (err) {
         throw err;
         } else {
             platelist_obj = {print: result};
             //console.log(plate_obj);
-            res.render('platelist', platelist_obj);
-            
+            res.render('platelist', platelist_obj);  
         }
        console.log(result);
       });
-
-   
-
 })
 
 
-
-// GET ALL PLATES RELATED TO UNIQUE PLATE NAME
-app.get('/platelist/:id', function (req, res){
+// GET ALL PLATES RELATED from plate table that are linked TO UNIQUE PLATE NAME in platelist table
+/*app.get('/platelist/:id', function (req, res){
 
     //query to get all plates related to a unique_plate_ID eg. SP0127 gets all 16 instances
     var plate_unique_id = req.params.id;
@@ -133,28 +154,35 @@ app.get('/platelist/:id', function (req, res){
             
         }
        console.log(result);
-      });
-
-     // con.query("SELECT * FROM paired_plates", function (err, result) {
-     //   if (err) {
-     //   throw err;
-      //  } else {
-            
-       //     paired_plates_obj = {paired: result};
-            
- 
-       //    res.render('oneplatelist', paired_plates_obj);
-            
-      //  }
-        
-      //  console.log(result);
-      
-    //  });
-
-   
+      });   
 
 })
+*/
 
+app.get('/platelist/:id', function (req, res){
+
+    //query to get all plates related to a unique_plate_ID eg. SP0127 gets all 16 instances
+    var plate_unique_id = req.params.id;
+    console.log("plate unique ID is: " + plate_unique_id);
+   
+    var pair_order = ' ORDER BY plate_pair_id ASC' 
+   
+    var platelistquery = 'SELECT plate.plate_pair_id, plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date FROM plate INNER JOIN platelist ON (platelist.unique_plate_id=plate.unique_plate_id) WHERE plate.unique_plate_id=' + plate_unique_id + pair_order;
+   
+    var plate_datasets = 'SELECT paired_plates.plate_pair_id, '
+
+    con.query(platelistquery, function (err, result) {
+        if (err) {
+        throw err;
+        } else {
+            platelist_obj = {print: result};
+            res.render('oneplatelist', platelist_obj);
+            
+        }
+       console.log(result);
+      });   
+
+})
 
 app.get('/platelist/:id/datasets', function (req, res){
 
@@ -181,34 +209,6 @@ app.get('/platelist/:id/datasets', function (req, res){
         }
        console.log(result);
       });
-})
-
-
-
-//individual page for a plate
-app.get('/plates/:id', function (req, res){
-
-    //query to get plate table from molecules db
-    var var_id = req.params.id;
-    console.log("Var ID is: " + var_id);
-
-    var queryString = 'SELECT * FROM plate WHERE id=' + var_id;
-
-
-
-    con.query(queryString, function(err, result, fields) {
-        if (err) {
-            throw err;
-            } else {
-                single_plate_obj = {single_plate: result};
-               
-                res.render('oneplate', single_plate_obj);
-                
-            }
-           console.log(result);
-     
-    });
-
 })
 
 

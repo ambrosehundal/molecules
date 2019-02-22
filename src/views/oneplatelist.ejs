@@ -5,13 +5,22 @@
 <br>
 
 
+
+
 <% for (var i = 0; i < 1; i++) { %>
   <h1 style="text-align:center;font-size: 72px;"> <%= print[i].UCSC_CSC_plate_ID %> Plate Pairs </h1>
 <% } %>
 
+<br>
+<% for (var i = 0; i < 1; i++) { %>
+    <h5><a href="">Click to see all datasets for <%= print[i].UCSC_CSC_plate_ID %></a></h5>
+    <br>
+    <br>
+<% } %>
 
 <table class="table" style="width:80%;margin-left:10%;">
         <thead>
+            <h3>All screenings/instances for <%= print[i].UCSC_CSC_plate_ID %> </h3>
           <tr>
             <th scope="col">ID</th>
            
@@ -98,6 +107,9 @@
           
         </tbody>
       </table>
+
+
+            
 
     
 

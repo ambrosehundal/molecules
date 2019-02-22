@@ -9,8 +9,9 @@
                 <table class="table tpos" style="width:70%;margin-left:10%;">
                         <thead>
                           <tr>
+                            <th scope="col">Plate pair ID </th>  
                             <th scope="col">ID </th>
-                            <th scope="col">Plate pair ID </th>
+                            
                           </tr>
                         </thead>
                 
@@ -19,15 +20,16 @@
                         
                                 <% for (var i = 0; i < paired.length; i++) { %>
                                     <tr class="timeline"></tr>
+                                    <td class="timeline-yellow">
+                                            <div class="timeline-time">
+                                                
+                                              <a href= "/datasets/<%= i + 1%>"><%= paired[i].plate_pair_id %></a>  
+                                               
+                                               
+                                            </div>
+                                        </td>   
                                     <td><%= i + 1%></td>
-                                <td class="timeline-yellow">
-                                    <div class="timeline-time">
-                                        <span style="text-align:left">
-                                      <a href= "/datasets/1"><%= paired[i].plate_pair_id %></a>  
-                                        </span>
-                                       
-                                    </div>
-                                </td>                
+                                            
                                
                             </tr>
                                 <br>
