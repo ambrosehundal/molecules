@@ -236,7 +236,7 @@ app.get('platelist/:id/datasets/:id', function (req, res){
             paired_test_obj = {pairedtest: result};
             
  
-            res.render('pairedtest', paired_test_obj);
+            res.render('oneset', paired_test_obj);
             
         }
         
