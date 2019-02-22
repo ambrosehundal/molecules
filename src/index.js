@@ -52,12 +52,6 @@ con.connect(function(err){
     console.log("Running in :"  + process.env.NODE_ENV);
     console.log("Connected to molecules database");
     console.log("connected!");
-
-    
-
-    
-
-    
 });
 
 
@@ -118,8 +112,6 @@ app.get('/platelist', function (req, res){
 
 
 // GET ALL PLATES RELATED TO UNIQUE PLATE NAME
-
-
 app.get('/platelist/:id', function (req, res){
 
     //query to get all plates related to a unique_plate_ID eg. SP0127 gets all 16 instances
@@ -143,21 +135,21 @@ app.get('/platelist/:id', function (req, res){
        console.log(result);
       });
 
-      con.query("SELECT * FROM paired_plates", function (err, result) {
-        if (err) {
-        throw err;
-        } else {
+     // con.query("SELECT * FROM paired_plates", function (err, result) {
+     //   if (err) {
+     //   throw err;
+      //  } else {
             
-            paired_plates_obj = {paired: result};
+       //     paired_plates_obj = {paired: result};
             
  
-           res.render('oneplatelist', paired_plates_obj);
+       //    res.render('oneplatelist', paired_plates_obj);
             
-        }
+      //  }
         
-        console.log(result);
+      //  console.log(result);
       
-      });
+    //  });
 
    
 
@@ -222,7 +214,7 @@ app.get('/plates/:id', function (req, res){
 
 
 //*******************************Plates by pair page*************************************
-app.get('/platepairs', function (req, res){
+app.get('/datasets', function (req, res){
 
    con.query("SELECT * FROM paired_plates", function (err, result) {
        if (err) {
@@ -232,7 +224,7 @@ app.get('/platepairs', function (req, res){
            paired_plates_obj = {paired: result};
            
 
-           res.render('platepairs', paired_plates_obj);
+           res.render('datasets', paired_plates_obj);
            
        }
        
@@ -245,7 +237,7 @@ app.get('/platepairs', function (req, res){
 })
 
 //******************************ACCESSING A INDIVIDUAL PAIR **************************/
-app.get('/platepairs/:id', function (req, res){
+app.get('/datasets/:id', function (req, res){
 
    
     var pair_order = ' ORDER BY plate_pair_id ASC' ;
@@ -324,8 +316,6 @@ app.get('/wells/:id', function (req, res){
     
 
     var queryString = 'SELECT * FROM Wells WHERE id=' + well_id;
-
-
 
     con.query(queryString, function(err, result, fields) {
         if (err) {

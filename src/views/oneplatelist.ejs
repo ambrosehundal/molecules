@@ -6,7 +6,7 @@
 
 
 <% for (var i = 0; i < 1; i++) { %>
-  <h1 style="text-align:center;font-size: 72px;"> <%= print[0].UCSC_CSC_plate_ID %> Plate Pairs </h1>
+  <h1 style="text-align:center;font-size: 72px;"> <%= print[i].UCSC_CSC_plate_ID %> Plate Pairs </h1>
 <% } %>
 
 
@@ -99,31 +99,5 @@
         </tbody>
       </table>
 
-      <table>
-            <thead>
-              <th scope="col"> ID</th>
-              <th scope="col">UCSC_CSC_plate_ID</th>
-              <th scope="col">Unique Plate ID</th>
-          </thead>
-          <tbody>
-
-                  <% for (var i = 0; i < paired.length; i++) { %>
-                      <tr class="timeline"></tr>
-                      <td><%= i + 1%></td>
-                      <td class="timeline-yellow">
-                          <div class="timeline-time">
-                              <span style="text-align:left">
-                            <a href= "/test"><%= paired[i].plate_pair_id %></a>  
-                              </span>
-                             
-                          </div>
-                      </td>
-                      
-                 
-              </tr>
-                  <br>
-                  <% } %>
-          </tbody>
-         
-  </table>
+    
 
