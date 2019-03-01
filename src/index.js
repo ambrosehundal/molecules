@@ -347,20 +347,21 @@ app.get('/test', function (req, res){
 
 })
 
-app.get('/wells/:id', function (req, res){
+app.get('/wells', function (req, res){
 
     //query to get plate table from molecules db
     var well_id = req.params.id;
     
 
-    var queryString = 'SELECT * FROM Wells WHERE id=' + well_id;
+    var queryString = 'SELECT * FROM platewells';
+    // WHERE id=' + well_id;
 
     con.query(queryString, function(err, result, fields) {
         if (err) {
             throw err;
             } else {
-                single_well_obj = {single_well: result};
-                res.render('onewell', single_well_obj);
+                single_well_obj = {well: result};
+                res.render('wells', single_well_obj);
                 
             }
            console.log(result);
