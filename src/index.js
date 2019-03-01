@@ -224,7 +224,7 @@ app.get('/platelist/:id/datasets/:id', function (req, res){
     
     var pair_id = req.params.id;
 
-    var pairQuery = 'SELECT plate.plate_pair_id, plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date FROM plate INNER JOIN paired_plates ON (plate.plate_pair_id=paired_plates.plate_pair_id) WHERE paired_plates.plate_pair_id=' + pair_id;
+    var pairQuery = 'SELECT plate.plate_pair_id, plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date  FROM plate INNER JOIN paired_plates ON (plate.plate_pair_id=paired_plates.plate_pair_id) WHERE paired_plates.plate_pair_id=' + pair_id;
 
 
 
@@ -237,6 +237,39 @@ app.get('/platelist/:id/datasets/:id', function (req, res){
             
  
             res.render('oneset', paired_test_obj);
+            
+        }
+        
+        console.log(result);
+      
+      });
+ 
+   
+ 
+ })
+
+ app.get('/platelist/:id/datasets/:id/wells', function (req, res){
+
+   
+  //  var pair_order = ' ORDER BY plate_pair_id ASC' ;
+   
+    
+    var pair_id = req.params.id;
+   // console.log("Cell_Well_Id is" + well_id);
+
+    var wellQuery = 'SELECT single_well_id, well_name, cell_well_id FROM paired_plates p1 INNER JOIN platewells cw ON p1.plate_pair_id=cw.plate_pair_id INNER JOIN Wells w on w.cell_well_id=cw.plate_well_id WHERE p1.plate_pair_id=' + pair_id;
+
+
+
+    con.query(wellQuery, function (err, result) {
+        if (err) {
+        throw err;
+        } else {
+            
+            paired_test_obj = {wells: result};
+            
+ 
+            res.render('welltally', paired_test_obj);
             
         }
         
