@@ -216,7 +216,7 @@ app.get('/platelist/:id/datasets', function (req, res){
 
 
 //*************************SINGLE DATASET RETRIEVING PAGE **************************/
-app.get('platelist/:id/datasets/:id', function (req, res){
+app.get('/platelist/:id/datasets/:id', function (req, res){
 
    
     var pair_order = ' ORDER BY plate_pair_id ASC' ;
@@ -327,7 +327,7 @@ app.get('/test', function (req, res){
 
   //var queryString = 'SELECT * FROM plate WHERE id=' + var_id;
    
-   con.query("SELECT DISTINCT A.UCSC_CSC_plate_ID AS PlateNumber, A.Cell_lines as Plate_Cell_line, A.TimePoint, A.Magnification, A.experiment_date FROM plate A JOIN plate B ON (A.Cell_lines = B.Cell_lines AND A.TimePoint = B.TimePoint AND A.Magnification = B.Magnification AND A.experiment_date = B.experiment_date ) ORDER BY A.UCSC_CSC_plate_ID ASC ", function (err, result) {
+   con.query("SELECT * FROM paired_plates ", function (err, result) {
        if (err) {
        throw err;
        } else {

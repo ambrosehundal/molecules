@@ -6,12 +6,10 @@
         <thead>
           <tr>
             <th scope="col">ID</th>
-            <th scope="col">Plate ID</th>
-            <th scope="col">384 Plate ID</th>
-            <th scope="col">Cell Line</th>
-            <th scope="col">Timepoint</th>
-            <th scope="col">Magnification</th>
-            <th scope="col">Experiment date</th>
+            <th scope="col">Pair plate id</th>
+            <th scope="col">Unique plate ID</th>
+
+            
             
             
           </tr>
@@ -22,11 +20,16 @@
         
                 <% for (var i = 0; i < testing.length; i++) { %>
                     <tr class="timeline"></tr>
-                    <td><%= testing[i].id%></td>
+                    <td class="timeline-yellow">
+                        
+                    <a href= "/plate"><%= testing[i].id %></a>  
+                        
+                    </td>   
+                   
                 <td class="timeline-yellow">
                     <div class="timeline-time">
                         <span style="text-align:left">
-                      <a href= "/plate"><%= testing[i].PlateNumber %></a>  
+                      <a href= ""><%= testing[i].plate_pair_id %></a>  
                         </span>
                        
                     </div>
@@ -35,47 +38,17 @@
                 <td class="timeline-yellow">
                         <div class="timeline-time">
                             <span style="text-align:left">
-                                    <%= testing[i].plate_ID_384 %> 
+                                    <%= testing[i].unique_plate_id %> 
                             </span>
                            
                         </div>
                 </td>
 
-                <td class="timeline-yellow">
-                    <div class="timeline-time">
-                        <span style="text-align:left">
-                                <%= testing[i].Plate_Cell_line %> 
-                        </span>
-                       
-                    </div>
-                </td>
+            
 
-                <td class="timeline-yellow">
-                    <div class="timeline-time">
-                        <span style="text-align:left">
-                                <%= testing[i].TimePoint %> 
-                        </span>
-                       
-                    </div>
-                </td>
+                
 
-                <td class="timeline-yellow">
-                    <div class="timeline-time">
-                        <span style="text-align:left">
-                                <%= testing[i].Magnification %> 
-                        </span>
-                       
-                    </div>
-                </td>
-
-                <td class="timeline-yellow">
-                    <div class="timeline-time">
-                        <span style="text-align:left">
-                                <%= testing[i].experiment_date %> 
-                        </span>
-                       
-                    </div>
-                </td>
+                
 
                 
             </tr>
