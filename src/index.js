@@ -347,13 +347,36 @@ app.get('/test', function (req, res){
 
 })
 
-app.get('/wells', function (req, res){
+app.get('/wellset', function (req, res){
 
     //query to get plate table from molecules db
     var well_id = req.params.id;
     
 
     var queryString = 'SELECT * FROM platewells';
+    // WHERE id=' + well_id;
+
+    con.query(queryString, function(err, result, fields) {
+        if (err) {
+            throw err;
+            } else {
+                single_well_obj = {well: result};
+                res.render('wellset', single_well_obj);
+                
+            }
+           console.log(result);
+     
+    });
+
+})
+
+app.get('/wells', function (req, res){
+
+    //query to get plate table from molecules db
+    var well_id = req.params.id;
+    
+
+    var queryString = 'SELECT * FROM Wells';
     // WHERE id=' + well_id;
 
     con.query(queryString, function(err, result, fields) {

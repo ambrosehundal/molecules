@@ -8,9 +8,9 @@
 <table class="table" style="width:80%;margin-left:10%;">
         <thead>
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Well name</th>
-            <th scope="col">Plate well ID</th>
+            <th scope="col">Platewell Name</th>
+            <th scope="col">Pair plate id</th>
+            <th scope="col">Unique Well ID</th>
 
             
             
@@ -25,14 +25,14 @@
                     <tr class="timeline"></tr>
                     <td class="timeline-yellow">
                         
-                    <a href= "/plate"><%= well[i].id %></a>  
+                    <a href= "/plate"><%= well[i].platewell_name %></a>  
                         
                     </td>   
                    
                 <td class="timeline-yellow">
                     <div class="timeline-time">
                         <span style="text-align:left">
-                      <a href= ""><%= well[i].well_name %></a>  
+                      <a href= ""><%= well[i].plate_pair_id %></a>  
                         </span>
                        
                     </div>
@@ -41,7 +41,7 @@
                 <td class="timeline-yellow">
                         <div class="timeline-time">
                             <span style="text-align:left">
-                                    <%= well[i].cell_well_id %> 
+                                    <%= well[i].plate_well_id %> 
                             </span>
                            
                         </div>
