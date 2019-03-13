@@ -64,6 +64,8 @@ app.get('/', function (req, res){
 })
 
 
+
+
 var plate_obj = {};
 
 //page to display all plates with all datasets
@@ -372,18 +374,16 @@ app.get('/datasets/:id', function (req, res){
 
 
 //test page
-app.get('/test', function (req, res){
+app.get('/pairtest', function (req, res){
 
 
     var req_id = req.params.id;
 
-   // console.log(req_id);
-   
   
 
   //var queryString = 'SELECT * FROM plate WHERE id=' + var_id;
    
-   con.query("SELECT * FROM paired_plates ", function (err, result) {
+   con.query("SELECT * FROM cell_plate_identical ", function (err, result) {
        if (err) {
        throw err;
        } else {
