@@ -9,8 +9,10 @@
                 <table class="table tpos table-bordered table-striped table-hover" style="width:90%;margin-left:5%;">
                         <thead>
                           <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Plate ID</th>
+                            <th scope="col">#</th>
+                            <th scope="col">UCSC CSC Plate ID</th>
+                            <th scope="col">Plate ID 384</th>
+
                             <th scope="col">Cell_lines</th>
                             <th scope="col">TimePoint</th>
                             <th scope="col">Magnification</th>
@@ -31,6 +33,14 @@
                                     <div class="timeline-time">
                                         <span style="text-align:left">
                                       <a href= "/plates/<%= i + 1 %>"><%= print[i].UCSC_CSC_plate_ID %></a>  
+                                        </span>
+                                       
+                                    </div>
+                                </td>
+                                <td class="timeline-yellow">
+                                    <div class="timeline-time">
+                                        <span style="text-align:left">
+                                      <a href= "/plates/<%= i + 1 %>"><%= print[i].plate_ID_384 %></a>  
                                         </span>
                                        
                                     </div>
