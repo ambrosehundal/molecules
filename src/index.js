@@ -162,40 +162,9 @@ app.get('/platelist', function (req, res){
 */
 
 app.get('/platelist/:id', function (req, res){
-
-    //query to get all plates related to a unique_plate_ID eg. SP0127 gets all 16 instances
-   /* var plate_unique_id = req.params.id;
-    console.log("plate unique ID is: " + plate_unique_id);
-   
-    var pair_order = ' ORDER BY plate_pair_id ASC' 
-   
-    var platelistquery = 'SELECT plate.plate_pair_id, plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date FROM plate INNER JOIN platelist ON (platelist.unique_plate_id=plate.unique_plate_id) WHERE platelist.unique_plate_id=' + plate_unique_id + pair_order;
-   
-   
-    
-
-   // INNER JOIN platelist ON (plate.unique_plate_id=platelist.unique_plate_id)
-    con.query(platelistquery, function (err, result) {
-        if (err) {
-        throw err;
-        } else {
-            platelist_obj = {print: result};
-            res.render('oneplatelist', platelist_obj);
-            
-        }
-       console.log(result);
-      });   
-
-      */
-
-     var plate_unique_id = req.params.id;
-     console.log("plate unique ID is: " + plate_unique_id);
-    
-     var pair_order = ' ORDER BY plate_pair_id ASC' 
-    
-    // var platelistquery = 'SELECT DISTINCT plate.unique_plate_id, plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date, plate.plate_pair_id FROM plate INNER JOIN platelist ON (platelist.unique_plate_id=plate.unique_plate_id) WHERE plate.unique_plate_id=' + plate_unique_id + pair_order;
-    
-     var plate_datasets = 'SELECT paired_plates.plate_pair_id, platelist.UCSC_CSC_plate_ID FROM platelist INNER JOIN paired_plates ON (platelist.unique_plate_id = paired_plates.unique_plate_id) WHERE platelist.unique_plate_id=' + plate_unique_id + pair_order;
+    var plate_unique_id = req.params.id;
+        
+     var plate_datasets = 'SELECT c1.UCSC_CSC_plate_ID, c1.Magnification, c1.TimePoint, c1.Cell_lines, c1.experiment_date FROM cell_plate_identical c1 INNER JOIN platelist ON (platelist.UCSC_CSC_plate_ID = c1.UCSC_CSC_plate_ID)  WHERE platelist.unique_plate_id=' + plate_unique_id ;
  
  
      con.query(plate_datasets, function (err, result) {
@@ -210,6 +179,11 @@ app.get('/platelist/:id', function (req, res){
        });
 
 })
+
+
+
+
+
 
 app.get('/platelist/:id/datasets', function (req, res){
 
