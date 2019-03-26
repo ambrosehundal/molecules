@@ -136,7 +136,7 @@ app.get('/platelist', function (req, res){
 app.get('/platelist/:id', function (req, res){
     var plate_unique_id = req.params.id;
         
-     var plate_datasets = 'SELECT c1.dataset_id, c1.pairset_A, c1.pairset_B, c1.UCSC_CSC_plate_ID, c1.Magnification, c1.TimePoint, c1.Cell_lines, c1.experiment_date FROM cell_plate_identical c1 INNER JOIN platelist ON (platelist.UCSC_CSC_plate_ID = c1.UCSC_CSC_plate_ID)  WHERE platelist.unique_plate_id=' + plate_unique_id ;
+     var plate_datasets = 'SELECT platelist.unique_plate_id, c1.dataset_id, c1.pairset_A, c1.pairset_B, c1.UCSC_CSC_plate_ID, c1.Magnification, c1.TimePoint, c1.Cell_lines, c1.experiment_date FROM cell_plate_identical c1 INNER JOIN platelist ON (platelist.UCSC_CSC_plate_ID = c1.UCSC_CSC_plate_ID)  WHERE platelist.unique_plate_id=' + plate_unique_id ;
  
  
      con.query(plate_datasets, function (err, result) {
@@ -155,7 +155,7 @@ app.get('/platelist/:id', function (req, res){
 
 
 //*************************SINGLE DATASET RETRIEVING PAGE **************************/
-app.get('/platelist/:id/datasets/:id', function (req, res){
+app.get('/platelist/:id/dataset/:id', function (req, res){
 
    
    // var pair_order = ' ORDER BY plate_pair_id ASC' ;
