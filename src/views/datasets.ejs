@@ -12,9 +12,7 @@
                       <tr>
               
                         <th scope="col">Dataset ID</th>  
-                        <th scope="col">Stainset A </th>  
-                        <th scope="col">Stainset B</th>  
-
+                       
                         <th scope="col">UCSC_CSC_Plate_ID</th> 
                         <th scope="col">Cell line</th> 
                         <th scope="col">Magnification</th> 
@@ -33,34 +31,18 @@
                             <td class="timeline-yellow">
                                 <div class="timeline-time">
                                     <span style="text-align:left">
-                                  <a href= "/plates/<%= print[i].pairset_B %>"><%= print[i].dataset_id %></a>  
+                                  <a href= "/platelist/<%= print[i].dataset_id %>"><%= print[i].dataset_id %></a>  
                                     </span>
                                    
                                 </div>
                             </td>
 
-                            <td class="timeline-yellow">
-                                <div class="timeline-time">
-                                    <span style="text-align:left">
-                                  <a href= "/plates/<%= print[i].pairset_B %>"><%= print[i].pairset_A %></a>  
-                                    </span>
-                                   
-                                </div>
-                            </td>
+                            
 
                             <td class="timeline-yellow">
                                 <div class="timeline-time">
                                     <span style="text-align:left">
-                                  <a href= "/plates/<%= print[i].pairset_B %>"><%= print[i].pairset_B %></a>  
-                                    </span>
-                                   
-                                </div>
-                            </td>
-
-                            <td class="timeline-yellow">
-                                <div class="timeline-time">
-                                    <span style="text-align:left">
-                                  <a href= "/plates/<%= print[i].pairset_B %>"><%= print[i].UCSC_CSC_plate_ID %></a>  
+                                  <%= print[i].UCSC_CSC_plate_ID %>
                                     </span>
                                    
                                 </div>
@@ -71,7 +53,7 @@
                             <td class="timeline-yellow">
                                 <div class="timeline-time">
                                     <span style="text-align:left">
-                                  <a href= "/plates/<%= print[i].pairset_B %>"><%= print[i].Cell_lines %></a>  
+                                 <%= print[i].Cell_lines %>
                                     </span>
                                    
                                 </div>
@@ -80,7 +62,7 @@
                             <td class="timeline-yellow">
                                 <div class="timeline-time">
                                     <span style="text-align:left">
-                                  <a href= "/plates/<%= print[i].pairset_B %>"><%= print[i].Magnification %></a>  
+                                <%= print[i].Magnification %>
                                     </span>
                                    
                                 </div>
@@ -89,7 +71,7 @@
                             <td class="timeline-yellow">
                                 <div class="timeline-time">
                                     <span style="text-align:left">
-                                  <a href= "/plates/<%= print[i].pairset_B %>"><%= print[i].TimePoint %></a>  
+                                 <%= print[i].TimePoint %>  
                                     </span>
                                    
                                 </div>
@@ -98,22 +80,11 @@
                             <td class="timeline-yellow">
                                 <div class="timeline-time">
                                     <span style="text-align:left">
-                                  <a href= "/plates/<%= print[i].pairset_B %>"><%= print[i].experiment_date %></a>  
+                                 <%= print[i].experiment_date %>  
                                     </span>
                                    
                                 </div>
                             </td>
-            
-                            
-            
-                          
-            
-                        
-            
-                            
-            
-                            
-            
                             
                         </tr>
                             <br>

@@ -154,57 +154,27 @@ app.get('/platelist/:id', function (req, res){
 
 
 
-
-
-
-app.get('/platelist/:id/datasets', function (req, res){
-
-    //query to get all plates related to a unique_plate_ID eg. SP0127 gets all 16 instances
-    var plate_unique_id = req.params.id;
-    console.log("plate unique ID is: " + plate_unique_id);
-   
-    var pair_order = ' ORDER BY plate_pair_id ASC' 
-   
-   // var platelistquery = 'SELECT DISTINCT plate.unique_plate_id, plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date, plate.plate_pair_id FROM plate INNER JOIN platelist ON (platelist.unique_plate_id=plate.unique_plate_id) WHERE plate.unique_plate_id=' + plate_unique_id + pair_order;
-   
-    var plate_datasets = 'SELECT plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate. FROM platelist INNER JOIN paired_plates ON (platelist.unique_plate_id = paired_plates.unique_plate_id) WHERE platelist.unique_plate_id=' + plate_unique_id + pair_order;
-
-
-    con.query(plate_datasets, function (err, result) {
-        if (err) {
-        throw err;
-        } else {
-            platelist_obj = {print: result};
-            res.render('datasets', platelist_obj);
-            
-        }
-       console.log(result);
-      });
-})
-
-
 //*************************SINGLE DATASET RETRIEVING PAGE **************************/
 app.get('/platelist/:id/datasets/:id', function (req, res){
 
    
-    var pair_order = ' ORDER BY plate_pair_id ASC' ;
+   // var pair_order = ' ORDER BY plate_pair_id ASC' ;
    
     
-    var pair_id = req.params.id;
+    var dataset_id = req.params.id;
 
-    var pairQuery = 'SELECT plate.plate_pair_id, plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date  FROM plate INNER JOIN paired_plates ON (plate.plate_pair_id=paired_plates.plate_pair_id) WHERE paired_plates.plate_pair_id=' + pair_id;
+    var datasetQuery = 'SELECT plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date FROM plate INNER JOIN cell_plate_identical ON (cell_plate_identical.UCSC_CSC_plate_ID=plate.UCSC_CSC_plate_ID AND cell_plate_identical.Cell_lines = plate.Cell_lines AND cell_plate_identical.experiment_date = plate.experiment_date ) WHERE cell_plate_identical.dataset_id=' + dataset_id;
 
 
 
-    con.query(pairQuery, function (err, result) {
+    con.query(datasetQuery, function (err, result) {
         if (err) {
         throw err;
         } else {
             
-            paired_test_obj = {pairedtest: result};
+            dataset_obj = {dataset: result};
             
- 
-            res.render('oneset', paired_test_obj);
+            res.render('dataset', dataset_obj);
             
         }
         

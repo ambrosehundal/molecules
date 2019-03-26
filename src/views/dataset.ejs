@@ -3,7 +3,11 @@
         
 
         <body>
-                <h1 style="text-align:center">Pair Plates (testing for SP0127)</h1>
+                <h1 style="text-align:center">
+                        <% for (var i = 0; i < 1; i++) { %>
+                            <%= dataset[i].UCSC_CSC_plate_ID %>
+                        <% } %>
+                </h1>
                 <br>
                
                 <table class="table tpos" style="width:70%;margin-left:10%;">
@@ -24,13 +28,13 @@
                 
                         <tbody>
                         
-                                <% for (var i = 0; i < pairedtest.length; i++) { %>
+                                <% for (var i = 0; i < dataset.length; i++) { %>
                                     <tr class="timeline"></tr>
                                     <td><%= i + 1%></td>
                                 <td class="timeline-yellow">
                                             <div class="timeline-time">
                                                 <span style="text-align:left">
-                                              <a href= "/platepairs/"><%= pairedtest[i].UCSC_CSC_plate_ID %></a>  
+                                              <a href= ""><%= dataset[i].UCSC_CSC_plate_ID %></a>  
                                                 </span>
                                                
                                             </div>
@@ -39,7 +43,7 @@
                                 <td class="timeline-yellow">
                                         <div class="timeline-time">
                                             <span style="text-align:left">
-                                          <a href= "/platepairs/"><%= pairedtest[i].Cell_lines %></a>  
+                                          <a href= "/platepairs/"><%= dataset[i].Cell_lines %></a>  
                                             </span>
                                            
                                         </div>
@@ -48,7 +52,7 @@
                                 <td class="timeline-yellow">
                                         <div class="timeline-time">
                                             <span style="text-align:left">
-                                          <a href= "/platepairs/"><%= pairedtest[i].TimePoint %></a>  
+                                          <a href= "/platepairs/"><%= dataset[i].TimePoint %></a>  
                                             </span>
                                            
                                         </div>
@@ -57,7 +61,7 @@
                                 <td class="timeline-yellow">
                                         <div class="timeline-time">
                                             <span style="text-align:left">
-                                          <a href= "/platepairs/"><%= pairedtest[i].Magnification %></a>  
+                                          <a href= "/platepairs/"><%= dataset[i].Magnification %></a>  
                                             </span>
                                            
                                         </div>
@@ -66,7 +70,7 @@
                                 <td class="timeline-yellow">
                                         <div class="timeline-time">
                                             <span style="text-align:left">
-                                          <a href= "/platepairs/"><%= pairedtest[i].experiment_date %></a>  
+                                          <a href= "/platepairs/"><%= dataset[i].experiment_date %></a>  
                                             </span>
                                            
                                         </div>
@@ -75,7 +79,7 @@
                                 <td class="timeline-yellow">
                                         <div class="timeline-time">
                                             <span style="text-align:left">
-                                          <a href= "/platepairs/"><%= pairedtest[i].plate_pair_id %></a>  
+                                          <a href= "/platepairs/"><%= dataset[i].plate_pair_id %></a>  
                                             </span>
                                            
                                         </div>
