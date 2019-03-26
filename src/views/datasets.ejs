@@ -10,8 +10,11 @@
             <table class="table table-bordered table-striped table-hover" style="width:80%;margin-left:10%;">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>  
-                        
+              
+                        <th scope="col">Dataset ID</th>  
+                        <th scope="col">Stainset A </th>  
+                        <th scope="col">Stainset B</th>  
+
                         <th scope="col">UCSC_CSC_Plate_ID</th> 
                         <th scope="col">Cell line</th> 
                         <th scope="col">Magnification</th> 
@@ -25,15 +28,34 @@
                     
                             <% for (var i = 0; i < print.length; i++) { %>
                                 <tr class="timeline"></tr>
-                                <td class="timeline-yellow">
-                                    <div class="timeline-time">
-                                        <span style="text-align:left">
-                                                <%= i + 1 %> 
-                                        </span>
-                                       
-                                    </div>
-                            </td>
+                               
                                 
+                            <td class="timeline-yellow">
+                                <div class="timeline-time">
+                                    <span style="text-align:left">
+                                  <a href= "/plates/<%= print[i].pairset_B %>"><%= print[i].dataset_id %></a>  
+                                    </span>
+                                   
+                                </div>
+                            </td>
+
+                            <td class="timeline-yellow">
+                                <div class="timeline-time">
+                                    <span style="text-align:left">
+                                  <a href= "/plates/<%= print[i].pairset_B %>"><%= print[i].pairset_A %></a>  
+                                    </span>
+                                   
+                                </div>
+                            </td>
+
+                            <td class="timeline-yellow">
+                                <div class="timeline-time">
+                                    <span style="text-align:left">
+                                  <a href= "/plates/<%= print[i].pairset_B %>"><%= print[i].pairset_B %></a>  
+                                    </span>
+                                   
+                                </div>
+                            </td>
 
                             <td class="timeline-yellow">
                                 <div class="timeline-time">
@@ -43,6 +65,8 @@
                                    
                                 </div>
                             </td>
+
+                        
 
                             <td class="timeline-yellow">
                                 <div class="timeline-time">

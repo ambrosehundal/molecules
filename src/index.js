@@ -49,7 +49,7 @@ var con = mysql.createConnection({
 //check if db is connected
 con.connect(function(err){
     if (err) throw err;
-    console.log("Running in :"  + process.env.NODE_ENV);
+   
     console.log("Connected to molecules database");
     console.log("connected!");
 });
@@ -68,7 +68,7 @@ app.get('/', function (req, res){
 
 var plate_obj = {};
 
-//page to display all plates with all datasets
+//***************page to display all plates with all datasets***********************************
 
 app.get('/plates', function (req, res){
 
@@ -88,12 +88,12 @@ app.get('/plates', function (req, res){
 })
 
 
-//individual page for a plate 
+//**************************individual page for a plate*******************************
 app.get('/plates/:id', function (req, res){
 
     //query to get plate table from molecules db
     var var_id = req.params.id;
-    console.log("Var ID is: " + var_id);
+    
 
     var queryString = 'SELECT * FROM plate WHERE id=' + var_id;
 
@@ -126,18 +126,17 @@ app.get('/platelist', function (req, res){
         throw err;
         } else {
             platelist_obj = {print: result};
-            //console.log(plate_obj);
             res.render('platelist', platelist_obj);  
         }
        console.log(result);
       });
 })
 
-
+//***************SINGLE PLATELIST PAGE THAT DISPLAYS ALL ITS DATASETS */
 app.get('/platelist/:id', function (req, res){
     var plate_unique_id = req.params.id;
         
-     var plate_datasets = 'SELECT c1.pairset_A, c1.pairset_B, c1.UCSC_CSC_plate_ID, c1.Magnification, c1.TimePoint, c1.Cell_lines, c1.experiment_date FROM cell_plate_identical c1 INNER JOIN platelist ON (platelist.UCSC_CSC_plate_ID = c1.UCSC_CSC_plate_ID)  WHERE platelist.unique_plate_id=' + plate_unique_id ;
+     var plate_datasets = 'SELECT c1.dataset_id, c1.pairset_A, c1.pairset_B, c1.UCSC_CSC_plate_ID, c1.Magnification, c1.TimePoint, c1.Cell_lines, c1.experiment_date FROM cell_plate_identical c1 INNER JOIN platelist ON (platelist.UCSC_CSC_plate_ID = c1.UCSC_CSC_plate_ID)  WHERE platelist.unique_plate_id=' + plate_unique_id ;
  
  
      con.query(plate_datasets, function (err, result) {
@@ -160,9 +159,6 @@ app.get('/platelist/:id', function (req, res){
 
 app.get('/platelist/:id/datasets', function (req, res){
 
-
-    //try creating a separate table for pair plates
-
     //query to get all plates related to a unique_plate_ID eg. SP0127 gets all 16 instances
     var plate_unique_id = req.params.id;
     console.log("plate unique ID is: " + plate_unique_id);
@@ -171,7 +167,7 @@ app.get('/platelist/:id/datasets', function (req, res){
    
    // var platelistquery = 'SELECT DISTINCT plate.unique_plate_id, plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date, plate.plate_pair_id FROM plate INNER JOIN platelist ON (platelist.unique_plate_id=plate.unique_plate_id) WHERE plate.unique_plate_id=' + plate_unique_id + pair_order;
    
-    var plate_datasets = 'SELECT paired_plates.plate_pair_id, platelist.UCSC_CSC_plate_ID FROM platelist INNER JOIN paired_plates ON (platelist.unique_plate_id = paired_plates.unique_plate_id) WHERE platelist.unique_plate_id=' + plate_unique_id + pair_order;
+    var plate_datasets = 'SELECT plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate. FROM platelist INNER JOIN paired_plates ON (platelist.unique_plate_id = paired_plates.unique_plate_id) WHERE platelist.unique_plate_id=' + plate_unique_id + pair_order;
 
 
     con.query(plate_datasets, function (err, result) {
@@ -219,40 +215,6 @@ app.get('/platelist/:id/datasets/:id', function (req, res){
    
  
  })
-
- app.get('/platelist/:id/datasets/:id/wells', function (req, res){
-
-   
-  //  var pair_order = ' ORDER BY plate_pair_id ASC' ;
-   
-    
-    var pair_id = req.params.id;
-   // console.log("Cell_Well_Id is" + well_id);
-
-    var wellQuery = 'SELECT single_well_id, well_name, cell_well_id FROM paired_plates p1 INNER JOIN platewells cw ON p1.plate_pair_id=cw.plate_pair_id INNER JOIN Wells w on w.cell_well_id=cw.plate_well_id WHERE p1.plate_pair_id=' + pair_id;
-
-
-
-    con.query(wellQuery, function (err, result) {
-        if (err) {
-        throw err;
-        } else {
-            
-            paired_test_obj = {wells: result};
-            
- 
-            res.render('welltally', paired_test_obj);
-            
-        }
-        
-        console.log(result);
-      
-      });
- 
-   
- 
- })
-
 
 
 
