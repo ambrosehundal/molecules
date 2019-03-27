@@ -136,7 +136,7 @@ app.get('/platelist', function (req, res){
 app.get('/platelist/:id', function (req, res){
     var plate_unique_id = req.params.id;
         
-     var plate_datasets = 'SELECT platelist.unique_plate_id, c1.dataset_id, c1.pairset_A, c1.pairset_B, c1.UCSC_CSC_plate_ID, c1.Magnification, c1.TimePoint, c1.Cell_lines, c1.experiment_date FROM cell_plate_identical c1 INNER JOIN platelist ON (platelist.UCSC_CSC_plate_ID = c1.UCSC_CSC_plate_ID)  WHERE platelist.unique_plate_id=' + plate_unique_id ;
+     var plate_datasets = 'SELECT platelist.unique_plate_id, c1.dataset_id, c1.pairset_A, c1.pairset_B, c1.UCSC_CSC_plate_ID, c1.Magnification, c1.TimePoint, c1.Cell_lines, c1.experiment_date FROM cell_plate_pairs c1 INNER JOIN platelist ON (platelist.UCSC_CSC_plate_ID = c1.UCSC_CSC_plate_ID)  WHERE platelist.unique_plate_id=' + plate_unique_id ;
  
  
      con.query(plate_datasets, function (err, result) {
@@ -163,7 +163,7 @@ app.get('/platelist/:id/dataset/:id', function (req, res){
     
     var dataset_id = req.params.id;
 
-    var datasetQuery = 'SELECT plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date FROM plate INNER JOIN cell_plate_identical ON (cell_plate_identical.UCSC_CSC_plate_ID=plate.UCSC_CSC_plate_ID AND cell_plate_identical.Cell_lines = plate.Cell_lines AND cell_plate_identical.experiment_date = plate.experiment_date ) WHERE cell_plate_identical.dataset_id=' + dataset_id;
+    var datasetQuery = 'SELECT plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date FROM plate INNER JOIN cell_plate_pairs ON (cell_plate_pairs.UCSC_CSC_plate_ID=plate.UCSC_CSC_plate_ID AND cell_plate_pairs.Cell_lines = plate.Cell_lines AND cell_plate_pairs.experiment_date = plate.experiment_date ) WHERE cell_plate_pairs.dataset_id=' + dataset_id;
 
 
 
@@ -198,7 +198,7 @@ app.get('/pairtest', function (req, res){
 
   //var queryString = 'SELECT * FROM plate WHERE id=' + var_id;
    
-   con.query("SELECT * FROM cell_plate_identical ", function (err, result) {
+   con.query("SELECT * FROM cell_plate_pairs ", function (err, result) {
        if (err) {
        throw err;
        } else {
@@ -218,36 +218,13 @@ app.get('/pairtest', function (req, res){
 
 })
 
-app.get('/wellset', function (req, res){
-
-    //query to get plate table from molecules db
-    var well_id = req.params.id;
-    
-
-    var queryString = 'SELECT * FROM platewells';
-    // WHERE id=' + well_id;
-
-    con.query(queryString, function(err, result, fields) {
-        if (err) {
-            throw err;
-            } else {
-                single_well_obj = {well: result};
-                res.render('wellset', single_well_obj);
-                
-            }
-           console.log(result);
-     
-    });
-
-})
-
 app.get('/wells', function (req, res){
 
     //query to get plate table from molecules db
     var well_id = req.params.id;
     
 
-    var queryString = 'SELECT * FROM Wells';
+    var queryString = 'SELECT * FROM plate_wells';
     // WHERE id=' + well_id;
 
     con.query(queryString, function(err, result, fields) {
