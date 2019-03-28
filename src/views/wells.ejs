@@ -10,7 +10,13 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Well name</th>
-            <th scope="col">Plate well ID</th>
+            <th scope="col">UCSC CSC Plate</th>
+            <th scope="col">Cell line</th>
+            <th scope="col">Magnification</th>
+            <th scope="col">TimePoint</th>
+            <th scope="col">Experiment date</th>
+
+
 
             
             
@@ -41,11 +47,46 @@
                 <td class="timeline-yellow">
                         <div class="timeline-time">
                             <span style="text-align:left">
-                                    <%= well[i].cell_well_id %> 
+                                    <%= well[i].UCSC_CSC_plate %> 
                             </span>
                            
                         </div>
                 </td>
+                <td class="timeline-yellow">
+                    <div class="timeline-time">
+                        <span style="text-align:left">
+                                <%= well[i].Cell_lines %> 
+                        </span>
+                       
+                    </div>
+            </td>
+
+            <td class="timeline-yellow">
+                <div class="timeline-time">
+                    <span style="text-align:left">
+                            <%= well[i].Magnification %> 
+                    </span>
+                   
+                </div>
+        </td>
+        <td class="timeline-yellow">
+            <div class="timeline-time">
+                <span style="text-align:left">
+                        <%= well[i].TimePoint %> 
+                </span>
+               
+            </div>
+    </td>
+
+    <td class="timeline-yellow">
+        <div class="timeline-time">
+            <span style="text-align:left">
+                    <%= well[i].experiment_date %> 
+            </span>
+           
+        </div>
+</td>
+
 
             
 
