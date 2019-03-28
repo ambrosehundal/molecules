@@ -163,7 +163,7 @@ app.get('/platelist/:id/dataset/:id', function (req, res){
     
     var dataset_id = req.params.id;
 
-    var datasetQuery = 'SELECT plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date FROM plate INNER JOIN cell_plate_pairs ON (cell_plate_pairs.UCSC_CSC_plate_ID=plate.UCSC_CSC_plate_ID AND cell_plate_pairs.Cell_lines = plate.Cell_lines AND cell_plate_pairs.experiment_date = plate.experiment_date ) WHERE cell_plate_pairs.dataset_id=' + dataset_id;
+    var datasetQuery = 'SELECT plate_wells.well_name, plate.UCSC_CSC_plate_ID, plate.Cell_lines, plate.TimePoint, plate.Magnification, plate.experiment_date FROM plate INNER JOIN cell_plate_pairs ON (cell_plate_pairs.UCSC_CSC_plate_ID=plate.UCSC_CSC_plate_ID AND cell_plate_pairs.Cell_lines = plate.Cell_lines AND cell_plate_pairs.experiment_date = plate.experiment_date ) INNER JOIN plate_wells ON (cell_plate_pairs.UCSC_CSC_plate_ID=plate_wells.UCSC_CSC_plate AND cell_plate_pairs.Cell_lines = plate_wells.Cell_lines AND cell_plate_pairs.experiment_date = plate_wells.experiment_date )  WHERE cell_plate_pairs.dataset_id=' + dataset_id;
 
 
 
@@ -225,7 +225,7 @@ app.get('/wells', function (req, res){
     
 
     var queryString = 'SELECT * FROM plate_wells';
-    // WHERE id=' + well_id;
+    // WHERE id=' + well_id; 
 
     con.query(queryString, function(err, result, fields) {
         if (err) {
