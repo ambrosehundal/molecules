@@ -5,7 +5,7 @@
         <body>
                 <h1 style="text-align:center">
                         <% for (var i = 0; i < 1; i++) { %>
-                            <%= dataset[i].UCSC_CSC_plate_ID %>
+                            <%= dataset[i].UCSC_CSC_plate %>
                         <% } %>
                 </h1>
                 <br>
@@ -31,10 +31,18 @@
                                 <% for (var i = 0; i < dataset.length; i++) { %>
                                     <tr class="timeline"></tr>
                                     <td><%= i + 1%></td>
+                                    <td class="timeline-yellow">
+                                        <div class="timeline-time">
+                                            <span style="text-align:left">
+                                          <a href= ""><%= dataset[i].well_name %></a>  
+                                            </span>
+                                           
+                                        </div>
+                             </td> 
                                 <td class="timeline-yellow">
                                             <div class="timeline-time">
                                                 <span style="text-align:left">
-                                              <a href= ""><%= dataset[i].UCSC_CSC_plate_ID %></a>  
+                                              <a href= ""><%= dataset[i].UCSC_CSC_plate %></a>  
                                                 </span>
                                                
                                             </div>
