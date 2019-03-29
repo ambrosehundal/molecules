@@ -24,12 +24,14 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: false
 }));
 
-
+//to use css files
+app.use(express.static(__dirname, 'stylesheets'));
 
 //set the view engine
 app.set('view engine', 'ejs');
 
 app.set('views', path.join(__dirname, 'views'));
+
 
 
 
