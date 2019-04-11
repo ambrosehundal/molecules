@@ -2,6 +2,7 @@
 
 <html>
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
         <body>
                 <h1 style="text-align:center">
@@ -10,9 +11,15 @@
                         <% } %>
                 </h1>
 
-                <h4 style="text-align:center">
+                <h4 style="text-align:center"> Cell-line: 
                         <% for (var i = 0; i < 1; i++) { %>
                             <%= dataset[i].Cell_lines %>
+                        <% } %>
+                </h4>
+
+                <h4 style="text-align:center"> Magnification: 
+                        <% for (var i = 0; i < 1; i++) { %>
+                            <%= dataset[i].Magnification %>
                         <% } %>
                 </h4>
 
@@ -25,16 +32,33 @@
             
                 <br>
 
-                <div style="background-color:green;width:66%; margin-left: 15%;">
+                <div style="background-color:green;width:80%; margin-left: 10%;">
                     <% for (var i = 0; i < dataset.length; i++) { %>
-                        <div style="border: 1px solid black; width: 30px; height: 30px;display:inline-block;padding-left:5px;">
-                          <span style="font-size:10px;color: black; font-weight:400;"> <%= dataset[i].well_name %></span> 
-                        </div>
+                      <div style="border: 3px solid black; width: 40px; height: 40px;display:inline-block;padding-left:5px; margin-bottom: 1%;">
+                        <span style="font-size:10px;color: black; font-weight:400;"> <%= dataset[i].well_name %></span> 
+                      </div></a>  
 
                         <% } %>
                 </div>
                
 
+                <br>
+                <br>
+                <br>
+                <br>
+
+
         </body>
+
+<style>
+
+</style>
+
+                <script>
+                $(document).ready(function(){
+                  $('[data-toggle="tooltip"]').tooltip();   
+                });
+                </script>
+
 
         </html>

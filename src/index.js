@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 
 //to use css files
-app.use(express.static(__dirname, 'stylesheets'));
+//app.use(express.static(__dirname, 'stylesheets'));
 
 //set the view engine
 app.set('view engine', 'ejs');
@@ -165,7 +165,7 @@ app.get('/platelist/:id/dataset/:id', function (req, res){
     
     var dataset_id = req.params.id;
 
-    var datasetQuery = 'SELECT plate_wells.well_name, plate_wells.UCSC_CSC_plate, plate_wells.Cell_lines, plate_wells.TimePoint, plate_wells.Magnification, plate_wells.experiment_date FROM plate_wells INNER JOIN cell_plate_pairs ON (cell_plate_pairs.UCSC_CSC_plate_ID=plate_wells.UCSC_CSC_plate AND cell_plate_pairs.Cell_lines = plate_wells.Cell_lines AND cell_plate_pairs.experiment_date = plate_wells.experiment_date )  WHERE cell_plate_pairs.dataset_id=' + dataset_id;
+    var datasetQuery = 'SELECT plate_wells.well_name, plate_wells.UCSC_CSC_plate, plate_wells.Cell_lines, plate_wells.TimePoint, plate_wells.Magnification, plate_wells.experiment_date, compounds.molecule_name FROM plate_wells INNER JOIN cell_plate_pairs ON (cell_plate_pairs.UCSC_CSC_plate_ID=plate_wells.UCSC_CSC_plate AND cell_plate_pairs.Cell_lines = plate_wells.Cell_lines AND cell_plate_pairs.experiment_date = plate_wells.experiment_date ) INNER JOIN compounds ON (plate_wells.UCSC_CSC_plate=compounds.UCSC_CSC_plate_ID AND plate_wells.well_name = compounds.well)  WHERE cell_plate_pairs.dataset_id=' + dataset_id;
 
 
 
