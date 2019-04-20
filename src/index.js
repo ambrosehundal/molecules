@@ -6,13 +6,18 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const path = require('path');
 const ejsLint = require('ejs-lint');
+const elasticsearch = require('elasticsearch');
 
 //router
 //var routes = require('./routes');
 
 //var router = express.Router();
 
-
+//set up elasticsearch with this code below
+const elasticsearchClient = new elasticsearch.Client({
+    host: '127.0.0.1:3001',
+    log: 'error'
+});
 
 
 
