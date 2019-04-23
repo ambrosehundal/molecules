@@ -13,11 +13,7 @@ const elasticsearch = require('elasticsearch');
 
 //var router = express.Router();
 
-//set up elasticsearch with this code below
-const elasticsearchClient = new elasticsearch.Client({
-    host: '127.0.0.1:3001',
-    log: 'error'
-});
+
 
 
 
