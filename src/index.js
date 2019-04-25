@@ -299,8 +299,15 @@ app.get('/mycompound', function (req, res){
 
     var search_text = req.query.compound;
     
+    var cats = "%";
 
-    var compoundQuery = 'SELECT * FROM compounds WHERE molecule_name LIKE "Dihydro%" ';
+    var search_name = search_text.concat(cats);
+
+    var compound_search = "'" + search_name + "'";
+
+    console.log(compound_search);
+
+    var compoundQuery = 'SELECT * FROM compounds WHERE molecule_name LIKE ' + compound_search;
     // WHERE id=' + well_id; 
 
     con.query(compoundQuery, function(err, result, fields) {
