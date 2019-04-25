@@ -268,6 +268,33 @@ app.get('/wells/:id', function (req, res){
 })
 
 
+//*****************************************MOLECULE COMPOUND SEARCH PAGE */
+app.get('/compounds', function (req, res){
+
+    //query to get plate table from molecules db
+    var well_id = req.params.id;
+    
+
+    var compoundQuery = 'SELECT DISTINCT molecule_name FROM compounds';
+    // WHERE id=' + well_id; 
+
+    con.query(compoundQuery, function(err, result, fields) {
+        if (err) {
+            throw err;
+            } else {
+                single_well_obj = {well: result};
+                res.render('compounds', single_well_obj);
+                
+            }
+           console.log(result);
+     
+    });
+
+})
+
+
+
+
 //******************************************ROUTES END HERE*********************************************** */
 
 
