@@ -293,6 +293,30 @@ app.get('/compounds', function (req, res){
 })
 
 
+//*****************************COMPOUND SEARCH RESULTS PAGE ************************/
+
+app.get('/mycompound', function (req, res){
+
+    var search_text = req.query.compound;
+    
+
+    var compoundQuery = 'SELECT * FROM compounds WHERE molecule_name LIKE "Dihydro%" ';
+    // WHERE id=' + well_id; 
+
+    con.query(compoundQuery, function(err, result, fields) {
+        if (err) {
+            throw err;
+            } else {
+                single_well_obj = {well: result};
+                res.render('one_compound', single_well_obj);
+                
+            }
+           console.log(result);
+     
+    });
+
+})
+
 
 
 //******************************************ROUTES END HERE*********************************************** */
