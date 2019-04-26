@@ -221,28 +221,7 @@ app.get('/pairtest', function (req, res){
 
 })
 
-app.get('/wells', function (req, res){
 
-    //query to get plate table from molecules db
-    var well_id = req.params.id;
-    
-
-    var queryString = 'SELECT * FROM plate_wells';
-    // WHERE id=' + well_id; 
-
-    con.query(queryString, function(err, result, fields) {
-        if (err) {
-            throw err;
-            } else {
-                single_well_obj = {well: result};
-                res.render('wells', single_well_obj);
-                
-            }
-           console.log(result);
-     
-    });
-
-})
 
 app.get('/wells/:id', function (req, res){
 
@@ -250,7 +229,7 @@ app.get('/wells/:id', function (req, res){
     var well_id = req.params.id;
     
 
-    var queryString = 'SELECT * FROM plate_wells WHERE plate_wells.id=' + well_id;
+    var queryString = 'SELECT p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date, compounds.molecule_name FROM plate_wells p1 INNER JOIN compounds ON (p1.UCSC_CSC_plate = compounds.UCSC_CSC_plate_ID AND p1.well_name = compounds.Well) WHERE p1.id=' + well_id;
     // WHERE id=' + well_id; 
 
     con.query(queryString, function(err, result, fields) {
@@ -275,7 +254,7 @@ app.get('/compounds', function (req, res){
     var well_id = req.params.id;
     
 
-    var compoundQuery = 'SELECT DISTINCT molecule_name FROM compounds';
+    var compoundQuery = 'SELECT DISTINCT molecule_name FROM compounds LIMIT 10';
     // WHERE id=' + well_id; 
 
     con.query(compoundQuery, function(err, result, fields) {

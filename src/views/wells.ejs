@@ -1,104 +1,58 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<h1>List of all wells</h1>
+<h1 style="text-align:center;font-size: 36px;"></h1>
 <br>
-<p>Wells are associated with each dataset
-</p>
-
-<table class="table" style="width:80%;margin-left:10%;">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Well name</th>
-            <th scope="col">UCSC CSC Plate</th>
-            <th scope="col">Cell line</th>
-            <th scope="col">Magnification</th>
-            <th scope="col">TimePoint</th>
-            <th scope="col">Experiment date</th>
 
 
+<body>
+    
 
-            
-            
-            
-          </tr>
-        </thead>
+    <h2 style="text-align:center"> Well location - 
+        <% for (var i = 0; i < 1; i++) { %>
+            <%= well[i].well_name %>
+        <% } %>
+   </h2>
 
-
-        <tbody>
-        
-                <% for (var i = 0; i < well.length; i++) { %>
-                    <tr class="timeline"></tr>
-                    <td class="timeline-yellow">
-                        
-                    <a href= "/plate"><%= well[i].id %></a>  
-                        
-                    </td>   
-                   
-                <td class="timeline-yellow">
-                    <div class="timeline-time">
-                        <span style="text-align:left">
-                      <a href= ""><%= well[i].well_name %></a>  
-                        </span>
-                       
-                    </div>
-                </td>
-
-                <td class="timeline-yellow">
-                        <div class="timeline-time">
-                            <span style="text-align:left">
-                                    <%= well[i].UCSC_CSC_plate %> 
-                            </span>
-                           
-                        </div>
-                </td>
-                <td class="timeline-yellow">
-                    <div class="timeline-time">
-                        <span style="text-align:left">
-                                <%= well[i].Cell_lines %> 
-                        </span>
-                       
-                    </div>
-            </td>
-
-            <td class="timeline-yellow">
-                <div class="timeline-time">
-                    <span style="text-align:left">
-                            <%= well[i].Magnification %> 
-                    </span>
-                   
-                </div>
-        </td>
-        <td class="timeline-yellow">
-            <div class="timeline-time">
-                <span style="text-align:left">
-                        <%= well[i].TimePoint %> 
-                </span>
-               
-            </div>
-    </td>
-
-    <td class="timeline-yellow">
-        <div class="timeline-time">
-            <span style="text-align:left">
-                    <%= well[i].experiment_date %> 
-            </span>
-           
-        </div>
-</td>
+   <h2 style="text-align:center">
+    <% for (var i = 0; i < 1; i++) { %>
+        <%= well[i].molecule_name %>
+    <% } %>
+   </h2>
 
 
-            
+    <br>
 
-                
+    
 
-                
+    <br>
+    <br>
+    <br>
+    <br>
 
-                
-            </tr>
-                <br>
-                <% } %>
-        
-          
-        </tbody>
-      </table>
+    <h6 style="text-align:center">
+        <% for (var i = 0; i < 1; i++) { %>
+            <%= well[i].UCSC_CSC_plate %>
+        <% } %>
+</h6>
+
+<h6 style="text-align:center"> Cell-line: 
+        <% for (var i = 0; i < 1; i++) { %>
+            <%= well[i].Cell_lines %>
+        <% } %>
+</h6>
+
+<h6 style="text-align:center"> Magnification: 
+        <% for (var i = 0; i < 1; i++) { %>
+            <%= well[i].Magnification %>
+        <% } %>
+</h6>
+
+<h6 style="text-align:center">
+        <% for (var i = 0; i < 1; i++) { %>
+            <%= well[i].experiment_date %>
+        <% } %>
+</h6>
+
+
+
+</body>
