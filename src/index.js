@@ -6,13 +6,11 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const path = require('path');
 const ejsLint = require('ejs-lint');
-const elasticsearch = require('elasticsearch');
 
 //router
 //var routes = require('./routes');
 
 //var router = express.Router();
-
 
 
 
@@ -61,10 +59,6 @@ con.connect(function(err){
 
 //***************************INDIVIDUAL PAGE ROUTES******************************************* */
 
-//Home page
-app.get('/', function (req, res){
-    res.render(__dirname + '/views/platelist.ejs');
-})
 
 
 
@@ -121,7 +115,7 @@ app.get('/plates/:id', function (req, res){
 
 //*********************** HOME PAGE and UNIQUE PLATE NAME LIST PAGE**************************************** 
 
-app.get('/platelist', function (req, res){
+app.get('/', function (req, res){
 
     //query to get platelist table from molecules db which has plate names by unique name
     con.query("SELECT * from platelist", function (err, result) {
@@ -282,9 +276,11 @@ app.get('/mycompound', function (req, res){
 
     var search_name = search_text.concat(cats);
 
-    var compound_search = "'" + search_name + "'";
+    var double_up = cats.concat(search_name);
 
-    console.log(compound_search);
+    var compound_search = "'" + double_up + "'";
+
+    console.log(double_up);
 
     var compoundQuery = 'SELECT * FROM compounds WHERE molecule_name LIKE ' + compound_search;
     // WHERE id=' + well_id; 
