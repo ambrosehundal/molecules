@@ -6,6 +6,7 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const path = require('path');
 const ejsLint = require('ejs-lint');
+const GeoTIFF = require('geotiff');
 
 //router
 //var routes = require('./routes');
@@ -31,7 +32,9 @@ app.set('view engine', 'ejs');
 
 app.set('views', path.join(__dirname, 'views'));
 
+var imageDir = require('path').join(__dirname,'/4447');
 
+app.use(express.static(imageDir));
 
 
 //local port
@@ -223,7 +226,7 @@ app.get('/wells/:id', function (req, res){
     var well_id = req.params.id;
     
 
-    var queryString = 'SELECT p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date, compounds.molecule_name FROM plate_wells p1 INNER JOIN compounds ON (p1.UCSC_CSC_plate = compounds.UCSC_CSC_plate_ID AND p1.well_name = compounds.Well) WHERE p1.id=' + well_id;
+    var queryString = 'SELECT w1.w1_filepath, w1.stainset_number, w1.site_number, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date, compounds.molecule_name FROM plate_wells p1 INNER JOIN wavelength_1 w1 ON (p1.UCSC_CSC_plate = w1.plate_name AND p1.well_name = w1.well_name AND p1.Cell_lines = w1.cell_line AND p1.timepoint = w1.timepoint ) INNER JOIN compounds ON (p1.UCSC_CSC_plate = compounds.UCSC_CSC_plate_ID AND p1.well_name = compounds.Well)  WHERE p1.id=' + well_id;
     // WHERE id=' + well_id; 
 
     con.query(queryString, function(err, result, fields) {
@@ -298,6 +301,8 @@ app.get('/mycompound', function (req, res){
     });
 
 })
+
+
 
 
 
