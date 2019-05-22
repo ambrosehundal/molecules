@@ -21,11 +21,6 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: false
 }));
 
-//to use css files
-//app.use(express.static(__dirname, 'stylesheets'));
-
-
-
 
 //set the view engine
 app.set('view engine', 'ejs');
@@ -164,7 +159,7 @@ app.get('/platelist/:id/dataset/:id', function (req, res){
     
     var dataset_id = req.params.id;
 
-    var datasetQuery = 'SELECT plate_wells.well_name, plate_wells.UCSC_CSC_plate, plate_wells.Cell_lines, plate_wells.TimePoint, plate_wells.Magnification, plate_wells.experiment_date, compounds.molecule_name FROM plate_wells INNER JOIN cell_plate_pairs ON (cell_plate_pairs.UCSC_CSC_plate_ID=plate_wells.UCSC_CSC_plate AND cell_plate_pairs.Cell_lines = plate_wells.Cell_lines AND cell_plate_pairs.experiment_date = plate_wells.experiment_date ) INNER JOIN compounds ON (plate_wells.UCSC_CSC_plate=compounds.UCSC_CSC_plate_ID AND plate_wells.well_name = compounds.well)  WHERE cell_plate_pairs.dataset_id=' + dataset_id;
+    var datasetQuery = 'SELECT plate_wells.id, plate_wells.well_name, plate_wells.UCSC_CSC_plate, plate_wells.Cell_lines, plate_wells.TimePoint, plate_wells.Magnification, plate_wells.experiment_date, compounds.molecule_name FROM plate_wells INNER JOIN cell_plate_pairs ON (cell_plate_pairs.UCSC_CSC_plate_ID=plate_wells.UCSC_CSC_plate AND cell_plate_pairs.Cell_lines = plate_wells.Cell_lines AND cell_plate_pairs.experiment_date = plate_wells.experiment_date ) INNER JOIN compounds ON (plate_wells.UCSC_CSC_plate=compounds.UCSC_CSC_plate_ID AND plate_wells.well_name = compounds.well)  WHERE cell_plate_pairs.dataset_id=' + dataset_id;
 
 
 
@@ -220,13 +215,7 @@ app.get('/pairtest', function (req, res){
 })
 
 
-app.get('/pics', function(req, res){
 
-})
-
-app.get('/pics/design.jpg', function (req, res, next) {
-    res.sendFile(path.join(__dirname, 'pics', 'design.jpg'))
-})
 
 
 app.get('/wells/:id', function (req, res){
@@ -235,7 +224,7 @@ app.get('/wells/:id', function (req, res){
     var well_id = req.params.id;
     
 
-    var queryString = 'SELECT w1.w1_filepath, w1.stainset_number, w1.site_number, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date, compounds.molecule_name FROM plate_wells p1 INNER JOIN wavelength_1 w1 ON (p1.UCSC_CSC_plate = w1.plate_name AND p1.well_name = w1.well_name AND p1.Cell_lines = w1.cell_line AND p1.timepoint = w1.timepoint ) INNER JOIN compounds ON (p1.UCSC_CSC_plate = compounds.UCSC_CSC_plate_ID AND p1.well_name = compounds.Well)  WHERE p1.id=' + well_id;
+    var queryString = 'SELECT w1.w1_filepath, w1.stainset_number, w1.site_number, w2.w2_filepath, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date, compounds.molecule_name FROM plate_wells p1 INNER JOIN wavelength_1 w1 ON (p1.UCSC_CSC_plate = w1.plate_name AND p1.well_name = w1.well_name AND p1.Cell_lines = w1.cell_line AND p1.timepoint = w1.timepoint ) INNER JOIN wavelength_2 w2 ON (p1.UCSC_CSC_plate = w2.plate_name AND p1.well_name = w2.well_name AND p1.Cell_lines = w2.cell_line AND p1.timepoint = w2.timepoint) INNER JOIN compounds ON (p1.UCSC_CSC_plate = compounds.UCSC_CSC_plate_ID AND p1.well_name = compounds.Well)  WHERE p1.id=' + well_id;
     // WHERE id=' + well_id; 
 
     con.query(queryString, function(err, result, fields) {
