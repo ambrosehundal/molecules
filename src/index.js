@@ -6,12 +6,9 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const path = require('path');
 const ejsLint = require('ejs-lint');
-const GeoTIFF = require('geotiff');
 
-//router
-//var routes = require('./routes');
+var serveStatic = require('serve-static')
 
-//var router = express.Router();
 
 
 
@@ -27,14 +24,18 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 //to use css files
 //app.use(express.static(__dirname, 'stylesheets'));
 
+
+
+
 //set the view engine
 app.set('view engine', 'ejs');
 
 app.set('views', path.join(__dirname, 'views'));
 
-var imageDir = require('path').join(__dirname,'/4447');
 
-app.use(express.static(imageDir));
+//set up for using static image files from another directory
+app.use(serveStatic('/Users/ambrose/Desktop/Extra/Molecules'))
+
 
 
 //local port
@@ -218,6 +219,14 @@ app.get('/pairtest', function (req, res){
 
 })
 
+
+app.get('/pics', function(req, res){
+
+})
+
+app.get('/pics/design.jpg', function (req, res, next) {
+    res.sendFile(path.join(__dirname, 'pics', 'design.jpg'))
+})
 
 
 app.get('/wells/:id', function (req, res){
