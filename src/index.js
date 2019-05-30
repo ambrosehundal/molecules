@@ -39,10 +39,12 @@ const port = 3000;
 
 //create connection with MySQL database
 var con = mysql.createConnection({
+    
     host:"localhost",
     user: "ambrose",
     password: "Molecules82",
-    database: 'molecules'
+    database: 'molecules',
+    multipleStatements: true
 });
 
 
@@ -223,11 +225,15 @@ app.get('/wells/:id', function (req, res){
     //query to get plate table from molecules db
     var well_id = req.params.id;
     var w2_query = ' UNION SELECT w2.w2_filepath, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_2 w2 ON (p1.UCSC_CSC_plate = w2.plate_name AND p1.well_name = w2.well_name AND p1.Cell_lines = w2.cell_line AND p1.timepoint = w2.timepoint ) WHERE w2.stainset_number = 1 AND p1.id=' + well_id;
- //   var queryString = 'SELECT w1.site_number, w1.w1_filepath, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM wavelength_1 w1 INNER JOIN plate_wells p1 ON (p1.UCSC_CSC_plate = w1.plate_name AND p1.well_name = w1.well_name AND p1.Cell_lines = w1.cell_line AND p1.timepoint = w1.timepoint AND p1.Magnification = w1.Magnification) WHERE p1.id=' + well_id;
-    var queryString = 'SELECT w1.w1_filepath, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_1 w1 ON (p1.UCSC_CSC_plate = w1.plate_name AND p1.well_name = w1.well_name AND p1.Cell_lines = w1.cell_line AND p1.timepoint = w1.timepoint ) WHERE w1.stainset_number = 1 AND p1.id=' + well_id + w2_query;
-    
+    var w3_query = ' UNION SELECT w3.w3_filepath, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_3 w3 ON (p1.UCSC_CSC_plate = w3.plate_name AND p1.well_name = w3.well_name AND p1.Cell_lines = w3.cell_line AND p1.timepoint = w3.timepoint ) WHERE w3.stainset_number = 1 AND p1.id=' + well_id;
+ 
+    //   var queryString = 'SELECT w1.site_number, w1.w1_filepath, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM wavelength_1 w1 INNER JOIN plate_wells p1 ON (p1.UCSC_CSC_plate = w1.plate_name AND p1.well_name = w1.well_name AND p1.Cell_lines = w1.cell_line AND p1.timepoint = w1.timepoint AND p1.Magnification = w1.Magnification) WHERE p1.id=' + well_id;
+    var queryString = 'SELECT w1.w1_filepath, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_1 w1 ON (p1.UCSC_CSC_plate = w1.plate_name AND p1.well_name = w1.well_name AND p1.Cell_lines = w1.cell_line AND p1.timepoint = w1.timepoint ) WHERE w1.stainset_number = 1 AND p1.id=' + well_id + w2_query + w3_query;
+    var ss2queryString = 'SELECT w1.w1_filepath, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_1 w1 ON (p1.UCSC_CSC_plate = w1.plate_name AND p1.well_name = w1.well_name AND p1.Cell_lines = w1.cell_line AND p1.timepoint = w1.timepoint ) WHERE w1.stainset_number = ? AND p1.id=?'+ w2_query + w3_query;
+    var sset2_query = "'SELECT w1.w1_filepath, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_1 w1 ON (p1.UCSC_CSC_plate = w1.plate_name AND p1.well_name = w1.well_name AND p1.Cell_lines = w1.cell_line AND p1.timepoint = w1.timepoint ) WHERE w1.stainset_number = 1 AND p1.id=' + well_id + w2_query + w3_query; SELECT w1.w1_filepath, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_1 w1 ON (p1.UCSC_CSC_plate = w1.plate_name AND p1.well_name = w1.well_name AND p1.Cell_lines = w1.cell_line AND p1.timepoint = w1.timepoint ) WHERE w1.stainset_number = ? AND p1.id=?'+ w2_query + w3_query; "
+
     // WHERE id=' + well_id; 
-    con.query(queryString, function(err, result, fields) {
+    con.query(sset2_query, [[],[]],  function(err, result, fields) {
         if (err) {
             throw err;
             } else {

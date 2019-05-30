@@ -56,16 +56,16 @@
 
 <div class="container">
         <h1>Stain Set 1</h1>
-        <% for (var i = 0; i < well.length; i++) { %>
-            
-            <div class="row">
-                    <div class="col-md-10">
-
-                    <div class="col-md-3" style="margin-left: 0%;">
-                        <img src="/4692/<%= well[i].w1_filepath %>" height="300" width="300"/>  
-                    </div>
+        <% for (var i = 0; i < well.length ; i++) { %>
+           
+            <div class="row" style="display: inline-block;">
+                <div class="col-md-12">
+                    <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[i].w1_filepath %>" height="300" width="300" style="display:inline-block;"/>  
                     
                 </div>
+                       
+                    
+               
                
             </div>
             <br>
@@ -78,29 +78,7 @@
       </div>
 
        
-      <div class="container">
-        <h1>Stain Set 2</h1>
-        <% for (var i = 0; i < well.length; i++) { %>
-            
-            <div class="row">
-                    <div class="col-md-10">
 
-                    <div class="col-md-3" style="margin-left: 0%;">
-                        <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[i].w1_filepath %>" height="300" width="300"/>  
-                    </div>
-                   
-                </div>
-               
-            </div>
-            <br>
-            <br>
-
-         
-    
-        <% } %>
-      
-      </div>
-  
     <br>
     <br>
    
