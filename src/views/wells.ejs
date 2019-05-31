@@ -24,21 +24,26 @@
     <br>
     <br>
 
-    <h6 style="text-align:center"> Well location - 
+    <h1 style="text-align:center; font-size:64px;">   
             <% for (var i = 0; i < 1; i++) { %>
-                <%= well[i].well_name %>
+                <%= well[2][0].molecule_name %>
             <% } %>
-       </h6>
+       </h1>
+
+       <br>
+       <br>
+       <br>
+
     
-    <h6 style="text-align:center">
-        <% for (var i = 0; i < 1; i++) { %>
-            <%= well[i].UCSC_CSC_plate %>
+    <h6 style="text-align:center"> Plate: 
+        <% for (var i = 0; i <= 0 ; i++) { %>
+            <%= well[0][3].UCSC_CSC_plate %>
         <% } %>
 </h6>
 
 <h6 style="text-align:center"> Cell-line: 
-        <% for (var i = 0; i < 1; i++) { %>
-            <%= well[i].Cell_lines %>
+        <% for (var i = 0; i <= 0; i++) { %>
+            <%= well[0][4].Cell_lines %>
         <% } %>
 </h6>
 
@@ -57,36 +62,47 @@
 
 
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col=md-12">
-                <div class="col=md-5">
-                    </div>
-                    <h1>Stain Set 1</h1>
-                    <% for (var i = 0; i < well[0].length ; i++) { %>
-                       
-                       
+        <div class="col-md-6" style="display:inline-block;">
+                <h1>Stain Set 1</h1>
+                <% for (var i = 0; i < well[0].length ; i++) { %>
+                   
+                    
+                            <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[0][i].w1_filepath %>" height="300" width="300" style="display:inline-block;"/>  
+                    
+                    
                            
-                                <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[0][i].w1_filepath %>" height="300" width="300" style="display:inline-block;"/>  
-                        
-                    <% } %>
-                  
-                </div>
-                    </div>
-                <div class="col=md-5">
-                    </div>
-                    <h1>Stain Set 2</h1>
-                    <% for (var i = 0; i < well[1].length ; i++) { %>
-                       
-                       
-                           
-                                <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4692/<%= well[1][i].w1_filepath %>" height="300" width="300" style="display:inline-block;"/>  
-                        
-                    <% } %>
-                  
-                </div>
-                        </div> 
+                <% } %>
+                
         </div>
+
+        <div class="col-md-6" style="display:inline-block;">
+                <h1 style="font-family: 'Times New Roman', serif;">Stain Set 2</h1>
+                <% for (var i = 0; i < well[1].length ; i++) { %>
+                   
+                    
+                            <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4692/<%= well[1][i].w1_filepath %>" height="300" width="300" style="display:inline-block;"/>  
+                    
+                    
+                           
+                <% } %>
+                
+        </div>
+           
+
+    </div>
+    <div class="row">
+
+    </div>
+   
+                       
+                      
+           
+                    
+               
+       
+      
    
 
       
@@ -101,12 +117,13 @@
 </div>
 
 
+
 </body>
 
 <script>
     function enlarge(x) {
-        x.style.height = "500";
-        x.style.width = "500";
+        x.style.height = "400";
+        x.style.width = "400";
     }
 
     function normalImage(x){
