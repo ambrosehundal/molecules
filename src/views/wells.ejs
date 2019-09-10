@@ -1,10 +1,20 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
+<link href="https://fonts.googleapis.com/css?family=Montserrat:500&display=swap" rel="stylesheet">
 
 
 <p style="text-align:right">If you cannot view tif files in your browser (firefox or Chrome), Download Tiff extensions here</p>
 <a href="https://chrome.google.com/webstore/detail/tiff-viewer/fciggfkkblggmebjbekbebbcffeacknj" target="_blank"><p style="text-align:right">Download Tif file viewer for Chrome</p> </a>
 <a href="https://addons.mozilla.org/en-US/firefox/addon/tiff-viewer/" target="_blank"><p style="text-align:right">Download Tif file viewer for Firefox</p> </a>
+
+
+<style>
+
+  body{
+    font-family: 'Montserrat', sans-serif;
+
+  }  
+</style>
+
 
 <body>
 
@@ -35,109 +45,185 @@
 
 
 
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-        <div class="col=md-12">
-                <div class="col=md-5">
-                        <h1>Stain Set 1</h1>
+        <div class="col-md-12">
+                <div class="col-md-6">
+                        <h1 style="text-align: center;">Stain Set 1</h1>
                         <br>
-                                <h3>W1</h3>
-                                <br>
 
-                        <% for (var i = 0; i < well[0].length ; i++) { %>
+                        <!-- WAVELENGTH_1 IMAGES -->
+                        <div class="row">
+
+                                <% for (var i = 0; i < well[0].length ; i++) { %>
                            
                            
                                
-                                    <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[0][i].w1_filepath %>" height="300" width="300" style="display:inline-block;"/>  
+                                    <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[0][i].w1_filepath %>" height="250" width="250" style="display:inline-block;"/>  
                             
                     
 
-                        <br>
+                        
 
                         <% } %>
-                        <br>
+
+                        </div>
+
                         <br>
 
-                        <h3>W2</h3>
-
-                        <% for (var i = 0; i < well[1].length ; i++) { %>
+                        <!-- WAVELENGTH_2 IMAGES -->
+                        <div class="row">
+                                <% for (var i = 0; i < well[1].length ; i++) { %>
                            
                            
                                
-                            <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[1][i].w2_filepath %>" height="300" width="300" style="display:inline-block;"/>  
+                                    <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[1][i].w2_filepath %>" height="250" width="250" style="display:inline-block;"/>  
+                            
                     
-            
+        
+                       
+        
+                        <% } %>
+                            
+                        </div>
 
-                <br>
+                        <br>
+                    
 
-                <% } %>
-                <br>
-                <br>
-
-                <h3>W3</h3>
-
-                <% for (var i = 0; i < well[2].length ; i++) { %>
+                        <!-- WAVELENGTH_3 IMAGES -->
+                        <div class="row">
+                                <% for (var i = 0; i < well[2].length ; i++) { %>
                            
                            
                                
-                    <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[2][i].w3_filepath %>" height="300" width="300" style="display:inline-block;"/>  
-            
-    
+                                    <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[2][i].w3_filepath %>" height="250" width="250" style="display:inline-block;"/>  
+                            
+                    
+                
+                 
+                
+                        <% } %>
+                            
+                        </div>
 
-        <br>
+                        <br>
 
-        <% } %>
-
-        <br>
-
-
-        <h3>
-            W4
-        </h3>
-
-        <% for (var i = 0; i < well[3].length ; i++) { %>
+                        <!-- WAVELENGTH_4 IMAGES -->
+                        <div class="row">
+                                <% for (var i = 0; i < well[3].length ; i++) { %>
                            
                            
                                
-            <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[3][i].w4_filepath %>" height="300" width="300" style="display:inline-block;"/>  
+                                    <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[3][i].w4_filepath %>" height="250" width="250" style="display:inline-block;"/>  
+                            
+                        
+                        
+                    
+                        
+                        <% } %>
+                            
+                        </div>
+
+
+                                
+
     
-
-
-<br>
-
-<% } %>
-
- 
-
          
             </div> 
+
+            <div class="col-md-6">
+                    <h1 style="text-align: center;">Stain Set 2</h1>
+                    <br>
+
+                    <!-- WAVELENGTH_1 IMAGES -->
+                    <div class="row">
+
+                            <% for (var i = 0; i < well[0].length ; i++) { %>
+                       
+                       
+                           
+                                <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[0][i].w1_filepath %>" height="250" width="250" style="display:inline-block;"/>  
+                        
+                
+
+                    
+
+                    <% } %>
+
+                    </div>
+
+                    <br>
+
+                    <!-- WAVELENGTH_2 IMAGES -->
+                    <div class="row">
+                            <% for (var i = 0; i < well[1].length ; i++) { %>
+                       
+                       
+                           
+                                <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[1][i].w2_filepath %>" height="250" width="250" style="display:inline-block;"/>  
+                        
+                
+    
+                   
+    
+                    <% } %>
+                        
+                    </div>
+
+                    <br>
+                
+
+                    <!-- WAVELENGTH_3 IMAGES -->
+                    <div class="row">
+                            <% for (var i = 0; i < well[2].length ; i++) { %>
+                       
+                       
+                           
+                                <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[2][i].w3_filepath %>" height="250" width="250" style="display:inline-block;"/>  
+                        
+                
+            
+             
+            
+                    <% } %>
+                        
+                    </div>
+
+                    <br>
+
+                    <!-- WAVELENGTH_4 IMAGES -->
+                    <div class="row">
+                            <% for (var i = 0; i < well[3].length ; i++) { %>
+                       
+                       
+                           
+                                <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[3][i].w4_filepath %>" height="250" width="250" style="display:inline-block;"/>  
+                        
+                    
+                    
+                
+                    
+                    <% } %>
+                        
+                    </div>
+
+
+                            
+
+
+     
+        </div> 
         </div>
            
 
     </div>
-    <div class="row">
-
-    </div>
-   
-                       
-                      
-           
-                    
-               
-       
-      
-   
-
-      
-
-       
-
-    <br>
-    <br>
-   
-   
    
 </div>
+
+<br>
+<br>
+<br>
+
 
 
 
@@ -150,7 +236,7 @@
     }
 
     function normalImage(x){
-        x.style.height = "300";
-        x.style.width = "300";
+        x.style.height = "250";
+        x.style.width = "250";
     }
 </script>
