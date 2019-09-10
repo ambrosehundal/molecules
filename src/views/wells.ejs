@@ -24,8 +24,7 @@
     <br>
     <br>
 
-  
-]
+
 
        <br>
        <br>
@@ -45,7 +44,7 @@
                                 <h3>W1</h3>
                                 <br>
 
-                        <% for (var i = 0; i < well[0][i].length ; i++) { %>
+                        <% for (var i = 0; i < well[0].length ; i++) { %>
                            
                            
                                
@@ -61,7 +60,7 @@
 
                         <h3>W2</h3>
 
-                        <% for (var i = 0; i < well[1][i].length ; i++) { %>
+                        <% for (var i = 0; i < well[1].length ; i++) { %>
                            
                            
                                
@@ -73,25 +72,45 @@
 
                 <% } %>
                 <br>
+                <br>
 
-                <h3>W2</h3>
+                <h3>W3</h3>
+
+                <% for (var i = 0; i < well[2].length ; i++) { %>
+                           
+                           
+                               
+                    <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[2][i].w3_filepath %>" height="300" width="300" style="display:inline-block;"/>  
+            
+    
+
+        <br>
+
+        <% } %>
+
+        <br>
 
 
+        <h3>
+            W4
+        </h3>
 
-                        <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[1][i].w2_filepath %>" height="300" width="300" style="display:inline-block;"/>  
+        <% for (var i = 0; i < well[3].length ; i++) { %>
+                           
+                           
+                               
+            <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[3][i].w4_filepath %>" height="300" width="300" style="display:inline-block;"/>  
+    
 
-                       
 
-                    </div>
-                   
-                  
-                </div>
-                    </div>
-           
-                    
-                  
-                </div>
-                        </div> 
+<br>
+
+<% } %>
+
+ 
+
+         
+            </div> 
         </div>
            
 
