@@ -225,30 +225,29 @@ app.get('/wells/:id', function (req, res){
     //query to get plate table from molecules db
     var well_id = req.params.id;
 
-    var w1_query = 'SELECT distinct w1.w1_filepath, w1.w1, w1.site_number, w1.image_folder_name, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_1 w1 ON (p1.UCSC_CSC_plate = w1.plate_name AND p1.well_name = w1.well_name AND p1.Cell_lines = w1.cell_line AND p1.timepoint = w1.timepoint ) WHERE w1.stainset_number = 1 and  p1.id =' + well_id;
+    // var w1_query = 'SELECT distinct w1.w1_filepath, w1.w1, w1.site_number, w1.image_folder_name, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_1 w1 ON (p1.UCSC_CSC_plate = w1.plate_name AND p1.well_name = w1.well_name AND p1.Cell_lines = w1.cell_line AND p1.timepoint = w1.timepoint ) WHERE w1.stainset_number = 1 and  p1.id=' + well_id;
+    // var w2_query = 'SELECT distinct w2.w2_filepath, w2.w2, w2.site_number, w2.image_folder_path, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_2 w2 ON (p1.UCSC_CSC_plate = w2.plate_name AND p1.well_name = w2.well_name AND p1.Cell_lines = w2.cell_line AND p1.timepoint = w2.timepoint ) WHERE w2.stainset_number = 1 and w2.w2 = "Golgi" and  p1.id =' + well_id;
 
-
-    
-    // var w2_query = ' UNION SELECT w2.w2_filepath, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_2 w2 ON (p1.UCSC_CSC_plate = w2.plate_name AND p1.well_name = w2.well_name AND p1.Cell_lines = w2.cell_line AND p1.timepoint = w2.timepoint ) WHERE w2.stainset_number = 1 AND p1.id=' + well_id;
-    // var w3_query = ' UNION SELECT w3.w3_filepath, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_3 w3 ON (p1.UCSC_CSC_plate = w3.plate_name AND p1.well_name = w3.well_name AND p1.Cell_lines = w3.cell_line AND p1.timepoint = w3.timepoint ) WHERE w3.stainset_number = 1 AND p1.id=' + well_id;
- 
-    // //   var queryString = 'SELECT w1.site_number, w1.w1_filepath, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM wavelength_1 w1 INNER JOIN plate_wells p1 ON (p1.UCSC_CSC_plate = w1.plate_name AND p1.well_name = w1.well_name AND p1.Cell_lines = w1.cell_line AND p1.timepoint = w1.timepoint AND p1.Magnification = w1.Magnification) WHERE p1.id=' + well_id;
-    // var queryString = 'SELECT w1.w1_filepath, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_1 w1 ON (p1.UCSC_CSC_plate = w1.plate_name AND p1.well_name = w1.well_name AND p1.Cell_lines = w1.cell_line AND p1.timepoint = w1.timepoint ) WHERE w1.stainset_number = 1 AND p1.id=' + well_id + w2_query + w3_query;
-    // var ss2queryString = 'SELECT w1.w1_filepath, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_1 w1 ON (p1.UCSC_CSC_plate = w1.plate_name AND p1.well_name = w1.well_name AND p1.Cell_lines = w1.cell_line AND p1.timepoint = w1.timepoint ) WHERE w1.stainset_number = ? AND p1.id=?'+ w2_query + w3_query;
-    // var sset2_query = "SELECT w1.w1_filepath, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_1 w1 ON (p1.UCSC_CSC_plate = w1.plate_name AND p1.well_name = w1.well_name AND p1.Cell_lines = w1.cell_line AND p1.timepoint = w1.timepoint) WHERE w1.stainset_number = ? AND p1.id = ? UNION SELECT w2.w2_filepath, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_2 w2 ON (p1.UCSC_CSC_plate = w2.plate_name AND p1.well_name = w2.well_name AND p1.Cell_lines = w2.cell_line AND p1.timepoint = w2.timepoint ) WHERE w2.stainset_number = 1 AND p1.id = ?  UNION SELECT w3.w3_filepath, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_3 w3 ON (p1.UCSC_CSC_plate = w3.plate_name AND p1.well_name = w3.well_name AND p1.Cell_lines = w3.cell_line AND p1.timepoint = w3.timepoint ) WHERE w3.stainset_number = 1 AND p1.id = ? ; SELECT w1.w1_filepath, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_1 w1 ON (p1.UCSC_CSC_plate = w1.plate_name AND p1.well_name = w1.well_name AND p1.Cell_lines = w1.cell_line AND p1.timepoint = w1.timepoint ) WHERE w1.stainset_number = ? AND p1.id = ? UNION SELECT w2.w2_filepath, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_2 w2 ON (p1.UCSC_CSC_plate = w2.plate_name AND p1.well_name = w2.well_name AND p1.Cell_lines = w2.cell_line AND p1.timepoint = w2.timepoint ) WHERE w2.stainset_number = 2 AND p1.id = ? UNION SELECT w3.w3_filepath, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_3 w3 ON (p1.UCSC_CSC_plate = w3.plate_name AND p1.well_name = w3.well_name AND p1.Cell_lines = w3.cell_line AND p1.timepoint = w3.timepoint ) WHERE w3.stainset_number = 2 AND p1.id= ? ";
-
-    // WHERE id=' + well_id; 
-    // con.query(sset2_query,  [[1], [well_id], [well_id], [well_id], [2], [well_id], [well_id], [well_id]],  function(err, result, fields) {
-        if (err) {
+    // QUERY WITH MULTIPLE SQL STATEMENTS
+    var well_images_sql = "SELECT distinct w1.w1_filepath, w1.w1, w1.site_number, w1.image_folder_name, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_1 w1 ON (p1.UCSC_CSC_plate = w1.plate_name AND p1.well_name = w1.well_name AND p1.Cell_lines = w1.cell_line AND p1.timepoint = w1.timepoint ) WHERE w1.stainset_number = 1 and  p1.id=?; SELECT distinct w2.w2_filepath, w2.w2, w2.site_number, w2.image_folder_path, p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_2 w2 ON (p1.UCSC_CSC_plate = w2.plate_name AND p1.well_name = w2.well_name AND p1.Cell_lines = w2.cell_line AND p1.timepoint = w2.timepoint ) WHERE w2.stainset_number = 1 and w2.w2 = 'Golgi' and  p1.id =?; SELECT distinct w3.w3_filepath, w3.w3, w3.site_number, w3.stainset_number,  p1.id, p1.well_name, p1.UCSC_CSC_plate, p1.Cell_lines, p1.Magnification, p1.TimePoint, p1.experiment_date FROM plate_wells p1 INNER JOIN wavelength_3 w3 ON (p1.UCSC_CSC_plate = w3.plate_name AND p1.well_name = w3.well_name AND p1.Cell_lines = w3.cell_line AND p1.timepoint = w3.timepoint ) WHERE w3.stainset_number = 1  and p1.id=?;";
+   
+ con.query(well_images_sql, [well_id, well_id, well_id], function(err, results, fields) {   
+    if (err) {
             throw err;
-            } else {
-                single_well_obj = {well: result};
-                res.render('wells', single_well_obj);
+    } else {
+            single_well_obj = {well: results};
+            res.render('wells', single_well_obj);
                 
             }
-           console.log(result);
-     
+           console.log(results[0]);
+           console.log(results[1]);
+           console.log(results[2]);
     });
+
+
+   
+
+
 
 })
 
