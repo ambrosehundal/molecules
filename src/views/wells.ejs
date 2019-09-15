@@ -31,6 +31,19 @@
 
     <br>
     <br>
+
+    <% for (var i = 0; i <= well[4].length ; i++) { %>
+                           
+                     
+                               
+       <h2><% well[4].molecule_name %></h2>
+
+
+
+
+
+<% } %>
+
     <br>
     <br>
 
@@ -197,7 +210,7 @@
                        
                        
                            
-                                <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[3][i].w4_filepath %>" height="250" width="250" style="display:inline-block;"/>  
+                                <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[3][i].w4_filepath %>" id="opacity-slider" min=".4" max="1" step=".01" value="1" height="250" width="250" style="display:inline-block;"/>  
                         
                     
                     
@@ -229,7 +242,7 @@
 
 </body>
 
-<script>
+<!-- <script>
     function enlarge(x) {
         x.style.height = "400";
         x.style.width = "400";
@@ -239,4 +252,19 @@
         x.style.height = "250";
         x.style.width = "250";
     }
-</script>
+</script> -->
+
+<script>
+        $(document).ready(function() {
+    
+        document.getElementById('opacity-slider').addEventListener('input', function (e) {
+        document.body.style.opacity = this.value;
+    });
+    } 
+    
+    );
+    
+    
+    
+    
+    </script>

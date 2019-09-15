@@ -1,12 +1,17 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <html>
+
         
 
         <body>
                 <h1 style="text-align:center;font-size:36px;color:red"> Screening Center Platemap list</h1>
                 <br>
                 <br>
-                <table class="table tpos table-bordered table-striped table-hover" style="width:50%;margin-left:25%;">
+                <table class="table tpos table-bordered table-striped table-hover" id="platelist" style="width:50%;margin-left:25%;">
                         <thead>
                           <tr>
                             <th scope="col"> ID</th>
@@ -83,6 +88,20 @@ a{
 
 
 
+<script>
+    $(document).ready(function() {
+    $('#platelist').DataTable();
 
+    document.getElementById('opacity-slider').addEventListener('input', function (e) {
+	document.body.style.opacity = this.value;
+});
+} 
+
+);
+
+
+
+
+</script>
 
 
