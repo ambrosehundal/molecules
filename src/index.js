@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const ejsLint = require('ejs-lint');
 
+// module to serve static files 
 var serveStatic = require('serve-static')
 
 
@@ -28,7 +29,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 
-//set up for using static image files from another directory
+//set up for using static image files from another directory, change file path to borg1 server directory appropriately
 app.use(serveStatic('/Users/ambrose/Desktop'))
 
 
@@ -37,7 +38,7 @@ app.use(serveStatic('/Users/ambrose/Desktop'))
 const port = 3000;
 
 
-//create connection with MySQL database
+//create connection with MySQL database, change credentials when deploying, use ENV variables?
 var con = mysql.createConnection({
     
     host:"localhost",
@@ -66,24 +67,8 @@ con.connect(function(err){
 
 var plate_obj = {};
 
-//***************page to display all plates with all datasets***********************************
 
-app.get('/plates', function (req, res){
 
-    //query to get plate table from molecules db
-
-    con.query("SELECT * from plate", function (err, result) {
-        if (err) {
-        throw err;
-        } else {
-            plate_obj = {print: result};
-            //console.log(plate_obj);
-            res.render('plates', plate_obj);
-            
-        }
-       console.log(result);
-      });
-})
 
 
 //**************************individual page for a plate*******************************
@@ -112,14 +97,40 @@ app.get('/plates/:id', function (req, res){
 
 })
 
+// SEARCH FOR A COMPOUND POST FORM
+
+app.post('/', function (req, res){
+
+    var search_text = req.query.compound;
+
+    console.log(search_text);
+    
+    var cats = "%";
+
+    var search_name = search_text.concat(cats);
+
+    var double_up = cats.concat(search_name);
+
+    var compound_search = "'" + double_up + "'";
+    // var SELECT * FROM compounds WHERE molecule_name LIKE=?"
+
+});
+
 
 
 //*********************** HOME PAGE and UNIQUE PLATE NAME LIST PAGE**************************************** 
 
 app.get('/', function (req, res){
 
+
+   
+
+    // var compoundQuery = '' + compound_search;
+
+    var sql = "SELECT * from platelist;";
+
     //query to get platelist table from molecules db which has plate names by unique name
-    con.query("SELECT * from platelist", function (err, result) {
+    con.query(sql,  function (err, result) {
         if (err) {
         throw err;
         } else {
@@ -129,6 +140,9 @@ app.get('/', function (req, res){
        console.log(result);
       });
 })
+
+
+
 
 //***************SINGLE PLATELIST PAGE THAT DISPLAYS ALL ITS DATASETS */
 app.get('/platelist/:id', function (req, res){
@@ -186,39 +200,6 @@ app.get('/platelist/:id/dataset/:id', function (req, res){
 
 
 
-//test page
-app.get('/pairtest', function (req, res){
-
-
-    var req_id = req.params.id;
-
-  
-
-  //var queryString = 'SELECT * FROM plate WHERE id=' + var_id;
-   
-   con.query("SELECT * FROM cell_plate_pairs ", function (err, result) {
-       if (err) {
-       throw err;
-       } else {
-           
-           test_obj = {testing: result};
-           
-
-           res.render('test', test_obj);
-           
-       }
-       
-       console.log(result);
-     
-     });
-
-  
-
-})
-
-
-
-
 
 app.get('/wells/:id', function (req, res){
 
@@ -255,48 +236,14 @@ app.get('/wells/:id', function (req, res){
 })
 
 
-//*****************************************MOLECULE COMPOUND SEARCH PAGE */
-app.get('/compounds', function (req, res){
 
-    //query to get plate table from molecules db
-    var well_id = req.params.id;
-    
 
-    var compoundQuery = 'SELECT DISTINCT molecule_name FROM compounds LIMIT 10';
-    // WHERE id=' + well_id; 
-
-    con.query(compoundQuery, function(err, result, fields) {
-        if (err) {
-            throw err;
-            } else {
-                single_well_obj = {well: result};
-                res.render('compounds', single_well_obj);
-                
-            }
-           console.log(result);
-     
-    });
-
-})
 
 
 //*****************************COMPOUND SEARCH RESULTS PAGE ************************/
 
 app.get('/mycompound', function (req, res){
 
-    var search_text = req.query.compound;
-    
-    var cats = "%";
-
-    var search_name = search_text.concat(cats);
-
-    var double_up = cats.concat(search_name);
-
-    var compound_search = "'" + double_up + "'";
-
-    console.log(double_up);
-
-    var compoundQuery = 'SELECT * FROM compounds WHERE molecule_name LIKE ' + compound_search;
     // WHERE id=' + well_id; 
 
     con.query(compoundQuery, function(err, result, fields) {
