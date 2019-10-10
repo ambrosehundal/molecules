@@ -99,22 +99,22 @@ app.get('/plates/:id', function (req, res){
 
 // SEARCH FOR A COMPOUND POST FORM
 
-app.post('/', function (req, res){
+// app.post('/', function (req, res){
 
-    var search_text = req.query.compound;
+//     var search_text = req.query.compound;
 
-    console.log(search_text);
+//     console.log(search_text);
     
-    var cats = "%";
+//     var cats = "%";
 
-    var search_name = search_text.concat(cats);
+//     var search_name = search_text.concat(cats);
 
-    var double_up = cats.concat(search_name);
+//     var double_up = cats.concat(search_name);
 
-    var compound_search = "'" + double_up + "'";
-    // var SELECT * FROM compounds WHERE molecule_name LIKE=?"
+//     var compound_search = "'" + double_up + "'";
+//     // var SELECT * FROM compounds WHERE molecule_name LIKE=?"
 
-});
+// });
 
 
 
@@ -246,6 +246,21 @@ app.get('/mycompound', function (req, res){
 
     // WHERE id=' + well_id; 
 
+    var search_text = req.query.compound;
+    
+    var cats = "%";
+
+    var search_name = search_text.concat(cats);
+
+    var double_up = cats.concat(search_name);
+
+    var compound_search = "'" + double_up + "'";
+
+    console.log(double_up);
+
+    var compoundQuery = 'SELECT * FROM compounds WHERE molecule_name LIKE ' + compound_search;
+    // WHERE id=' + well_id; 
+
     con.query(compoundQuery, function(err, result, fields) {
         if (err) {
             throw err;
@@ -257,6 +272,7 @@ app.get('/mycompound', function (req, res){
            console.log(result);
      
     });
+
 
 })
 
