@@ -93,6 +93,57 @@
                             </form>
 
                     </div>
+
+                    <div id="plate_table" style="display:none;">
+
+                   
+                            <table class="table tpos table-bordered table-striped table-hover" id="platelist" style="width:50%; margin-top: 25%;">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col"> ID</th>
+                                        <th scope="col">UCSC_CSC_plate_ID</th>
+                                        <th scope="col">Alias name</th>
+                                        
+                                       
+                                        
+                                      </tr>
+                                    </thead>
+                            
+                            
+                                    <tbody>
+                                    
+                                            <% for (var i = 0; i < print.length; i++) { %>
+                                                <tr class="timeline"></tr>
+                                                <td><%= i + 1%></td>
+                                                <td class="timeline-yellow">
+                                                    <div class="timeline-time">
+                                                        <span style="text-align:left">
+                                                      <a href= "/platelist/<%= i+1 %> "><%= print[i].UCSC_CSC_plate_ID %></a>  
+                                                        </span>
+                                                       
+                                                    </div>
+                                                </td>
+                                                <td class="timeline-yellow">
+                                                    <div class="timeline-time">
+                                                        <span style="text-align:left">
+                                                            <a href= "/platelist/<%= i+1 %> "><%= print[i].alias_name %></a>  
+                                                        </span>
+                                                       
+                                                    </div>
+                                                </td>
+                                           
+                                        </tr>
+                                            <br>
+                                            <% } %>
+                                    
+                                      
+                                    </tbody>
+                                  </table>
+                
+                
+                
+
+
                   
                   
                     <br>
@@ -114,68 +165,23 @@
                 
 <div class="row">
 
+    <div class="col-md-3">
 
-        <div id="plate_table" style="display:none;">
+    </div>
 
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <table class="table tpos table-bordered table-striped table-hover" id="platelist" style="width:50%;margin-left:25%; margin-top: 25%;">
-                        <thead>
-                          <tr>
-                            <th scope="col"> ID</th>
-                            <th scope="col">UCSC_CSC_plate_ID</th>
-                            <th scope="col">Alias name</th>
-                            
-                           
-                            
-                          </tr>
-                        </thead>
-                
-                
-                        <tbody>
-                        
-                                <% for (var i = 0; i < print.length; i++) { %>
-                                    <tr class="timeline"></tr>
-                                    <td><%= i + 1%></td>
-                                    <td class="timeline-yellow">
-                                        <div class="timeline-time">
-                                            <span style="text-align:left">
-                                          <a href= "/platelist/<%= i+1 %> "><%= print[i].UCSC_CSC_plate_ID %></a>  
-                                            </span>
-                                           
-                                        </div>
-                                    </td>
-                                    <td class="timeline-yellow">
-                                        <div class="timeline-time">
-                                            <span style="text-align:left">
-                                                <a href= "/platelist/<%= i+1 %> "><%= print[i].alias_name %></a>  
-                                            </span>
-                                           
-                                        </div>
-                                    </td>
-                               
-                            </tr>
-                                <br>
-                                <% } %>
-                        
-                          
-                        </tbody>
-                      </table>
-    
-    
-    
-        </div>
+    <div class="col-md-6">
 
+            
+            </div>
+
+            <div class="col-md-3">
+
+            </div>
+    
+        
+    </div>
+
+        
 </div>
 
 </div>
