@@ -1,0 +1,217 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<html>
+
+    <head>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #070999 !important;">
+                <a class="navbar-brand" href="/" style="color:white !important;">CP Image Viewer</a>
+
+                
+              
+                <!-- <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                  </ul>
+                </div> -->
+              </nav>
+
+</head>
+        
+
+        <body>
+
+    <div class="container">
+        <div class="row">
+           
+                    <br>
+                    <br>
+                    
+                    <br>
+        <div class="col-md-8">
+
+                <div id="search_molecule">
+                    <h3> Search by compound</h3>
+                    
+                
+
+                        <form action="/mycompound" method="GET">
+                            <label style="text-align:center; margin-left: 20%;font-size:24px;">
+                                <!-- Search for a compound -->
+                            </label>
+                            <br>
+                                <input type="text" name="compound" required style="text-align:left;  width: 100%;  height: 35px; border-radius: 5px  " />
+                                <!-- <input type="submit" value="Submit" /> -->
+                           
+                            
+                        </form>
+
+                </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+
+        <div class="row">
+            
+                <div id="plate_table">
+
+                   <h3>Search by plate</h3>
+                        <table class="table tpos table-bordered table-striped table-hover" id="platelist" style="width:50%; margin-top: 25%;">
+                                <thead>
+                                  <tr>
+                                    <th scope="col"> ID</th>
+                                    <th scope="col">UCSC_CSC_plate_ID</th>
+                                    <th scope="col">Alias name</th>
+                                    
+                                   
+                                    
+                                  </tr>
+                                </thead>
+                        
+                        
+                                <tbody>
+                                
+                                        <% for (var i = 0; i < print.length; i++) { %>
+                                            <tr class="timeline"></tr>
+                                            <td><%= i + 1%></td>
+                                            <td class="timeline-yellow">
+                                                <div class="timeline-time">
+                                                    <span style="text-align:left">
+                                                  <a href= "/platelist/<%= i+1 %> "><%= print[i].UCSC_CSC_plate_ID %></a>  
+                                                    </span>
+                                                   
+                                                </div>
+                                            </td>
+                                            <td class="timeline-yellow">
+                                                <div class="timeline-time">
+                                                    <span style="text-align:left">
+                                                        <a href= "/platelist/<%= i+1 %> "><%= print[i].alias_name %></a>  
+                                                    </span>
+                                                   
+                                                </div>
+                                            </td>
+                                       
+                                    </tr>
+                                        <br>
+                                        <% } %>
+                                
+                                  
+                                </tbody>
+                              </table>
+            
+            
+            
+
+
+              
+              
+                <br>
+               
+          
+            
+            </div>
+        </div>
+                   
+
+                  
+                   
+
+                  
+               
+        </div>
+    
+
+      
+
+<!-- 
+                <h1 style="text-align:center;font-size:36px;color:red"> Screening Center Platemap list</h1> -->
+            
+                
+<div class="row">
+
+    <div class="col-md-3">
+
+    </div>
+
+    <div class="col-md-6">
+
+            
+            </div>
+
+            <div class="col-md-3">
+
+            </div>
+    
+        
+    </div>
+
+        
+</div>
+
+</div>
+   
+
+
+                
+               <br>
+               <br>
+
+            
+
+               
+                    
+                    
+                
+                    
+        
+        </body>
+        
+       
+        
+
+</html>
+
+<style>
+    .tpos {
+  
+    position: absolute;
+    top: 15%;
+}
+
+
+a{
+    text-decoration: none;
+    color: black;
+}
+</style>
+
+
+
+

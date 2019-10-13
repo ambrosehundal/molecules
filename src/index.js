@@ -135,7 +135,7 @@ app.get('/', function (req, res){
         throw err;
         } else {
             platelist_obj = {print: result};
-            res.render('platelist', platelist_obj);  
+            res.render('homepage', platelist_obj);  
         }
        console.log(result);
       });
