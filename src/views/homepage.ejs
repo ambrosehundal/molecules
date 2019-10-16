@@ -42,7 +42,7 @@
 
                         <br>
                         <br>
-                        
+
 
                         <h3>Search by plate</h3>
                         <table class="table table-bordered table-striped table-hover" id="platelist" style="box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);">
@@ -143,6 +143,14 @@ a{
 
 <script>
     $(document).ready( function () {
-    $('#platelist').DataTable();
+    $('#platelist').DataTable({
+        // List of options to display results
+    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+
+    }
+
+    );
+
+   
 } );
 </script>
