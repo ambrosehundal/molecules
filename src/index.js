@@ -186,7 +186,7 @@ app.get('/platelist/:id/dataset/:id', function (req, res){
             
             dataset_obj = {dataset: result};
             
-            res.render('dataset', dataset_obj);
+            res.render('wells', dataset_obj);
             
         }
         
@@ -215,7 +215,7 @@ app.get('/wells/:id', function (req, res){
             throw err;
     } else {
             single_well_obj = {well: results};
-            res.render('wells', single_well_obj);
+            res.render('images', single_well_obj);
                 
             }
            console.log(results[0]);
@@ -223,9 +223,7 @@ app.get('/wells/:id', function (req, res){
            console.log(results[2]);
            console.log(results[3]);
            console.log(results[4]);
-        //    console.log(results[5]);
-        //    console.log(results[6]);
-        //    console.log(results[7]);
+      
     });
 
 
@@ -266,7 +264,7 @@ app.get('/mycompound', function (req, res){
             throw err;
             } else {
                 single_well_obj = {well: result};
-                res.render('one_compound', single_well_obj);
+                res.render('compounds', single_well_obj);
                 
             }
            console.log(result);

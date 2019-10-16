@@ -1,0 +1,270 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:500&display=swap" rel="stylesheet">
+
+
+<p style="text-align:right">If you cannot view tif files in your browser (firefox or Chrome), Download Tiff extensions here</p>
+<a href="https://chrome.google.com/webstore/detail/tiff-viewer/fciggfkkblggmebjbekbebbcffeacknj" target="_blank"><p style="text-align:right">Download Tif file viewer for Chrome</p> </a>
+<a href="https://addons.mozilla.org/en-US/firefox/addon/tiff-viewer/" target="_blank"><p style="text-align:right">Download Tif file viewer for Firefox</p> </a>
+
+
+<style>
+
+  body{
+    font-family: 'Montserrat', sans-serif;
+
+  }  
+</style>
+
+
+<body>
+
+
+  
+    
+
+  
+
+
+    <br>
+
+    
+
+    <br>
+    <br>
+
+    <% for (var i = 0; i <= well[4].length ; i++) { %>
+                           
+                     
+                               
+       <h2>Molecule name : <% well[4].molecule_name %></h2>
+
+
+
+
+
+<% } %>
+
+
+
+  
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+                <div class="col-md-6">
+                        <h1 style="text-align: center;">Stain Set 1</h1>
+                        <br>
+
+                        <!-- WAVELENGTH_1 IMAGES -->
+                        <div class="row">
+
+                                <% for (var i = 0; i < well[0].length ; i++) { %>
+                           
+                           
+                               
+                                    <img onmouseover="enlarge(this)" id="well_image" onmouseout="normalImage(this)" src="/4664/<%= well[0][i].w1_filepath %>" height="250" width="250" style="display:inline-block;"/>  
+                            
+                    
+
+                        
+
+                        <% } %>
+
+                        </div>
+
+                        <br>
+
+                        <!-- WAVELENGTH_2 IMAGES -->
+                        <div class="row">
+                                <% for (var i = 0; i < well[1].length ; i++) { %>
+                           
+                           
+                               
+                                    <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[1][i].w2_filepath %>" height="250" width="250" style="display:inline-block;"/>  
+                            
+                    
+        
+                       
+        
+                        <% } %>
+                            
+                        </div>
+
+                        <br>
+                    
+
+                        <!-- WAVELENGTH_3 IMAGES -->
+                        <div class="row">
+                                <% for (var i = 0; i < well[2].length ; i++) { %>
+                           
+                           
+                               
+                                    <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" id="well_image" src="/4664/<%= well[2][i].w3_filepath %>" height="250" width="250" style="display:inline-block;"/>  
+                            
+                    
+                
+                 
+                
+                        <% } %>
+                            
+                        </div>
+
+                        <br>
+
+                        <!-- WAVELENGTH_4 IMAGES -->
+                        <div class="row">
+                                <% for (var i = 0; i < well[3].length ; i++) { %>
+                           
+                           
+                               
+                                    <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[3][i].w4_filepath %>" height="250" width="250" style="display:inline-block;"/>  
+                            
+                        
+                        
+                    
+                        
+                        <% } %>
+                            
+                        </div>
+
+
+                                
+
+    
+         
+            </div> 
+
+            <div class="col-md-6">
+                    <h1 style="text-align: center;">Stain Set 2</h1>
+                    <br>
+
+                    <!-- WAVELENGTH_1 IMAGES -->
+                    <div class="row">
+
+                            <% for (var i = 0; i < well[0].length ; i++) { %>
+                       
+                       
+                           
+                                <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[0][i].w1_filepath %>" height="250" width="250" style="display:inline-block;"/>  
+                        
+                
+
+                    
+
+                    <% } %>
+
+                    </div>
+
+                    <br>
+
+                    <!-- WAVELENGTH_2 IMAGES -->
+                    <div class="row">
+                            <% for (var i = 0; i < well[1].length ; i++) { %>
+                       
+                       
+                           
+                                <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[1][i].w2_filepath %>" height="250" width="250" style="display:inline-block;"/>  
+                        
+                
+    
+                   
+    
+                    <% } %>
+                        
+                    </div>
+
+                    <br>
+                
+
+                    <!-- WAVELENGTH_3 IMAGES -->
+                    <div class="row">
+                            <% for (var i = 0; i < well[2].length ; i++) { %>
+                       
+                       
+                           
+                                <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[2][i].w3_filepath %>" height="250" width="250" style="display:inline-block;"/>  
+                        
+                
+            
+             
+            
+                    <% } %>
+                        
+                    </div>
+
+                    <br>
+
+                    <!-- WAVELENGTH_4 IMAGES -->
+                    <div class="row">
+                            <% for (var i = 0; i < well[3].length ; i++) { %>
+                       
+                       
+                           
+                                <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[3][i].w4_filepath %>" id="opacity-slider" min=".4" max="1" step=".01" value="1" height="250" width="250" style="display:inline-block;"/>  
+                        
+                    
+                    
+                    <% } %>
+                        
+                    </div>
+
+
+                            
+
+
+     
+        </div> 
+        </div>
+           
+
+    </div>
+   
+</div>
+
+<br>
+<br>
+<br>
+
+
+
+
+</body>
+
+<!-- <script>
+    function enlarge(x) {
+        x.style.height = "400";
+        x.style.width = "400";
+    }
+
+    function normalImage(x){
+        x.style.height = "250";
+        x.style.width = "250";
+    }
+</script> -->
+
+<script>
+        $(document).ready(function() {
+    
+        document.getElementById('opacity-slider').addEventListener('input', function (e) {
+        document.body.style.opacity = this.value;
+    });
+    } 
+    
+    );
+    
+    
+    
+    
+    </script>
+
+
+
+<script>
+   
+            document.getElementById("well_image").style.filter = "brightness(200%)";
+            // document.getElementById("well_image").style.filter = "contrast(50%)";
+         
+</script>

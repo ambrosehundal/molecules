@@ -1,270 +1,123 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:500&display=swap" rel="stylesheet">
+<html>
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
+
+        <head>
+                        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #070999 !important;">
+                                <a class="navbar-brand" href="/" style="color:white !important;">CP Image Viewer</a>
+                
+                                
+                              
+                                <!-- <div class="collapse navbar-collapse" id="navbarNav">
+                                  <ul class="navbar-nav">
+                                    <li class="nav-item active">
+                                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a class="nav-link" href="#">Features</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a class="nav-link" href="#">Pricing</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                                    </li>
+                                  </ul>
+                                </div> -->
+                              </nav>
+                
+                </head>
 
 
-<p style="text-align:right">If you cannot view tif files in your browser (firefox or Chrome), Download Tiff extensions here</p>
-<a href="https://chrome.google.com/webstore/detail/tiff-viewer/fciggfkkblggmebjbekbebbcffeacknj" target="_blank"><p style="text-align:right">Download Tif file viewer for Chrome</p> </a>
-<a href="https://addons.mozilla.org/en-US/firefox/addon/tiff-viewer/" target="_blank"><p style="text-align:right">Download Tif file viewer for Firefox</p> </a>
 
+        <body>
+                <h1 style="text-align:center">
+                        <% for (var i = 0; i < 1; i++) { %>
+                            <%= dataset[i].UCSC_CSC_plate %>
+                        <% } %>
+                </h1>
+
+                <h4 style="text-align:center"> Cell-line: 
+                        <% for (var i = 0; i < 1; i++) { %>
+                            <%= dataset[i].Cell_lines %>
+                        <% } %>
+                </h4>
+
+                <h4 style="text-align:center"> Magnification: 
+                        <% for (var i = 0; i < 1; i++) { %>
+                            <%= dataset[i].Magnification %>
+                        <% } %>
+                </h4>
+
+                <h4 style="text-align:center">
+                        <% for (var i = 0; i < 1; i++) { %>
+                            <%= dataset[i].experiment_date %>
+                        <% } %>
+                </h4>
+
+            
+                <br>
+
+                <div class="container">
+                <div class="row">
+                       <!-- <div class="col-md-1">
+                                
+                        </div>  -->
+                        <div class="col-md-12" style="";>
+                                        <% var j = 0; for (var i = 0; i < dataset.length; i++) {  %>
+
+                                                <% j++; if (j % 24 == 0) { %>
+                                                        <a href= "/wells/<%= dataset[i].id %>" data-toggle="tooltip" title="Compound: <%= dataset[i].molecule_name %>, Concentration:  <%= dataset[i].Concentration %>"><button class="btn btn-primary" style="border: 1px thin black; width: 40px; height: 40px;display:inline-block; background-color: green !important;;padding-left:5px; margin-bottom: 1%; text-align:center">
+                                                                <span style="font-size:12px; font-weight:600; text-align:center;"> <%= dataset[i].well_name %></span> 
+                                                              </button></a> <br>
+                                                      <% }else { %>
+                                                        <a href= "/wells/<%= dataset[i].id %>" data-toggle="tooltip" title="Compound: <%= dataset[i].molecule_name %>, Concentration:  <%= dataset[i].Concentration %>"><button class="btn btn-primary" style="border: 1px thin black; width: 40px; height: 40px;display:inline-block; background-color: green !important;;padding-left:5px; margin-bottom: 1%; text-align:center">
+                                                                <span style="font-size:12px; font-weight:600; text-align:center;"> <%= dataset[i].well_name %></span> 
+                                                              </button></a>
+                                                   
+                        
+                        
+                                                  <% } %>
+                        
+                                              
+                                             
+                                                     
+                                                          
+                        
+                        
+                                                      
+                                              
+                        
+                                                <% } %>
+
+                        </div>
+
+                </div>
+                   
+                </div>
+               
+
+                <br>
+                <br>
+                <br>
+                <br>
+
+
+        </body>
 
 <style>
 
-  body{
-    font-family: 'Montserrat', sans-serif;
-
-  }  
 </style>
 
-
-<body>
-
-
-  
-    
-
-  
+                <script>
+                $(document).ready(function(){
+                  $('[data-toggle="tooltip"]').tooltip();   
+                });
+                </script>
 
 
-    <br>
-
-    
-
-    <br>
-    <br>
-
-    <% for (var i = 0; i <= well[4].length ; i++) { %>
-                           
-                     
-                               
-       <h2>Molecule name : <% well[4].molecule_name %></h2>
-
-
-
-
-
-<% } %>
-
-
-
-  
-
-
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-                <div class="col-md-6">
-                        <h1 style="text-align: center;">Stain Set 1</h1>
-                        <br>
-
-                        <!-- WAVELENGTH_1 IMAGES -->
-                        <div class="row">
-
-                                <% for (var i = 0; i < well[0].length ; i++) { %>
-                           
-                           
-                               
-                                    <img onmouseover="enlarge(this)" id="well_image" onmouseout="normalImage(this)" src="/4664/<%= well[0][i].w1_filepath %>" height="250" width="250" style="display:inline-block;"/>  
-                            
-                    
-
-                        
-
-                        <% } %>
-
-                        </div>
-
-                        <br>
-
-                        <!-- WAVELENGTH_2 IMAGES -->
-                        <div class="row">
-                                <% for (var i = 0; i < well[1].length ; i++) { %>
-                           
-                           
-                               
-                                    <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[1][i].w2_filepath %>" height="250" width="250" style="display:inline-block;"/>  
-                            
-                    
-        
-                       
-        
-                        <% } %>
-                            
-                        </div>
-
-                        <br>
-                    
-
-                        <!-- WAVELENGTH_3 IMAGES -->
-                        <div class="row">
-                                <% for (var i = 0; i < well[2].length ; i++) { %>
-                           
-                           
-                               
-                                    <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[2][i].w3_filepath %>" height="250" width="250" style="display:inline-block;"/>  
-                            
-                    
-                
-                 
-                
-                        <% } %>
-                            
-                        </div>
-
-                        <br>
-
-                        <!-- WAVELENGTH_4 IMAGES -->
-                        <div class="row">
-                                <% for (var i = 0; i < well[3].length ; i++) { %>
-                           
-                           
-                               
-                                    <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[3][i].w4_filepath %>" height="250" width="250" style="display:inline-block;"/>  
-                            
-                        
-                        
-                    
-                        
-                        <% } %>
-                            
-                        </div>
-
-
-                                
-
-    
-         
-            </div> 
-
-            <div class="col-md-6">
-                    <h1 style="text-align: center;">Stain Set 2</h1>
-                    <br>
-
-                    <!-- WAVELENGTH_1 IMAGES -->
-                    <div class="row">
-
-                            <% for (var i = 0; i < well[0].length ; i++) { %>
-                       
-                       
-                           
-                                <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[0][i].w1_filepath %>" height="250" width="250" style="display:inline-block;"/>  
-                        
-                
-
-                    
-
-                    <% } %>
-
-                    </div>
-
-                    <br>
-
-                    <!-- WAVELENGTH_2 IMAGES -->
-                    <div class="row">
-                            <% for (var i = 0; i < well[1].length ; i++) { %>
-                       
-                       
-                           
-                                <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[1][i].w2_filepath %>" height="250" width="250" style="display:inline-block;"/>  
-                        
-                
-    
-                   
-    
-                    <% } %>
-                        
-                    </div>
-
-                    <br>
-                
-
-                    <!-- WAVELENGTH_3 IMAGES -->
-                    <div class="row">
-                            <% for (var i = 0; i < well[2].length ; i++) { %>
-                       
-                       
-                           
-                                <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[2][i].w3_filepath %>" height="250" width="250" style="display:inline-block;"/>  
-                        
-                
-            
-             
-            
-                    <% } %>
-                        
-                    </div>
-
-                    <br>
-
-                    <!-- WAVELENGTH_4 IMAGES -->
-                    <div class="row">
-                            <% for (var i = 0; i < well[3].length ; i++) { %>
-                       
-                       
-                           
-                                <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[3][i].w4_filepath %>" id="opacity-slider" min=".4" max="1" step=".01" value="1" height="250" width="250" style="display:inline-block;"/>  
-                        
-                    
-                    
-                    <% } %>
-                        
-                    </div>
-
-
-                            
-
-
-     
-        </div> 
-        </div>
-           
-
-    </div>
-   
-</div>
-
-<br>
-<br>
-<br>
-
-
-
-
-</body>
-
-<!-- <script>
-    function enlarge(x) {
-        x.style.height = "400";
-        x.style.width = "400";
-    }
-
-    function normalImage(x){
-        x.style.height = "250";
-        x.style.width = "250";
-    }
-</script> -->
-
-<script>
-        $(document).ready(function() {
-    
-        document.getElementById('opacity-slider').addEventListener('input', function (e) {
-        document.body.style.opacity = this.value;
-    });
-    } 
-    
-    );
-    
-    
-    
-    
-    </script>
-
-
-
-<script>
-    function display() {
-            document.getElementById("well_image").style.filter = "brightness(200%)";
-            // document.getElementById("well_image").style.filter = "contrast(50%)";
-         }
-</script>
+        </html>
