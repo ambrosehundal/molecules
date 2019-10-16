@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:500&display=swap" rel="stylesheet">
 <html>
 
         <head>
@@ -34,7 +35,7 @@
         <br>
         
             <% for (var i = 0; i < 1; i++) { %>
-            <h1 style="text-align:center;font-size:40px;"> <%= print[i].UCSC_CSC_plate_ID %> plate datasets</h1>
+            <h1 style="text-align:center;font-size:40px;"><u> <%= print[i].UCSC_CSC_plate_ID %> datasets</u></h1>
             <% } %>
             <table class="table table-bordered table-striped table-hover" style="width:80%;margin-left:10%;  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);">
                     <thead>
@@ -125,3 +126,11 @@
             
     </body>
 </html>
+
+
+<style>
+      body{
+    font-family: 'Montserrat', sans-serif;
+
+  }  
+</style>

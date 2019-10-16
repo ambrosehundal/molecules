@@ -222,6 +222,7 @@ app.get('/wells/:id', function (req, res){
            console.log(results[1]);
            console.log(results[2]);
            console.log(results[3]);
+
            console.log(results[4]);
       
     });
