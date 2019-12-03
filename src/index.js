@@ -148,7 +148,7 @@ app.get('/', function (req, res){
 app.get('/platelist/:id', function (req, res){
     var plate_unique_id = req.params.id;
         
-     var plate_datasets = 'SELECT platelist.unique_plate_id, c1.dataset_id, c1.pairset_A, c1.pairset_B, c1.UCSC_CSC_plate_ID, c1.Magnification, c1.TimePoint, c1.Cell_lines, c1.experiment_date FROM cell_plate_pairs c1 INNER JOIN platelist ON (platelist.UCSC_CSC_plate_ID = c1.UCSC_CSC_plate_ID)  WHERE platelist.unique_plate_id=' + plate_unique_id ;
+     var plate_datasets = 'SELECT distinct p1.plate_pair_id, p1.UCSC_CSC_plate_ID, p1.Cell_lines, p1.TimePoint, p1.Magnification, p1.experiment_date FROM molecules.plate p1 INNER JOIN molecules.platelist p2 ON (p1.UCSC_CSC_plate_ID = p2.UCSC_CSC_plate_ID) where p2.unique_plate_id=' + plate_unique_id ;
  
  
      con.query(plate_datasets, function (err, result) {
@@ -175,7 +175,7 @@ app.get('/platelist/:id/dataset/:id', function (req, res){
     
     var dataset_id = req.params.id;
 
-    var datasetQuery = 'SELECT plate_wells.id, plate_wells.well_name, plate_wells.UCSC_CSC_plate, plate_wells.Cell_lines, plate_wells.TimePoint, plate_wells.Magnification, plate_wells.experiment_date, compounds.molecule_name, compounds.Concentration FROM plate_wells INNER JOIN cell_plate_pairs ON (cell_plate_pairs.UCSC_CSC_plate_ID=plate_wells.UCSC_CSC_plate AND cell_plate_pairs.Cell_lines = plate_wells.Cell_lines AND cell_plate_pairs.experiment_date = plate_wells.experiment_date ) INNER JOIN compounds ON (plate_wells.UCSC_CSC_plate=compounds.UCSC_CSC_plate_ID AND plate_wells.well_name = compounds.well)  WHERE cell_plate_pairs.dataset_id=' + dataset_id;
+    var datasetQuery = 'SELECT distinct plate_wells.id, plate_wells.well_name, plate_wells.UCSC_CSC_plate, plate_wells.Cell_lines, plate_wells.TimePoint, plate_wells.Magnification, plate_wells.experiment_date, compounds.molecule_name, compounds.Concentration FROM plate_wells INNER JOIN plate ON (plate.UCSC_CSC_plate_ID=plate_wells.UCSC_CSC_plate AND plate.Cell_lines = plate_wells.Cell_lines AND plate.experiment_date = plate_wells.experiment_date AND plate.Magnification = plate_wells.Magnification ) INNER JOIN compounds ON (plate_wells.UCSC_CSC_plate=compounds.UCSC_CSC_plate_ID AND plate_wells.well_name = compounds.well)  WHERE plate.plate_pair_id=' + dataset_id;
 
 
 
