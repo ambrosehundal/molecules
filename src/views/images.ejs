@@ -66,14 +66,14 @@
 <div class="container-fluid">
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
            
         </div>
-        <div class="col-md-4" style="text-align:center">
-            <button onclick="ShowImages()" style="text-align:center">Images</button> 
-            <button onclick="ShowSimilarCompounds()" style="text-align:center">Similar Compounds</button>
+        <div class="col-md-6" style="text-align:center">
+            <label id="show_images" onclick="ShowImages()" style="text-align:center; text-decoration:underline; " ><h4 style="font-size:24px;" id="image_tag">Images</h4></label> &nbsp; &nbsp;
+            <label id="show_similar_compounds" onclick="ShowSimilarCompounds()" style="text-align:center; opacity:50%;"><h4 id="compound_tag">Similar Compounds</h4></label>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
 
         </div>
 
@@ -87,7 +87,7 @@
 
     <!--Similar compounds table  -->
 
-    <div class="row" id="similar_compounds_table">
+    <div class="row" id="similar_compounds_table" style="display:none;">
 
             <table class="table table-bordered table-striped table-hover" style="width:80%;margin-left:10%;  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);">
                     <thead>
@@ -504,6 +504,18 @@
         function ShowImages(){
         $('#well_images').show();
         $('#similar_compounds_table').hide();
+
+        document.getElementById("show_images").style.textDecoration = "underline";
+        document.getElementById("show_images").style.opacity = "100";
+
+        document.getElementById("show_similar_compounds").style.textDecoration = "none";
+        document.getElementById("show_similar_compounds").style.opacity = "50%";
+
+        document.getElementById("image_tag").style.fontSize= "24px";
+        document.getElementById("compound_tag").style.fontSize= "16px";
+      
+
+
         }
 
 
@@ -514,6 +526,18 @@
     function ShowSimilarCompounds(){
         $('#well_images').hide();
         $('#similar_compounds_table').show();
+
+       
+
+        document.getElementById("show_similar_compounds").style.textDecoration = "underline";
+        document.getElementById("show_similar_compounds").style.opacity = "100%";
+
+
+        document.getElementById("show_images").style.textDecoration = "none";
+        document.getElementById("show_images").style.opacity = "50%";
+        document.getElementById("compound_tag").style.fontSize= "24px";
+        document.getElementById("image_tag").style.fontSize= "16px";
+        
 
     }
          
