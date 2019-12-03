@@ -64,7 +64,129 @@
 
 
 <div class="container-fluid">
+
     <div class="row">
+        <div class="col-md-4">
+           
+        </div>
+        <div class="col-md-4" style="text-align:center">
+            <button onclick="ShowImages()" style="text-align:center">Images</button> 
+            <button onclick="ShowSimilarCompounds()" style="text-align:center">Similar Compounds</button>
+        </div>
+        <div class="col-md-4">
+
+        </div>
+
+        
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+
+    <!--Similar compounds table  -->
+
+    <div class="row" id="similar_compounds_table">
+
+            <table class="table table-bordered table-striped table-hover" style="width:80%;margin-left:10%;  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);">
+                    <thead>
+                      <tr>
+              
+                        <th scope="col">Compound name</th>  
+                       
+                        <th scope="col">Cell Count</th> 
+                        <th scope="col">PHH3</th> 
+                        <th scope="col">Edu</th> 
+                        <th scope="col">Similarity score</th> 
+                        <th scope="col">Color bar</th> 
+                      
+        
+                      </tr>
+                    </thead>
+            
+                    <tbody>
+                    
+                            <% for (var i = 0; i < well[4].length; i++) { %>
+                                <tr class="timeline"></tr>
+
+                            <td class="timeline-yellow">
+                                        <div class="timeline-time">
+                                            <span style="text-align:left">
+                                        <%= well[4][i].similar_compounds %>
+                                            </span>
+                                           
+                                        </div>
+                            </td>
+                               
+                                
+                            <td class="timeline-yellow">
+                                <div class="timeline-time">
+                                    <span style="text-align:left">
+                                  <a href=""><%= well[4][i].total_cells_Edu %></a>  
+                                    </span>
+                                   
+                                </div>
+                            </td>
+        
+                            
+        
+                            <td class="timeline-yellow">
+                                <div class="timeline-time">
+                                    <span style="text-align:left">
+                                <%= well[4][i].positive_ph3 %>
+                                    </span>
+                                   
+                                </div>
+                            </td>
+        
+                        
+        
+                            <td class="timeline-yellow">
+                                <div class="timeline-time">
+                                    <span style="text-align:left">
+                                <%= well[4][i].positive_edu %>
+                                    </span>
+                                   
+                                </div>
+                            </td>
+        
+                          
+        
+                            <td class="timeline-yellow">
+                                <div class="timeline-time">
+                                    <span style="text-align:left">
+                                <%= well[4][i].corelation_score %> 
+                                    </span>
+                                   
+                                </div>
+                            </td>
+        
+                            <td class="timeline-yellow">
+                                <div class="timeline-time">
+                                    <span style="text-align:left">
+                                 <%= well[i].experiment_date %>  
+                                    </span>
+                                   
+                                </div>
+                            </td>
+                            
+                        </tr>
+                            <br>
+                            <% } %>
+                    
+                      
+                    </tbody>
+                  </table>
+        
+
+    </div>
+
+    
+
+    <!-- similar table compound ends here -->
+
+    <div class="row" id="well_images">
         <div class="col-md-12">
                 <div class="col-md-6">
                     <div class="row">
@@ -173,14 +295,14 @@
 
                         <!-- WAVELENGTH_4 IMAGES -->
                         <div class="row">
-                            <div class="col-md-2">
+                            <div class="col-md-2 col-lg-2">
                                 <br>
                                 <br>
                                 <p><%= well[3][1].w4 %></p>
 
                             </div>
 
-                            <div class="col-md-10">
+                            <div class="col-md-10 col-lg-10">
                                     <% for (var i = 0; i < well[3].length ; i++) { %>
                            
                            
@@ -357,39 +479,43 @@
 
 </body>
 
-<!-- <script>
-    function enlarge(x) {
-        x.style.height = "400";
-        x.style.width = "400";
-    }
-
-    function normalImage(x){
-        x.style.height = "200";
-        x.style.width = "200";
-    }
-</script> -->
+<script
+  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+  crossorigin="anonymous"></script>
 
 <script>
-        $(document).ready(function() {
+
     
-        document.getElementById('opacity-slider').addEventListener('input', function (e) {
-        document.body.style.opacity = this.value;
-    });
-    } 
+
+
+
     
-    );
-    
-    
-    
-    
-    </script>
+</script>
 
 
 
 <script>
    
-            document.getElementById("well_image").style.filter = "brightness(200%)";
+            // document.getElementById("well_image").style.filter = "brightness(200%)";
             // document.getElementById("well_image").style.filter = "contrast(50%)";
+
+
+        function ShowImages(){
+        $('#well_images').show();
+        $('#similar_compounds_table').hide();
+        }
+
+
+
+   
+
+
+    function ShowSimilarCompounds(){
+        $('#well_images').hide();
+        $('#similar_compounds_table').show();
+
+    }
          
 </script>
 
