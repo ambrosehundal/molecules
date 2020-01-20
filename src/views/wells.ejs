@@ -49,18 +49,18 @@
                 <div class="row">
                        <!-- <div class="col-md-1">
                                 
-                        </div>  -->
-                        <div class="col-md-12" style="";>
+                        </div>   -->
+                        <div class="col-md-12">
                                         <% var j = 0; for (var i = 0; i < dataset.length; i++) {  %>
 
                                                 <% j++; if (j % 24 == 0) { %>
-                                                        <a href= "/wells/<%= dataset[i].id %>" data-toggle="tooltip" title="Compound: <%= dataset[i].molecule_name %>, Concentration:  <%= dataset[i].Concentration %>"><button class="btn btn-primary" style="border: 1px thin black; width: 40px; height: 40px;display:inline-block; background-color: green !important;;padding-left:5px; margin-bottom: 1%; text-align:center">
-                                                                <span style="font-size:12px; font-weight:600; text-align:center;"> <%= dataset[i].well_name %></span> 
-                                                              </button></a> <br>
+                                                        <a href= "/wells/<%= dataset[i].id %>" data-toggle="tooltip" title="Compound: <%= dataset[i].molecule_name %>, Concentration:  <%= dataset[i].Concentration %>"><label class="btn btn-primary" style="border: 1px thin black; width: 40px; height: 40px;display:inline-block; background-color: green !important;;padding-left:5px; margin-bottom: 1%; text-align:center">
+                                                                <span style="font-size:14px; font-weight:600; text-align:center;"> <%= dataset[i].well_name %></span> 
+                                                        </label></a> <br>
                                                       <% }else { %>
-                                                        <a href= "/wells/<%= dataset[i].id %>" data-toggle="tooltip" title="Compound: <%= dataset[i].molecule_name %>, Concentration:  <%= dataset[i].Concentration %>"><button class="btn btn-primary" style="border: 1px thin black; width: 40px; height: 40px;display:inline-block; background-color: green !important;;padding-left:5px; margin-bottom: 1%; text-align:center">
-                                                                <span style="font-size:12px; font-weight:600; text-align:center;"> <%= dataset[i].well_name %></span> 
-                                                              </button></a>
+                                                        <a href= "/wells/<%= dataset[i].id %>" data-toggle="tooltip" title="Compound: <%= dataset[i].molecule_name %>, Concentration:  <%= dataset[i].Concentration %>"><label class="btn btn-primary" style="border: 1px thin black; width: 40px; height: 40px;display:inline-block; background-color: green !important;;padding-left:5px; margin-bottom: 1%; text-align:center">
+                                                                <span style="font-size:14px; font-weight:600; text-align:center;"> <%= dataset[i].well_name %></span> 
+                                                        </label></a>
                                                    
                         
                         
@@ -78,6 +78,10 @@
                                                 <% } %>
 
                         </div>
+
+                        <!-- <div class="col-md-2">
+                                
+                        </div>  -->
 
                 </div>
                    

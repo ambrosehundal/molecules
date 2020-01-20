@@ -1,11 +1,12 @@
 //dependencies
 
-const http = require('http');
+const https = require('https');
 const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const path = require('path');
 const ejsLint = require('ejs-lint');
+const moment = require('moment');
 
 // module to serve static files 
 var serveStatic = require('serve-static')
@@ -156,10 +157,18 @@ app.get('/platelist/:id', function (req, res){
          throw err;
          } else {
              platelist_obj = {print: result};
+            //  console.log(result[0].experiment_date);
+
+            //loop through all experiment dates to convert date format to 'YYYY-MM-DD'
+
+            for(let i = 0; i < result.length; i++){
+                result[i].experiment_date = moment(Date.parse(result[i].experiment_date)).format('YYYY-MM-DD');
+            }
              res.render('datasets', platelist_obj);
              
          }
-        console.log(result);
+
+        
        });
 
 })
@@ -167,7 +176,7 @@ app.get('/platelist/:id', function (req, res){
 
 
 //*************************SINGLE DATASET RETRIEVING PAGE **************************/
-app.get('/platelist/:id/dataset/:id', function (req, res){
+app.get('/dataset/:id', function (req, res){
 
    
    // var pair_order = ' ORDER BY plate_pair_id ASC' ;
@@ -185,6 +194,9 @@ app.get('/platelist/:id/dataset/:id', function (req, res){
         } else {
             
             dataset_obj = {dataset: result};
+            for(let i = 0; i < result.length; i++){
+                result[i].experiment_date = moment(Date.parse(result[i].experiment_date)).format('YYYY-MM-DD');
+            }
             
             res.render('wells', dataset_obj);
             
@@ -215,6 +227,9 @@ app.get('/wells/:id', function (req, res){
             throw err;
     } else {
             single_well_obj = {well: results};
+            // for(let i = 0; i < results.length; i++){
+            //     results[i].experiment_date = moment(Date.parse(results[i].experiment_date)).format('YYYY-MM-DD');
+            // }
             res.render('images', single_well_obj);
                 
             }
