@@ -98,24 +98,7 @@ app.get('/plates/:id', function (req, res){
 
 })
 
-// SEARCH FOR A COMPOUND POST FORM
 
-// app.post('/', function (req, res){
-
-//     var search_text = req.query.compound;
-
-//     console.log(search_text);
-    
-//     var cats = "%";
-
-//     var search_name = search_text.concat(cats);
-
-//     var double_up = cats.concat(search_name);
-
-//     var compound_search = "'" + double_up + "'";
-//     // var SELECT * FROM compounds WHERE molecule_name LIKE=?"
-
-// });
 
 
 
@@ -272,7 +255,7 @@ app.get('/mycompound', function (req, res){
 
     console.log(double_up);
 
-    var compoundQuery = 'SELECT * FROM compounds WHERE molecule_name LIKE ' + compound_search;
+    var compoundQuery = 'SELECT c1.UCSC_CSC_plate_ID, c1.Concentration, c1.molecule_name, c1.Well, w1.Cell_lines, w1.Magnification, w1.TimePoint, w1.experiment_date, w1.id as `well_id` FROM compounds c1 INNER JOIN plate_wells w1 on (c1.UCSC_CSC_plate_ID = w1.UCSC_CSC_plate) and (c1.Well = w1.well_name) WHERE c1.molecule_name LIKE ' + compound_search;
     // WHERE id=' + well_id; 
 
     con.query(compoundQuery, function(err, result, fields) {
@@ -280,6 +263,9 @@ app.get('/mycompound', function (req, res){
             throw err;
             } else {
                 single_well_obj = {well: result};
+                for(let i = 0; i < result.length; i++){
+                    result[i].experiment_date = moment(Date.parse(result[i].experiment_date)).format('YYYY-MM-DD');
+                }
                 res.render('compounds', single_well_obj);
                 
             }

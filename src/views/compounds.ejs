@@ -12,7 +12,10 @@
 </head>
 
 
-<h1>Search Results for</h1>
+<h1>Search Results for  <% for (var i = 0; i < 1; i++) { %>
+      <%= well[i].molecule_name %> 
+    <% } %> 
+</h1>
 <br>
 
 <body>
@@ -24,9 +27,13 @@
                     <thead style="background-color: rgb(9, 39, 206)">
                       <tr style="color:white;">
                         <th scope="col">ID</th>
-                        <th scope="col">Plate ID</th>
+                        <th scope="col">UCSC_CSC_Plate</th>
                         <th scope="col">Well Number</th>
-                        <th scope="col">Molecule name</th>
+                        <th scope="col">Cell Line</th>
+                        <th scope="col">Magnification</th>
+                        <th scope="col">TimePoint</th>
+                        <th scope="col">Experiment date</th>
+                        <th scope="col">Compound</th>
                         <th scope="col">Concentration</th>
                         
             
@@ -39,11 +46,12 @@
                     <tbody>
                          <tr>
                             <% for (var i = 0; i < well.length; i++) { %>
-                                <td><%= i+ 1%></td>
+                                <td><a href="/wells/<%= well[i].well_id %>"><%= i+ 1%> </td></a>
+
                             <td>
                                 <div>
                                     <span style="text-align:left">
-                                  <a href= "/platelist/<%= i + 1 %>"><%= well[i].UCSC_CSC_plate_ID %></a>  
+                                 <%= well[i].UCSC_CSC_plate_ID %>  
                                     </span>
                                    
                                 </div>
@@ -56,6 +64,43 @@
                                         </span>
                                        
                                     </div>
+                            </td>
+
+
+                            <td>
+                                <div>
+                                    <span style="text-align:left">
+                                            <%= well[i].Cell_lines %> 
+                                    </span>
+                                   
+                                </div>
+                            </td>
+
+                            <td>
+                                <div>
+                                    <span style="text-align:left">
+                                            <%= well[i].Magnification %> 
+                                    </span>
+                                   
+                                </div>
+                            </td>
+
+                            <td>
+                                <div>
+                                    <span style="text-align:left">
+                                            <%= well[i].TimePoint %> 
+                                    </span>
+                                   
+                                </div>
+                            </td>
+
+                            <td>
+                                <div>
+                                    <span style="text-align:left">
+                                            <%= well[i].experiment_date %> 
+                                    </span>
+                                   
+                                </div>
                             </td>
             
             
