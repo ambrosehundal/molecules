@@ -257,7 +257,7 @@ app.get('/mycompound', function (req, res){
 
     console.log(double_up);
 
-    var compoundQuery = 'SELECT c1.UCSC_CSC_plate_ID, c1.Concentration, c1.molecule_name, c1.Well, w1.Cell_lines, w1.Magnification, w1.TimePoint, w1.experiment_date, w1.id as `well_id` FROM compounds c1 INNER JOIN plate_wells w1 on (c1.UCSC_CSC_plate_ID = w1.UCSC_CSC_plate) and (c1.Well = w1.well_name) WHERE c1.molecule_name LIKE ' + compound_search;
+    var compoundQuery = ' SELECT distinct c1.UCSC_CSC_plate_ID, c1.Concentration, c1.molecule_name, c1.Well, w1.Cell_lines, w1.Magnification, w1.TimePoint, w1.experiment_date, p1.plate_pair_id, w1.id as `well_id` FROM compounds c1 INNER JOIN plate_wells w1 on (c1.UCSC_CSC_plate_ID = w1.UCSC_CSC_plate) and (c1.Well = w1.well_name) INNER JOIN plate p1 on(p1.UCSC_CSC_plate_ID = w1.UCSC_CSC_plate) and (p1.Cell_lines = w1.Cell_lines) and (p1.TimePoint = w1.TimePoint) and (p1.Magnification = w1.Magnification) and (p1.experiment_date = w1.experiment_date) WHERE c1.molecule_name LIKE ' + compound_search;
     // WHERE id=' + well_id; 
 
     con.query(compoundQuery, function(err, result, fields) {

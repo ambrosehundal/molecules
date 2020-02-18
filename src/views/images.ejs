@@ -26,14 +26,14 @@
   }  
 
 
-  #wavelength_image {
+  .wavelength_image {
   border-radius: 5px;
   cursor: pointer;
   transition: 0.3s;
-  filter:brightness(450%)
+  filter:brightness(500%) 
 }
 
-#wavelength_image:hover {opacity: 0.7;}
+.wavelength_image:hover {opacity: 0.7;}
 
 /* The Modal (background) */
 .modal {
@@ -105,6 +105,84 @@
     width: 100%;
   }
 }
+
+
+@import url(https://fonts.googleapis.com/css?family=Dosis:700);
+body {
+  font-family: "Dosis", Helvetica, Arial, sans-serif; 
+  background: #ecf0f1;
+  color: #34495e;
+  padding-top: 40px;
+  text-shadow: white 1px 1px 1px;
+}
+.value {
+  border-bottom: 4px dashed #bdc3c7;
+  text-align: center;
+  font-weight: bold;
+  font-size: 10em;
+  width: 300px; 
+  height: 100px;
+  line-height: 60px;
+  margin: 40px auto;
+  letter-spacing: -.07em;
+  text-shadow: white 2px 2px 2px;
+}
+input[id="contrast_range"] {
+  display: block;
+  -webkit-appearance: none;
+  background-color: #bdc3c7;
+  width: 300px;
+  height: 5px;
+  border-radius: 5px;
+  margin: 0 auto;
+  outline: 0;
+}
+input[id="contrast_range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: #e74c3c;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}​
+  input[id="contrast_range"]::-webkit-slider-thumb:hover {
+    background-color: white;
+    border: 2px solid #e74c3c;
+  }
+  input[type="contrast_range"]::-webkit-slider-thumb:active {
+    transform: scale(1.6);
+  }
+
+
+  input[id="brightness_range"] {
+  display: block;
+  -webkit-appearance: none;
+  background-color: #bdc3c7;
+  width: 300px;
+  height: 5px;
+  border-radius: 5px;
+  margin: 0 auto;
+  outline: 0;
+}
+input[id="brightness_range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: #e74c3c;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}​
+  input[id="brightness_range"]::-webkit-slider-thumb:hover {
+    background-color: white;
+    border: 2px solid #e74c3c;
+  }
+  input[id="brightness_range"]::-webkit-slider-thumb:active {
+    transform: scale(1.6);
+  }
 </style>
 
 
@@ -122,19 +200,70 @@
     <!-- Modal Content (The Image) -->
     <img class="modal-content" id="img01">
 
-    <input type="range" id="opacity-slider" min="100" max="800" step="1" value="1">
+    <br>
+    <br>
+
+   
+    <input type="range" id="brightness_range" min="100" max="1000" step="1" value="500" >
+    <br>
+    <br>
+    
+    <input type="range" id="contrast_range" min="-300" max="200" step="50" value="1" >
+   
+</div>
 
     <script>
-        document.getElementById('opacity-slider').addEventListener('input', function (e) {
+        // document.getElementById('opacity-slider').addEventListener('input', function (e) {
+        // 
+        let brightness_string ="brightness(";
+        let contrast_string = "contrast(";
+        let enclosing_bracket ="%)";
+	    // wavelength_image.style.filter = "brightness(700%)";
+        // });
+
+
+
+        var elem1 = document.getElementById('brightness_range');
+
+        var BrightnessValue = function(){
+        let newValue = elem1.value;
+        // let target = document.querySelector('.value');
         wavelength_image = document.getElementById('img01');
-	    wavelength_image.style.filter = "brightness(700%)";
-        });
+        let new_brightness_value = newValue.toString();
+        let result1 = brightness_string.concat(new_brightness_value).concat(enclosing_bracket);
+        wavelength_image.style.filter = result1;
+
+        // target.innerHTML = new_brightness_value;
+
+        }
+
+
+        var elem2 = document.getElementById("contrast_range");
+
+        var ContrastValue = function(){
+        let newValue = elem2.value;
+        let target = document.querySelector('.value');
+        wavelength_image = document.getElementById('img01');
+        let new_contrast_value = newValue.toString();
+        let result2 = contrast_string.concat(new_contrast_value).concat(enclosing_bracket);
+        wavelength_image.style.filter = result2;
+        // target.innerHTML = new_brightness_value;
+
+}
+
+elem1.addEventListener("input", BrightnessValue);
+elem2.addEventListener("input", ContrastValue);
+
+
+
+
+
+
     
     </script>
   
-    <!-- Modal Caption (Image Text) -->
-    <div id="caption"></div>
-</div>
+   
+
   
 
 
@@ -313,16 +442,17 @@
                             </div>
                                
                             <div class="col-md-10">
-                                    <% for (var i = 0; i < well[0].length ; i++) { %>
+                                     <% for (var i = 0; i < well[0].length -1 ; i++) { %> 
 
                          
-                                        <img onmouseover="enlarge(this)" id="well_image" onmouseout="normalImage(this)" src="/4664/<%= well[0][i].w1_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                                        <img id="1" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[0][0].w1_filepath %>" height="200" width="200" style="display:inline-block;"/>  
                                 
-                        
+                                        
+                                        <img id="2" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[0][1].w1_filepath %>" height="200" width="200" style="display:inline-block;"/>  
     
                             
     
-                            <% } %>
+                            <% } %> 
 
                             </div>
                               
@@ -342,17 +472,18 @@
                             </div>
 
                             <div class="col-md-10">
-                                    <% for (var i = 0; i < well[1].length ; i++) { %>
+                                    <% for (var i = 0; i < well[1].length -1 ; i++) { %>
                            
                            
                                
-                                        <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[1][i].w2_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                                        <img id="3" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[1][0].w2_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                                        <img id="4" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[1][1].w2_filepath %>" height="200" width="200" style="display:inline-block;"/>  
                                 
                         
             
                            
-            
-                            <% } %>
+           
+                            <% } %> 
 
                             </div>
                                
@@ -374,11 +505,12 @@
                             </div>
 
                             <div class="col-md-10">
-                                    <% for (var i = 0; i < well[2].length ; i++) { %>
+                                    <% for (var i = 0; i < well[2].length -1; i++) { %>
                            
                            
                                
-                                        <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" id="well_image" src="/4664/<%= well[2][i].w3_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                                        <img  class="wavelength_image" id="5" onclick="ShowImageModal(this.id)" src="/4664/<%= well[2][0].w3_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                                        <img  class="wavelength_image" id="6" onclick="ShowImageModal(this.id)" src="/4664/<%= well[2][1].w3_filepath %>" height="200" width="200" style="display:inline-block;"/>  
                                 
                         
                     
@@ -405,17 +537,26 @@
                             </div>
 
                             <div class="col-md-10 col-lg-10">
-                                    <% for (var i = 0; i < well[3].length ; i++) { %>
+                                   
                            
                            
                                
-                                        <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[3][i].w4_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                                    <% for (var i = 0; i < well[3].length -1; i++) { %>
+                       
+                       
+                           
+                                        <img id="7" onclick="ShowImageModal(this.id)" class="wavelength_image" src="/4664/<%= well[3][0].w4_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                                        <img id="8" onclick="ShowImageModal(this.id)" class="wavelength_image" src="/4664/<%= well[3][1].w4_filepath %>" height="200" width="200" style="display:inline-block;"/> 
+                            
+                            
+                             <% } %>
+     
                                 
                             
                             
                         
                             
-                            <% } %>
+                     
 
                             </div>
                              
@@ -439,11 +580,12 @@
 
                             <div class="col-md-10">
 
-                                    <% for (var i = 0; i < well[0].length ; i++) { %>
+                                    <% for (var i = 0; i < well[0].length-1 ; i++) { %>
                            
                            
                                
-                                        <img id="wavelength_image" src="/4664/<%= well[0][i].w1_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                                        <img id="9"  class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[0][0].w1_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                                        <img id="10" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[0][1].w1_filepath %>" height="200" width="200" style="display:inline-block;"/>  
                                 
                         
         
@@ -474,11 +616,13 @@
 
                         <div class="col-md-10">
 
-                                <% for (var i = 0; i < well[1].length ; i++) { %>
+                                <% for (var i = 0; i < well[1].length-1 ; i++) { %>
                        
                        
                            
-                                    <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[1][i].w2_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                                    <img id="11" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[1][0].w2_filepath %>" height="200" width="200" style="display:inline-block;"/> 
+                                    <img id="12" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[1][1].w2_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                             
                             
                     
         
@@ -506,11 +650,13 @@
                     <div class="row">
 
                         <div class="col-md-10">
-                                <% for (var i = 0; i < well[2].length ; i++) { %>
+                                <% for (var i = 0; i < well[2].length - 1 ; i++) { %>
                        
                        
                            
-                                    <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[2][i].w3_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                                    <img id="13" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[2][0].w3_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+
+                                    <img id="14" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[2][1].w3_filepath %>" height="200" width="200" style="display:inline-block;"/>  
                             
                     
                 
@@ -538,11 +684,12 @@
                     <!-- WAVELENGTH_4 IMAGES -->
                     <div class="row">
                         <div class="col-md-10">
-                                <% for (var i = 0; i < well[3].length ; i++) { %>
+                                <% for (var i = 0; i < well[3].length -1 ; i++) { %>
                        
                        
                            
-                                    <img onmouseover="enlarge(this)" onmouseout="normalImage(this)" src="/4664/<%= well[3][i].w4_filepath %>" id="opacity-slider" min=".4" max="1" step=".01" value="1" height="200" width="200" style="display:inline-block;"/>  
+                                    <img id="15" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[3][i].w4_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                                    <img id="16" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[3][i].w4_filepath %>" height="200" width="200" style="display:inline-block;"/>  
                             
                         
                         
@@ -639,28 +786,36 @@
     }
 
 
-var modal = document.getElementById("myModal");
+    function ShowImageModal(clicked_id){
 
-// Get the image and insert it inside the modal - use its "alt" text as a caption
-var img = document.getElementById("wavelength_image");
+        var modal = document.getElementById("myModal");
 
-var modalImg = document.getElementById("img01");
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = document.getElementById(clicked_id);
 
-var captionText = document.getElementById("caption");
-img.onclick = function(){
-  modal.style.display = "block";
-  modalImg.src = this.src;
-  captionText.innerHTML = this.alt;
+        var modalImg = document.getElementById("img01");
 
-}
+        var captionText = document.getElementById("caption");
+        img.onclick = function(){
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText.innerHTML = this.alt;
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+        }   
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+        modal.style.display = "none";
+        }
+
+
+    }
+
+
+
          
 </script>
 
