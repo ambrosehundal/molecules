@@ -1,9 +1,24 @@
 <html>
 
 
-
+    
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <!-- <script
+    src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+    crossorigin="anonymous"></script> -->
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script> 
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ 
+
+
+
+
+
 
 <head>
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #070999 !important;">
@@ -12,209 +27,63 @@
 
 </head>
 
-
-<!-- <p style="text-align:right">If you cannot view tif files in your browser (firefox or Chrome), Download Tiff extensions here</p>
+<!--  <p style="text-align:right">If you cannot view tif files in your browser (firefox or Chrome), Download Tiff extensions here</p>
 <a href="https://chrome.google.com/webstore/detail/tiff-viewer/fciggfkkblggmebjbekbebbcffeacknj" target="_blank"><p style="text-align:right">Download Tif file viewer for Chrome</p> </a>
-<a href="https://addons.mozilla.org/en-US/firefox/addon/tiff-viewer/" target="_blank"><p style="text-align:right">Download Tif file viewer for Firefox</p> </a> -->
-
-
-<style>
-
-  body{
-    font-family: 'Montserrat', sans-serif;
-
-  }  
-
-
-  .wavelength_image {
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s;
-  filter:brightness(500%) 
-}
-
-.wavelength_image:hover {opacity: 0.7;}
-
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-}
-
-/* Modal Content (Image) */
-.modal-content {
-  margin: auto;
-  display: block;
-  width: 80%;
-  max-width: 700px;
-}
-
-/* Caption of Modal Image (Image Text) - Same Width as the Image */
-#caption {
-  margin: auto;
-  display: block;
-  width: 80%;
-  max-width: 700px;
-  text-align: center;
-  color: #ccc;
-  padding: 10px 0;
-  height: 150px;
-}
-
-/* Add Animation - Zoom in the Modal */
-.modal-content, #caption {
-  animation-name: zoom;
-  animation-duration: 0.6s;
-}
-
-@keyframes zoom {
-  from {transform:scale(0)}
-  to {transform:scale(1)}
-}
-
-/* The Close Button */
-.close {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #f1f1f1;
-  font-size: 40px;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.close:hover,
-.close:focus {
-  color: #bbb;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* 100% Image Width on Smaller Screens */
-@media only screen and (max-width: 700px){
-  .modal-content {
-    width: 100%;
-  }
-}
-
-
-@import url(https://fonts.googleapis.com/css?family=Dosis:700);
-body {
-  font-family: "Dosis", Helvetica, Arial, sans-serif; 
-  background: #ecf0f1;
-  color: #34495e;
-  padding-top: 40px;
-  text-shadow: white 1px 1px 1px;
-}
-.value {
-  border-bottom: 4px dashed #bdc3c7;
-  text-align: center;
-  font-weight: bold;
-  font-size: 10em;
-  width: 300px; 
-  height: 100px;
-  line-height: 60px;
-  margin: 40px auto;
-  letter-spacing: -.07em;
-  text-shadow: white 2px 2px 2px;
-}
-input[id="contrast_range"] {
-  display: block;
-  -webkit-appearance: none;
-  background-color: #bdc3c7;
-  width: 300px;
-  height: 5px;
-  border-radius: 5px;
-  margin: 0 auto;
-  outline: 0;
-}
-input[id="contrast_range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  background-color: #e74c3c;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 2px solid white;
-  cursor: pointer;
-  transition: .3s ease-in-out;
-}​
-  input[id="contrast_range"]::-webkit-slider-thumb:hover {
-    background-color: white;
-    border: 2px solid #e74c3c;
-  }
-  input[type="contrast_range"]::-webkit-slider-thumb:active {
-    transform: scale(1.6);
-  }
-
-
-  input[id="brightness_range"] {
-  display: block;
-  -webkit-appearance: none;
-  background-color: #bdc3c7;
-  width: 300px;
-  height: 5px;
-  border-radius: 5px;
-  margin: 0 auto;
-  outline: 0;
-}
-input[id="brightness_range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  background-color: #e74c3c;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 2px solid white;
-  cursor: pointer;
-  transition: .3s ease-in-out;
-}​
-  input[id="brightness_range"]::-webkit-slider-thumb:hover {
-    background-color: white;
-    border: 2px solid #e74c3c;
-  }
-  input[id="brightness_range"]::-webkit-slider-thumb:active {
-    transform: scale(1.6);
-  }
-</style>
+<a href="https://addons.mozilla.org/en-US/firefox/addon/tiff-viewer/" target="_blank"><p style="text-align:right">Download Tif file viewer for Firefox</p> </a> --> 
 
 
 <body>
 
 
   
-    
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-    <!-- The Close Button -->
-    <span class="close">&times;</span>
-  
-    <!-- Modal Content (The Image) -->
-    <img class="modal-content" id="img01">
-
-    <br>
-    <br>
-
-   
-    <input type="range" id="brightness_range" min="100" max="1000" step="1" value="500" >
-    <br>
-    <br>
-    
-    <input type="range" id="contrast_range" min="-300" max="200" step="50" value="1" >
-   
-</div>
-
     <script>
         // document.getElementById('opacity-slider').addEventListener('input', function (e) {
         // 
+         // SLIDER BAR
+        
+
+
+        function blur() {
+ 
+        var brightness = $("#brightness").slider("value");
+        var contrast = $("#contrast").slider("value");
+
+
+        $("#1").css("-webkit-filter", "brightness(" + brightness + "%)" + "contrast(" + contrast + "%)");
+
+        }
+
+
+        //  $( function() {
+        //     $("#brightness" ).slider();
+        //     $( "#contrast" ).slider();
+        //  } );
+          
+        $(function() {
+            $("#brightness").slider({
+            orientation: "horizontal",
+            min: 100,
+            max: 1000,
+            value: 0,
+            slide: blur,
+            change: blur
+            });
+
+            $("#contrast").slider({
+            orientation: "horizontal",
+            min: 0,
+            max: 1000,
+            value: 100,
+            slide: blur,
+            change: blur
+        });
+        });
+ 
+        
+ 
+
+
+
         let brightness_string ="brightness(";
         let contrast_string = "contrast(";
         let enclosing_bracket ="%)";
@@ -249,10 +118,14 @@ input[id="brightness_range"]::-webkit-slider-thumb {
         wavelength_image.style.filter = result2;
         // target.innerHTML = new_brightness_value;
 
-}
+        }
 
 elem1.addEventListener("input", BrightnessValue);
 elem2.addEventListener("input", ContrastValue);
+
+
+       
+
 
 
 
@@ -264,7 +137,44 @@ elem2.addEventListener("input", ContrastValue);
   
    
 
+  <!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- The Close Button -->
+    <span class="close">&times;</span>
   
+    <!-- Modal Content (The Image) -->
+    <img class="modal-content" id="img01">
+
+    <br>
+    <br>
+    <!-- <div id="slider"></div> -->
+    <div class="row">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+                <div id="brightness">Brightness</div> 
+                <br>
+            
+                <div id="contrast">Contrast</div> 
+            
+        </div>
+        <div class="col-md-4">
+            
+        </div>
+    </div>
+ 
+<!-- 
+
+   
+    <input type="range" id="brightness_range" min="100" max="1000" step="1" value="500" >
+    <br>
+    <br>
+    
+    <input type="range" id="contrast_range" min="-300" max="200" step="50" value="1" > -->
+   
+</div>
 
 
     <br>
@@ -703,12 +613,6 @@ elem2.addEventListener("input", ContrastValue);
                           
                         
                     </div>
-
-
-                            
-
-
-     
         </div> 
 
 
@@ -727,21 +631,6 @@ elem2.addEventListener("input", ContrastValue);
 
 
 </body>
-
-<script
-  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
-  crossorigin="anonymous"></script>
-
-<script>
-
-    
-
-
-
-    
-</script>
-
 
 
 <script>
@@ -819,6 +708,183 @@ elem2.addEventListener("input", ContrastValue);
          
 </script>
 
+
+<!-- CSS -->
+
+<style>
+
+        body{
+          font-family: 'Montserrat', sans-serif;
+      
+        }  
+      
+      
+        .wavelength_image {
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+        filter:brightness(500%) 
+      }
+      
+      .wavelength_image:hover {opacity: 0.7;}
+      
+      /* The Modal (background) */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+      }
+      
+      /* Modal Content (Image) */
+      .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+      }
+      
+      /* Caption of Modal Image (Image Text) - Same Width as the Image */
+      #caption {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+        text-align: center;
+        color: #ccc;
+        padding: 10px 0;
+        height: 150px;
+      }
+      
+      /* Add Animation - Zoom in the Modal */
+      .modal-content, #caption {
+        animation-name: zoom;
+        animation-duration: 0.6s;
+      }
+      
+      @keyframes zoom {
+        from {transform:scale(0)}
+        to {transform:scale(1)}
+      }
+      
+      /* The Close Button */
+      .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+      
+      .close:hover,
+      .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      
+      /* 100% Image Width on Smaller Screens */
+      @media only screen and (max-width: 700px){
+        .modal-content {
+          width: 100%;
+        }
+      }
+      
+      
+      @import url(https://fonts.googleapis.com/css?family=Dosis:700);
+      body {
+        font-family: "Dosis", Helvetica, Arial, sans-serif; 
+        background: #ecf0f1;
+        color: #34495e;
+        padding-top: 40px;
+        text-shadow: white 1px 1px 1px;
+      }
+      .value {
+        border-bottom: 4px dashed #bdc3c7;
+        text-align: center;
+        font-weight: bold;
+        font-size: 10em;
+        width: 300px; 
+        height: 100px;
+        line-height: 60px;
+        margin: 40px auto;
+        letter-spacing: -.07em;
+        text-shadow: white 2px 2px 2px;
+      }
+      input[id="contrast_range"] {
+        display: block;
+        -webkit-appearance: none;
+        background-color: #bdc3c7;
+        width: 300px;
+        height: 5px;
+        border-radius: 5px;
+        margin: 0 auto;
+        outline: 0;
+      }
+      input[id="contrast_range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        background-color: #e74c3c;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 2px solid white;
+        cursor: pointer;
+        transition: .3s ease-in-out;
+      }​
+        input[id="contrast_range"]::-webkit-slider-thumb:hover {
+          background-color: white;
+          border: 2px solid #e74c3c;
+        }
+        input[type="contrast_range"]::-webkit-slider-thumb:active {
+          transform: scale(1.6);
+        }
+      
+      
+        input[id="brightness_range"] {
+        display: block;
+        -webkit-appearance: none;
+        background-color: #bdc3c7;
+        width: 300px;
+        height: 5px;
+        border-radius: 5px;
+        margin: 0 auto;
+        outline: 0;
+      }
+      input[id="brightness_range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        background-color: #e74c3c;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 2px solid white;
+        cursor: pointer;
+        transition: .3s ease-in-out;
+      }​
+        input[id="brightness_range"]::-webkit-slider-thumb:hover {
+          background-color: white;
+          border: 2px solid #e74c3c;
+        }
+        input[id="brightness_range"]::-webkit-slider-thumb:active {
+          transform: scale(1.6);
+        }
+      
+      
+        #brightness,#contrast{
+         width: 300px;
+         margin: 15px;
+         float:right;
+       } 
+      </style>
+      
 
 
 
