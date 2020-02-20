@@ -21,7 +21,7 @@
 
 
 <head>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #070999 !important;">
+        <nav class="navbar navbar-expand-lg" style="background-color: #070999 !important;">
                 <a class="navbar-brand" href="/" style="color:white !important;">CP Image Viewer</a>
         </nav>
 
@@ -37,12 +37,7 @@
 
   
     <script>
-        // document.getElementById('opacity-slider').addEventListener('input', function (e) {
-        // 
-         // SLIDER BAR
-        
-
-
+    
         function blur() {
  
         var brightness = $("#brightness").slider("value");
@@ -51,14 +46,7 @@
 
         $("#img01").css("-webkit-filter", "brightness(" + brightness + "%)" + "contrast(" + contrast + "%)");
 
-        }
-
-
-        //  $( function() {
-        //     $("#brightness" ).slider();
-        //     $( "#contrast" ).slider();
-        //  } );
-          
+        }         
         $(function() {
             $("#brightness").slider({
             orientation: "horizontal",
@@ -79,60 +67,6 @@
         });
         });
  
-        
- 
-
-
-
-        let brightness_string ="brightness(";
-        let contrast_string = "contrast(";
-        let enclosing_bracket ="%)";
-	    // wavelength_image.style.filter = "brightness(700%)";
-        // });
-
-
-
-        var elem1 = document.getElementById('brightness_range');
-
-        var BrightnessValue = function(){
-        let newValue = elem1.value;
-        // let target = document.querySelector('.value');
-        wavelength_image = document.getElementById('img01');
-        let new_brightness_value = newValue.toString();
-        let result1 = brightness_string.concat(new_brightness_value).concat(enclosing_bracket);
-        wavelength_image.style.filter = result1;
-
-        // target.innerHTML = new_brightness_value;
-
-        }
-
-
-        var elem2 = document.getElementById("contrast_range");
-
-        var ContrastValue = function(){
-        let newValue = elem2.value;
-        let target = document.querySelector('.value');
-        wavelength_image = document.getElementById('img01');
-        let new_contrast_value = newValue.toString();
-        let result2 = contrast_string.concat(new_contrast_value).concat(enclosing_bracket);
-        wavelength_image.style.filter = result2;
-        // target.innerHTML = new_brightness_value;
-
-        }
-
-elem1.addEventListener("input", BrightnessValue);
-elem2.addEventListener("input", ContrastValue);
-
-
-       
-
-
-
-
-
-
-
-    
     </script>
   
    
@@ -154,10 +88,13 @@ elem2.addEventListener("input", ContrastValue);
 
         </div>
         <div class="col-md-4">
-                <div id="brightness">Brightness</div> 
+
+                <div id="brightness"></div> 
+                <p style="color:red; font-weight:600;">Brightness</p>
                 <br>
             
-                <div id="contrast">Contrast</div> 
+                <div id="contrast"></div> 
+                <p style="color:red; font-weight:600;">Contrast</p>
             
         </div>
         <div class="col-md-4">
@@ -168,7 +105,6 @@ elem2.addEventListener("input", ContrastValue);
 <!-- 
 
    
-    <input type="range" id="brightness_range" min="100" max="1000" step="1" value="500" >
     <br>
     <br>
     
@@ -329,7 +265,10 @@ elem2.addEventListener("input", ContrastValue);
 
     <div class="row" id="well_images">
         <div class="col-md-12">
-                <div class="col-md-6">
+            <div class="col-md-1">
+
+            </div>
+                <div class="col-md-4">
                     <div class="row">
                         <div class="col-md-2">
 
@@ -344,14 +283,9 @@ elem2.addEventListener("input", ContrastValue);
 
                         <!-- WAVELENGTH_1 IMAGES -->
                         <div class="row">
-                            <div class="col-md-2">
-                                <br>
-                                <br>
-
-                                    <p><%= well[0][1].w1 %></p>
-                            </div>
+                           
                                
-                            <div class="col-md-10">
+                            <div class="col-md-12">
                                      <% for (var i = 0; i < well[0].length -1 ; i++) { %> 
 
                          
@@ -364,6 +298,10 @@ elem2.addEventListener("input", ContrastValue);
     
                             <% } %> 
 
+                            <br>
+                            <br>
+                            <p style="text-align:center;font-weight:600;"><%= well[0][1].w1 %></p>
+
                             </div>
                               
 
@@ -373,15 +311,9 @@ elem2.addEventListener("input", ContrastValue);
 
                         <!-- WAVELENGTH_2 IMAGES -->
                         <div class="row">
-                            <div class="col-md-2">
-                                <br>
-                                <br>
+                           
 
-                                    <p><%= well[1][1].w2 %></p>
-
-                            </div>
-
-                            <div class="col-md-10">
+                            <div class="col-md-12">
                                     <% for (var i = 0; i < well[1].length -1 ; i++) { %>
                            
                            
@@ -395,6 +327,11 @@ elem2.addEventListener("input", ContrastValue);
            
                             <% } %> 
 
+                            <br>
+                            <br>
+                            <p style="text-align:center;font-weight:600;"><%= well[1][1].w2 %></p>
+
+
                             </div>
                                
                                
@@ -406,15 +343,9 @@ elem2.addEventListener("input", ContrastValue);
 
                         <!-- WAVELENGTH_3 IMAGES -->
                         <div class="row">
-                            <div class="col-md-2">
-                                <br>
-                                <br>
+                          
 
-                                    <p><%= well[2][1].w3 %></p>
-
-                            </div>
-
-                            <div class="col-md-10">
+                            <div class="col-md-12">
                                     <% for (var i = 0; i < well[2].length -1; i++) { %>
                            
                            
@@ -428,6 +359,10 @@ elem2.addEventListener("input", ContrastValue);
                     
                             <% } %>
 
+                            <br>
+                            <br>
+                            <p style="text-align:center;font-weight:600;"><%= well[2][1].w3 %></p>
+
                             </div>
 
                                
@@ -439,14 +374,9 @@ elem2.addEventListener("input", ContrastValue);
 
                         <!-- WAVELENGTH_4 IMAGES -->
                         <div class="row">
-                            <div class="col-md-2 col-lg-2">
-                                <br>
-                                <br>
-                                <p><%= well[3][1].w4 %></p>
+                          
 
-                            </div>
-
-                            <div class="col-md-10 col-lg-10">
+                            <div class="col-md-12">
                                    
                            
                            
@@ -460,6 +390,11 @@ elem2.addEventListener("input", ContrastValue);
                             
                             
                              <% } %>
+
+                             <br>
+                             <br>
+
+                             <p style="text-align:center;font-weight:600;"><%= well[3][1].w4 %></p>
      
                                 
                             
@@ -481,14 +416,24 @@ elem2.addEventListener("input", ContrastValue);
          
             </div> 
 
-            <div class="col-md-6">
+            <div class="col-md-1">
+
+            </div>
+            
+            <div class="col-md-1">
+
+            </div>
+
+
+
+            <div class="col-md-4">
                     <h1>Stain Set 2</h1>
                     <br>
 
                     <!-- WAVELENGTH_1 IMAGES -->
                     <div class="row">
 
-                            <div class="col-md-10">
+                            <div class="col-md-12">
 
                                     <% for (var i = 0; i < well[0].length-1 ; i++) { %>
                            
@@ -502,18 +447,20 @@ elem2.addEventListener("input", ContrastValue);
                             
         
                             <% } %>
+
+                            <br>
+                            <br>
+                            <p>Nuclei</p>
         
     
                             </div>
     
 
-                        <div class="col-md-2">
-                            <br>
-                            <br>
+                       
 
-                            <p>Nuclei</p>
+                          
 
-                        </div>
+                       
 
                        
                            
@@ -524,7 +471,7 @@ elem2.addEventListener("input", ContrastValue);
                     <!-- WAVELENGTH_2 IMAGES -->
                     <div class="row">
 
-                        <div class="col-md-10">
+                        <div class="col-md-12">
 
                                 <% for (var i = 0; i < well[1].length-1 ; i++) { %>
                        
@@ -534,7 +481,10 @@ elem2.addEventListener("input", ContrastValue);
                                     <img id="12" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[1][1].w2_filepath %>" height="200" width="200" style="display:inline-block;"/>  
                              
                             
-                    
+                                    <br>
+                                    <br>
+                                    
+                                    <p>Actin</p>
         
                        
         
@@ -542,13 +492,10 @@ elem2.addEventListener("input", ContrastValue);
 
                         </div>
 
-                        <div class="col-md-2">
-                                <br>
-                                <br>
-                                
-                                <p>Actin</p>
+                     
+                              
 
-                        </div>
+                     
                            
                         
                     </div>
@@ -559,7 +506,7 @@ elem2.addEventListener("input", ContrastValue);
                     <!-- WAVELENGTH_3 IMAGES -->
                     <div class="row">
 
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                                 <% for (var i = 0; i < well[2].length - 1 ; i++) { %>
                        
                        
@@ -573,18 +520,19 @@ elem2.addEventListener("input", ContrastValue);
                  
                 
                         <% } %>
-
-                        </div>
-
-                        <div class="col-md-2">
-
-                                <br>
-                                <br>
+                        <br>
+                        <br>
                                 
                                 <p>Tubulin</p>
 
-
                         </div>
+
+                       
+
+                                
+
+
+                       
                             
                         
                     </div>
@@ -593,7 +541,7 @@ elem2.addEventListener("input", ContrastValue);
 
                     <!-- WAVELENGTH_4 IMAGES -->
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                                 <% for (var i = 0; i < well[3].length -1 ; i++) { %>
                        
                        
@@ -607,12 +555,14 @@ elem2.addEventListener("input", ContrastValue);
 
                         </div>
 
-                        <div class="col-md-2">
-
-                        </div>
+                        
                           
                         
                     </div>
+
+                    <div class="col-md-1">
+
+                        </div>
         </div> 
 
 
@@ -695,8 +645,10 @@ elem2.addEventListener("input", ContrastValue);
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
 
-        // When the user clicks on <span> (x), close the modal
+        // When the user clicks on <span> (x), close the modal and set brightness, contrast value to 0
         span.onclick = function() {
+        // $("#brightness").slider("value") = 0;
+        // $("#contrast").slider("value") = 0;
         modal.style.display = "none";
         }
 
