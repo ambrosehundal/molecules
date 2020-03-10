@@ -29,9 +29,11 @@ app.set('view engine', 'ejs');
 
 app.set('views', path.join(__dirname, 'views'));
 
+app.use(express.static(__dirname + '/JS'));
+
 
 //set up for using static image files from another directory, change file path to borg1 server directory appropriately
-app.use(serveStatic('/Users/ambrose/Desktop/'))
+app.use(serveStatic('/Users/ambrose/Desktop/'));
 
 
 
@@ -235,19 +237,38 @@ app.get('/wells/:id', function (req, res){
 })
 
 
-app.get('/search',function(req,res){
-    connection.query('SELECT molecule_name from compounds where molecule_name like "%'+req.query.key+'%"',
+app.get('/search', function(req,res){
+    console.log("Query is");
+    var search_text = req.query.key;
+    
+    var cats = "%";
+
+    var search_name = search_text.concat(cats);
+
+    var double_up = cats.concat(search_name);
+
+    var compound_search = "'" + double_up + "'";
+
+    console.log(compound_search);
+
+    con.query('SELECT molecule_name from compounds where molecule_name LIKE ' + compound_search,
     function(err, rows, fields) {
+
     if (err) throw err;
+   
     var data=[];
     for(i=0;i<rows.length;i++)
     {
-    data.push(rows[i].first_name);
+    data.push(rows[i].molecule_name);
     }
-    console.log(data);
-    res.end(JSON.stringify(data));
+    var json_data = JSON.stringify(data);
+    res.end(json_data);
+    console.log(json_data);
     });
-    });
+    
+
+})
+
 
 
 
