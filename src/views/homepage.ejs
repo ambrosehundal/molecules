@@ -1,6 +1,6 @@
-<!-- BOOTSTRAP CSS
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
-<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+<!-- BOOTSTRAP CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> 
+ <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> --> 
 
 <!-- DATATABLES -->
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
@@ -117,12 +117,14 @@
                 
                     <div class="row">
                         <div class="col-md-10">
-                                <!-- <form> -->
+                                <form action="/mycompound" method="GET"> 
                                     <!-- <label style="text-align:center; margin-left: 20%;font-size:24px;">
                                         <!-- Search for a compound -->
                                     <!-- </label> --> 
                                     <div class="bs-example">
-                                            <input type="text" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Type your Query">
+                                            <input type="text" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Enter a compound">
+
+                                        <button type="submit" class="btn btn-primary">Go</button> 
                                     </div>
                                        
                                        
@@ -135,16 +137,15 @@
                                                 <input class="typeahead" type="text" placeholder="States of USA">
                                         </div> -->
                                       
-                                     <input type="submit" value="Submit" />
+                                     <!-- <input type="submit" value="Submit" /> -->
                                          
-
-                                        <button type="submit" class="btn btn-primary">Go</button> 
+ 
                                 
 
                                            
                                    
                                       
-                                <!-- </form> -->
+                                 </form> 
                         </div>
 
                       

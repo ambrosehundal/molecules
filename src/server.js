@@ -238,7 +238,7 @@ app.get('/wells/:id', function (req, res){
 
 
 app.get('/search', function(req,res){
-    console.log("Query is");
+    // console.log("Query is");
     var search_text = req.query.key;
     
     var cats = "%";
@@ -249,7 +249,7 @@ app.get('/search', function(req,res){
 
     var compound_search = "'" + double_up + "'";
 
-    console.log(compound_search);
+    // console.log(compound_search);
 
     con.query('SELECT molecule_name from compounds where molecule_name LIKE ' + compound_search,
     function(err, rows, fields) {
@@ -263,7 +263,7 @@ app.get('/search', function(req,res){
     }
     var json_data = JSON.stringify(data);
     res.end(json_data);
-    console.log(json_data);
+    // console.log(json_data);
     });
     
 
@@ -280,19 +280,14 @@ app.get('/mycompound', function (req, res){
 
     // WHERE id=' + well_id; 
 
-    var search_text = req.query.compound;
+    var search_text = req.query.typeahead;
+
+
+    var compound_search = "'" + search_text + "'";
     
-    var cats = "%";
+    
 
-    var search_name = search_text.concat(cats);
-
-    var double_up = cats.concat(search_name);
-
-    var compound_search = "'" + double_up + "'";
-
-    console.log(double_up);
-
-    var compoundQuery = ' SELECT distinct c1.UCSC_CSC_plate_ID, c1.Concentration, c1.molecule_name, c1.Well, w1.Cell_lines, w1.Magnification, w1.TimePoint, w1.experiment_date, p1.plate_pair_id, w1.id as `well_id` FROM compounds c1 INNER JOIN plate_wells w1 on (c1.UCSC_CSC_plate_ID = w1.UCSC_CSC_plate) and (c1.Well = w1.well_name) INNER JOIN plate p1 on(p1.UCSC_CSC_plate_ID = w1.UCSC_CSC_plate) and (p1.Cell_lines = w1.Cell_lines) and (p1.TimePoint = w1.TimePoint) and (p1.Magnification = w1.Magnification) and (p1.experiment_date = w1.experiment_date) WHERE c1.molecule_name LIKE ' + compound_search;
+    var compoundQuery = 'SELECT distinct c1.UCSC_CSC_plate_ID, c1.Concentration, c1.molecule_name, c1.Well, w1.Cell_lines, w1.Magnification, w1.TimePoint, w1.experiment_date, p1.plate_pair_id, w1.id as `well_id` FROM compounds c1 INNER JOIN plate_wells w1 on (c1.UCSC_CSC_plate_ID = w1.UCSC_CSC_plate) and (c1.Well = w1.well_name) INNER JOIN plate p1 on(p1.UCSC_CSC_plate_ID = w1.UCSC_CSC_plate) and (p1.Cell_lines = w1.Cell_lines) and (p1.TimePoint = w1.TimePoint) and (p1.Magnification = w1.Magnification) and (p1.experiment_date = w1.experiment_date) WHERE c1.molecule_name = ' + compound_search;
     // WHERE id=' + well_id; 
 
     con.query(compoundQuery, function(err, result, fields) {
