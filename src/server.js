@@ -123,7 +123,7 @@ app.get('/', function (req, res){
             platelist_obj = {print: result};
             res.render('homepage', platelist_obj);  
         }
-       console.log(result);
+    //    console.log(result);
       });
 })
 
@@ -234,6 +234,20 @@ app.get('/wells/:id', function (req, res){
 
 })
 
+
+app.get('/search',function(req,res){
+    connection.query('SELECT molecule_name from compounds where molecule_name like "%'+req.query.key+'%"',
+    function(err, rows, fields) {
+    if (err) throw err;
+    var data=[];
+    for(i=0;i<rows.length;i++)
+    {
+    data.push(rows[i].first_name);
+    }
+    console.log(data);
+    res.end(JSON.stringify(data));
+    });
+    });
 
 
 

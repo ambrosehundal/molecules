@@ -1,9 +1,26 @@
+<!-- BOOTSTRAP CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- DATATABLES -->
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<!-- IMPORT MONTSERRAT FONT -->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:500&display=swap" rel="stylesheet">
 
 
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<!-- JQUERY -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+<!-- AJAX  -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<!-- TYPEAHEAD (THIS LINK MAKES IT WORK) -->
+<script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>  
+<!-- 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script> -->
+
 <html>
 
     <head>
@@ -12,6 +29,57 @@
         </nav>
 
 </head>
+ 
+<style>
+    .bs-example{
+	font-family: sans-serif;
+	position: relative;
+	margin: 50px;
+}
+.typeahead, .tt-query, .tt-hint {
+	border: 2px solid #CCCCCC;
+	border-radius: 8px;
+	font-size: 24px;
+	height: 30px;
+	line-height: 30px;
+	outline: medium none;
+	padding: 8px 12px;
+	width: 396px;
+}
+.typeahead {
+	background-color: #FFFFFF;
+}
+.typeahead:focus {
+	border: 2px solid #0097CF;
+}
+.tt-query {
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+.tt-hint {
+	color: #999999;
+}
+.tt-dropdown-menu {
+	background-color: #FFFFFF;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 8px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	margin-top: 12px;
+	padding: 8px 0;
+	width: 422px;
+}
+.tt-suggestion {
+	font-size: 24px;
+	line-height: 24px;
+	padding: 3px 20px;
+}
+.tt-suggestion.tt-is-under-cursor {
+	background-color: #0097CF;
+	color: #FFFFFF;
+}
+.tt-suggestion p {
+	margin: 0;
+}
+</style> 
         
 
         <body>
@@ -30,17 +98,28 @@
                 
                     <div class="row">
                         <div class="col-md-10">
-                                <form action="/mycompound" method="GET">
+                                <form>
                                     <!-- <label style="text-align:center; margin-left: 20%;font-size:24px;">
                                         <!-- Search for a compound -->
                                     <!-- </label> --> 
-                                    
-                                        <input type="text" name="compound" placeholder="Enter compound name "required style="text-align:left; width: 100%;  height: 35px; border-radius: 15px  " />  
+                                        <!-- <input class="typeahead tt-query" spellcheck="false" autocomplete="off" name="typeahead" type="text"/> -->
+<!--                                     
+                                        <div id="the-basics">
+                                                <input class="typeahead" type="text" placeholder="States of USA">
+                                        </div> -->
+
+                                        <!-- <div id="prefetch">
+                                                <input class="typeahead" type="text" placeholder="Countries">
+                                        </div> -->
+
+                                        <div id="the-basics">
+                                                <input class="typeahead" type="text" placeholder="States of USA">
+                                        </div>
                                      
                                         <!-- <input type="submit" value="Submit" /> -->
                                         
 
-                                        <button type="submit" class="btn btn-primary">Go</button>
+                                        <!-- <button type="submit" class="btn btn-primary">Go</button> -->
                                 
 
                                            
@@ -166,19 +245,132 @@ a{
 <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 
 <script>
+
+
+
+
+</script>
+
+
+<script>
     $(document).ready( function () {
-    $('#platelist').DataTable({
-        // List of options to display results
-    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+  
+    // $('#platelist').DataTable({
+    //     // List of options to display results
+    // "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
 
-    iDisplayLength: -1, //display All entries by default
-    dom: '<"float-right"f><"float-right"l>tip'
+    // iDisplayLength: -1, //display All entries by default
+    // dom: '<"float-right"f><"float-right"l>tip'
 
 
 
-    }
+    // }
 
-    );
+    // );
+
+    var substringMatcher = function(strs) {
+  return function findMatches(q, cb) {
+    var matches, substringRegex;
+
+    // an array that will be populated with substring matches
+    matches = [];
+
+    // regex used to determine if a string contains the substring `q`
+    substrRegex = new RegExp(q, 'i');
+
+    // iterate through the pool of strings and for any string that
+    // contains the substring `q`, add it to the `matches` array
+    $.each(strs, function(i, str) {
+      if (substrRegex.test(str)) {
+        matches.push(str);
+      }
+    });
+
+    cb(matches);
+  };
+};
+
+var states = ['DMSOA01',
+'C16 Ceramide - ceramide analog',
+'C-PAF - bioactive lipid',
+'C8 Ceramine - ceramide analog',
+'Delta 12-Prostaglandin J2 - prostaglandin',
+'(R)-Methanandamide - cannabinoid receptor ligand',
+'Dihomo-gamma-linolenic acid - bioactive lipid',
+'1;25-Dihydroxyvitamin D3 - Vitamin D receptor ligand',
+'Dihydrosphingosine - bioactive lipid',
+'1;2-Didecanoyl-glycerol (10:0) - PKC activator',
+'Diindolylmethane - AHR ligand',
+'1;2-Dioctanoyl-sn-glycerol - PKC activator',
+'DL-Dihydrosphingosine - Sphingosine kinase inhibitor',
+'1;2-Dioleoyl-glycerol (18:1) - PKC activator',
+'DL-PDMP - Glucosylceramide synthase inhibitor',
+'11;12-Epoxyeicosatrienoic acid - bioactive lipid',
+'DL-PPMP - Glucosylceramide synthase inhibitor',
+'12(R)-HETE - bioactive lipid',
+'Docosahexaenoic acid (22:6 n-3) - bioactive lipid',
+'12(S)-HETE - bioactive lipid',
+'Docosapentaenoic acid - bioactive lipid',
+'DMSOA23',
+'DMSOB02',
+'Bepridil - Calcium channels',
+'Lycorine - Inhibits protein synthesis',
+'Cyclopiazonic acid - Calcium channels',
+'10-Hydroxycamptothecin - Inhibits DNA synthesis',
+'Dantrolene - Calcium channels',
+'?-Lapachone - Inhibits DNA synthesis',
+'Diazoxide - Potassium channels',
+'Parthenolide - IkappaB kinase inhibitor',
+'Dichlorobenzamil - Calcium channels',
+'MG-132 - protease inhibitor',
+'Diltiazem - Calcium channels',
+'QNZ - NFkappaB inhibitor',
+'E-4031 - Potassium channels',
+'Bezafibrate - PPAR ligand',
+'Fipronil - Misc. channels',
+'Cycloheximide-N-ethylethanoate - prolyl cis-trans isomerase inhibitor',
+'Flecainide - Sodium channels',
+'Ascomycin (FK-520) - prolyl cis-trans isomerase inhibitor',
+'Flufenamic acid - Potassium channels',
+'U-74389G - antioxidant',
+'DMSOB24',
+'DMSOC01',
+'12(S)-HPETE - bioactive lipid',
+'Docosatrienoic acid (22:3 n-3) - bioactive lipid',
+'12-Methoxydodecanoic acid - bioactive lipid',
+'Eicosa-5;8-dienoic acid (20:2 n-12) - bioactive lipid',
+'13(S)-HODE - bioactive lipid',
+'Eicosadienoic acid (20:2 n-6) - bioactive lipid',
+'13(S)-HPODE - bioactive lipid',
+'Eicosapentaenoic acid (20:5 n-3) - bioactive lipid',
+'13;14-Dihydro-prostaglandin E1 - prostaglandin',
+'Eicosatrienoic acid (20:3 n-3) - bioactive lipid',
+'13-cis Retinoic acid - retinoid receptor ligand',
+'Enantio-PAF C16 - bioactive lipid',
+'13-Ketooctadecadienoic acid - bioactive lipid',
+'Farnesylthioacetic acid - bioactive lipid',
+'14;15-Epoxyeicosatrienoic acid - bioactive lipid',
+'Fluprostenol - bioactive lipid',
+'15(S)-HETE - bioactive lipid',
+'?-Linolenic acid (18:3 n-6) - bioactive lipid',
+'15(S)-HPETE - bioactive lipid',
+'Leukotoxin A (9;10-EODE) - bioactive lipid',
+'DMSOC23'
+];
+
+$('#the-basics .typeahead').typeahead({
+  hint: true,
+  highlight: true,
+  minLength: 1
+},
+{
+  name: 'states',
+  source: substringMatcher(states)
+});
+
+   
+   
+
 
    
 } );
