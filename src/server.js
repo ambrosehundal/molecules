@@ -1,5 +1,4 @@
 //dependencies
-
 const https = require('https');
 const express = require('express');
 const mysql = require('mysql');
@@ -7,6 +6,10 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const ejsLint = require('ejs-lint');
 const moment = require('moment');
+var JSZip = require("jszip");
+var fs = require("fs");
+
+// const FileSaver = require('file-saver');
 
 // module to serve static files 
 var serveStatic = require('serve-static')
