@@ -170,7 +170,9 @@
                         <th scope="col" style="width:5em;">PHH3</th> 
                         <th scope="col" style="width:5em;">Edu</th> 
                         <th scope="col" style="width:3em;">Similarity score</th> 
-                        <th scope="col" style="width:4em;"> Color bar</th> 
+                        <th scope="col" style="width:4em;"><button onclick="ShowColorbars()">Color bar</button> <button onclick="ShowColorbins()">Color bin</button> </th> 
+                      
+
                       
         
                       </tr>
@@ -235,9 +237,9 @@
         
                             <td class="timeline-yellow">
                                
-                                <img src="/CP_IMAGE_VIEWER_APP/compound_scripts/<%= well[4][i].colorbar_filename %>"/>
+                                <img class="colorbar" src="/CP_IMAGE_VIEWER_APP/compound_scripts/<%= well[4][i].colorbar_filename %>"/>
                              
-                                
+                                <img class="colorbin" style="display:none;" src="/CP_IMAGE_VIEWER_APP/compound_scripts/<%= well[4][i].colorbin_filename %>"/>
                                   
                               
                             </td>
@@ -583,6 +585,39 @@
             // document.getElementById("well_image").style.filter = "contrast(50%)";
 
 
+        // TOGGLE BETWEEN COLOR BAR AND COLOR BINS
+        function ShowColorbars(){
+            var colorbars = document.getElementsByClassName("colorbar");
+            for(var i = 0; i < colorbars.length; i++){
+                colorbars[i].style.display= "block";
+            }
+            var colorbins = document.getElementsByClassName("colorbin");
+            for(var i = 0; i < colorbars.length; i++){
+                colorbins[i].style.display= "none";
+            }
+         
+
+        }
+
+        function ShowColorbins(){
+            var colorbars = document.getElementsByClassName("colorbar");
+            for(var i = 0; i < colorbars.length; i++){
+                colorbars[i].style.display= "none";
+            }
+           
+            var colorbins = document.getElementsByClassName("colorbin");
+            for(var i = 0; i < colorbars.length; i++){
+                colorbins[i].style.display= "block";
+            }
+         
+
+        }
+
+
+
+
+
+        // TOGGLE BETWEEN IMAGES AND SIMILAR COMPOUNDS
         function ShowImages(){
         $('#well_images').show();
         $('#similar_compounds_table').hide();
@@ -999,6 +1034,9 @@ module.exports = JSZipUtils;
     
 </script>
 
+
+<script src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>
+
 <script>
 
 
@@ -1014,9 +1052,7 @@ for(var i = 0; i < images.length ; i++){
     srcList.push(images[i].src);
 } 
 
-for(var i = 0; i < srcList.length; i++){
-    console.log(srcList[i]);
-}
+
 
  var zip = new JSZip();
 
@@ -1024,9 +1060,11 @@ for(var i = 0; i < srcList.length; i++){
 
  var count = 0;
 
+ 
+
 srcList.forEach(function (url, i) {
     var filename = srcList[i];
-    // filename = filename.replace(/[\/\*\|\:\<\>\?\"\\]/gi, '').replace("httpsi.imgur.com","");
+    filename = filename.replace(/[\/\*\|\:\<\>\?\"\\]/gi, '').replace("http://localhost:3000/","");
     // loading a file and add it in a zip file
     JSZipUtils.getBinaryContent(url, function (err, data) {
       if (err) {
