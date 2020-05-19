@@ -72,9 +72,6 @@
 
 
  
-<!-- AJAX  -->
-<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 
 
 
@@ -93,147 +90,124 @@
 <html>
 
     <head>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #070999 !important;">
-                <a class="navbar-brand" href="/" style="color:white !important;">CP Image Viewer</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #144878 !important;">
+            <a class="navbar-brand" href="/" style="color:white !important;"><span style="font-weight:700">CP Image Viewer</span></a>
+            <a class="navbar-brand" href="/" style="color: white !important;">Home</a>
         </nav>
 
-</head>
- 
+    </head>
 
 
-        <body>
 
-    <div class="container">
-        <div class="row">
-           
-                    <br>
-                    <br>
-                    
-                    <br>
-        <div class="col-md-6">
+    <body style="background-color: #fff7e2">
 
-                    <h2> Search by compound</h2>
-                    
+        <div class="container-fluid">
+            <div class="row">
+
+                <br>
                 
-                    <div class="row">
-                        <div class="col-md-10">
-                                <form action="/search-compound" method="GET"> 
-                                    <!-- <label style="text-align:center; margin-left: 20%;font-size:24px;">
-                                        <!-- Search for a compound -->
-                                    <!-- </label> --> 
-                                    <div class="bs-example">
-                                            <input type="text" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false" placeholder="Enter a compound">
 
-                                        <button type="submit" class="btn btn-primary">Go</button> 
-                                    </div>
-                                       
-                                       
+                <br>
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-4">
 
-                                        <!-- <div id="prefetch">
-                                                <input class="typeahead" type="text" placeholder="Countries">
-                                        </div> -->
+                    <h2>Search by compound</h2>
+                    <br>
 
-                                        <!-- <div id="the-basics">
-                                                <input class="typeahead" type="text" placeholder="States of USA">
-                                        </div> -->
-                                      
-                                     <!-- <input type="submit" value="Submit" /> -->
-                                         
- 
-                                
 
-                                           
-                                   
-                                      
-                                 </form> 
-                        </div>
+                   
+                    <form action="/search-compound" method="GET"> 
+                    
+                    <div style="float:left">
+                        <input type="text" name="typeahead" class="typeahead tt-query" autocomplete="off" spellcheck="false"placeholder="Search for a compound">
 
-                      
                     </div>
-                       
+                            
 
-                        <br>
-                        <br>
-
-
-                        <h2>Search by plate</h2>
-                        <br>
-
-                        <table class="table table-bordered table-striped table-hover" id="platelist" style="box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);">
-                                <thead style="background-color: rgb(9, 39, 206)">
-                                  <tr style="color:white;">
-                                    <th scope="col"> ID</th>
-                                    <th scope="col">UCSC_CSC_plate_ID</th>
-                                    <th scope="col">Alias name</th>
-                                    
-                                   
-                                    
-                                  </tr>
-                                </thead>
-                        
-                        
-                                <tbody>
-                                    <tr>
-                                        <% for (var i = 0; i < print.length; i++) { %>
-                                            
-                                            <td><%= i + 1%></td>
-                                            <td>
-                                                <div>
-                                                    <span style="text-align:left">
-                                                  <a href= "/platelist/<%= i+1 %> "><%= print[i].UCSC_CSC_plate_ID %></a>  
-                                                    </span>
-                                                   
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    <span style="text-align:left">
-                                                        <a href= "/platelist/<%= i+1 %> "><%= print[i].alias_name %></a>  
-                                                    </span>
-                                                   
-                                                </div>
-                                            </td>
-                                       
-                                        </tr>
-                                        
-                                        <% } %>
-
-                                 
-                                
-                                  
-                                </tbody>
-                              </table>
-            
+                           
+                    <div style="float:left;margin-left:1%;margin-top:-0.25%">
+                            <button type="submit" class="btn" style="background-color:#144878"><span style="color:whitesmoke">Go</span></button> 
+                    </div>
         
-        </div>
 
-         
-        </div>
-                   
+        
+                    </form> 
+        
 
-                  
-                   
 
-                  
-               
-       
-    
+                    
 
-      
 
-<!-- 
-                <h1 style="text-align:center;font-size:36px;color:red"> Screening Center Platemap list</h1> -->
+<br>
+<br>
+<br>
+<br>
+
+
+<h2>Search by plate</h2>
+<br>
+
+<table class="table table-bordered table-striped table-hover" id="platelist" style="box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);">
+        <thead style="background-color: #144878">
+            <tr style="color:white;">
+            <th scope="col" style="color:white "> ID</th>
+            <th scope="col" style="color:white ">UCSC_CSC_plate_ID</th>
+            <th scope="col" >Alias name</th>
             
+            
+            
+            </tr>
+        </thead>
+
+
+        <tbody>
+            <tr>
+                <% for (var i = 0; i < print.length; i++) { %>
+                    
+                    <td><%= i + 1%></td>
+                    <td>
+                        <div>
+                            <span style="text-align:left">
+                            <a href= "/platelist/<%= i+1 %> "><%= print[i].UCSC_CSC_plate_ID %></a>  
+                            </span>
+                            
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <span style="text-align:left">
+                                <a href= "/platelist/<%= i+1 %> "><%= print[i].alias_name %></a>  
+                            </span>
+                            
+                        </div>
+                    </td>
                 
+                </tr>
+                
+                <% } %>
 
-
+            
         
+            
+        </tbody>
+        </table>
+
+
+</div>
+<div class="col-md-6">
+
+</div>
+
+
 </div>
 
 </div>
-                     
-        
-        </body>
+
+
+
+
+</body>
         
        
         

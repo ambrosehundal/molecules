@@ -239,6 +239,7 @@ app.get('/wells/:id', function (req, res){
 
 })
 
+// function that returns autocomplete results on Home page
 
 app.get('/search', function(req,res){
     // console.log("Query is");
@@ -252,7 +253,7 @@ app.get('/search', function(req,res){
 
     var compound_search = "'" + double_up + "'";
 
-    // console.log(compound_search);
+   
 
     con.query('SELECT molecule_name from compounds where molecule_name LIKE ' + compound_search,
     function(err, rows, fields) {

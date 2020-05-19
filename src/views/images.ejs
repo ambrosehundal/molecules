@@ -1064,7 +1064,7 @@ for(var i = 0; i < images.length ; i++){
 
 srcList.forEach(function (url, i) {
     var filename = srcList[i];
-    filename = filename.replace(/[\/\*\|\:\<\>\?\"\\]/gi, '').replace("http://localhost:3000/","");
+    // filename = filename.replace(/[\/\*\|\:\<\>\?\"\\]/gi, '').replace("http://localhost:3000/","");
     // loading a file and add it in a zip file
     JSZipUtils.getBinaryContent(url, function (err, data) {
       if (err) {

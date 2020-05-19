@@ -3,7 +3,7 @@
 <html>
 
         <head>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #070999 !important;">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #144878 !important;">
                         <a class="navbar-brand" href="/" style="color:white !important;">CP Image Viewer</a>
         
                         
@@ -28,18 +28,18 @@
         
         </head>
                 
-    <body>
+    <body style="background-color: #fff7e2">
 
 
         <br>
         <br>
         
             <% for (var i = 0; i < 1; i++) { %>
-            <h1 style="text-align:center;font-size:40px;"><u> <%= print[i].UCSC_CSC_plate_ID %> datasets</u></h1>
+            <h1 style="text-align:center;font-size:40px;"> <%= print[i].UCSC_CSC_plate_ID %> experiments</h1>
             <% } %>
             <table class="table table-bordered table-striped table-hover" style="width:80%;margin-left:10%;  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);">
-                    <thead>
-                      <tr>
+                    <thead style="background-color: #144878">
+                      <tr style="color:white">
               
                         <th scope="col">Dataset ID</th>  
                        
