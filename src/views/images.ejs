@@ -1,9 +1,12 @@
 <html>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script> 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -14,8 +17,8 @@
 
 
 
-<head>
-        <nav class="navbar navbar-expand-lg" style="background-color: #070999 !important;">
+<head style="margin:0">
+        <nav class="navbar" style="background-color: #144878 !important;">
                 <a class="navbar-brand" href="/" style="color:white !important;">CP Image Viewer</a>
         </nav>
 
@@ -24,7 +27,7 @@
 
 
 
-<body>
+<body style="background-color: #fff7e2">
 
 
   
@@ -44,9 +47,9 @@
         $(function() {
             $("#brightness").slider({
             orientation: "horizontal",
-            min: 100,
+            min: 250,
             max: 1000,
-            value: 0,
+            value: 100,
             slide: blur,
             change: blur
             });
@@ -78,20 +81,20 @@
     <br>
     <!-- <div id="slider"></div> -->
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 col-lg-4">
 
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-lg-4">
 
                 <div id="brightness"></div> 
-                <p style="color:red; font-weight:600;">Brightness</p>
+                <p style="color:white; font-weight:600;">Brightness</p>
                 <br>
             
                 <div id="contrast"></div> 
-                <p style="color:red; font-weight:600;">Contrast</p>
+                <p style="color: white; font-weight:600;">Contrast</p>
             
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-lg-4">
             
         </div>
     </div>
@@ -131,17 +134,16 @@
 
 
   
-
-
 <div class="container-fluid">
+
 
     <div class="row">
         <div class="col-md-3">
            
         </div>
         <div class="col-md-6" style="text-align:center">
-            <button class="btn btn-primary" id="show_images" onclick="ShowImages()" style="text-align:center;" ><h4 style="font-size:24px;" id="image_tag">Images</h4></button> &nbsp; &nbsp;
-            <button class="btn btn-primary" id="show_similar_compounds" onclick="ShowSimilarCompounds()" style="text-align:center; opacity:50%;"><h4 id="compound_tag">Similar Compounds</h4></button>
+            <button class="btn btn-primary" id="show_images" style="background-color:#144878 !important;" onclick="ShowImages()" style="text-align:center;" ><h4 style="font-size:24px;" id="image_tag">Images</h4></button> &nbsp; &nbsp;
+            <button class="btn btn-primary" id="show_similar_compounds" style="background-color:#144878 !important;" onclick="ShowSimilarCompounds()" style="text-align:center; opacity:200;"><h4 id="compound_tag">Similar Compounds</h4></button>
         </div>
         <div class="col-md-3">
                 <button style="position:right" class="btn btn-primary download-images" onclick="generateZIP()">Download Images</button>
@@ -259,151 +261,100 @@
 
     <!-- similar table compound ends here -->
 
+<!-- ***************************************STAINSET 1 IMAGES **********************************************************-->
     <div class="row" id="well_images">
-        <div class="col-md-12">
-            <div class="col-md-1">
-
+        <div class="col-md-12 col-lg-12">
+          <div class="row">
+            <div class="col-md-1 col-lg-1">
             </div>
-                <div class="col-md-4">
-                    <div class="row">
-                        <div class="col-md-2">
-
-                        </div>
-                        <div class="col-md-10">
-                                <h1>Stain Set 1</h1>
-
-                        </div>
-                    </div>
+            <div class="col-md-4 col-lg-4">
+                
                    
-                        <br>
-
-                        <!-- WAVELENGTH_1 IMAGES -->
-                        <div class="row">
-                           
-                               
-                            <div class="col-md-12">
-                                     <% for (var i = 0; i < well[0].length -1 ; i++) { %> 
-
-                         
-                                        <img id="1" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[0][0].w1_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-                                
-                                        
-                                        <img id="2" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[0][1].w1_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-    
-                            
-    
-                            <% } %> 
-
-                            <br>
-                            <br>
-                            <p style="text-align:center;font-weight:600;"><%= well[0][1].w1 %></p>
-
-                            </div>
-                              
-
-                        </div>
-
-                        <br>
-
-                        <!-- WAVELENGTH_2 IMAGES -->
-                        <div class="row">
-                           
-
-                            <div class="col-md-12">
-                                    <% for (var i = 0; i < well[1].length -1 ; i++) { %>
-                           
-                           
-                               
-                                        <img id="3" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[1][0].w2_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-                                        <img id="4" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[1][1].w2_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-                                
-                        
-            
-                           
-           
-                            <% } %> 
-
-                            <br>
-                            <br>
-                            <p style="text-align:center;font-weight:600;"><%= well[1][1].w2 %></p>
-
-
-                            </div>
-                               
-                               
-                            
-                        </div>
-
-                        <br>
-                    
-
-                        <!-- WAVELENGTH_3 IMAGES -->
-                        <div class="row">
-                          
-
-                            <div class="col-md-12">
-                                    <% for (var i = 0; i < well[2].length -1; i++) { %>
-                           
-                           
-                               
-                                        <img  class="wavelength_image" id="5" onclick="ShowImageModal(this.id)" src="/4664/<%= well[2][0].w3_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-                                        <img  class="wavelength_image" id="6" onclick="ShowImageModal(this.id)" src="/4664/<%= well[2][1].w3_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-                                
-                        
-                    
                      
+
+                <!-- WAVELENGTH_1 IMAGES -->
+                <div class="row" style="float:right">       
+                    <div class="col-md-12 col-lg-12">
+                        <br>
+                        <h1 style="text-align: center">Stain Set 1</h1>
+                                <% for (var i = 0; i < well[0].length -1 ; i++) { %> 
+
+                    
+                                <img id="1" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[0][0].w1_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                                <img id="2" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[0][1].w1_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+
+                    <% } %> 
+
+                    <br>
+                    <br>
+                    <p style="text-align:center;font-weight:600;"><%= well[0][1].w1 %></p>
+
+                    </div>
+                        
+                </div>
+                <br>
+                <br>
+
+                        
+
+                <!-- WAVELENGTH_2 IMAGES -->
+                <div class="row" style="float:right">
+                    
+
+                    <div class="col-md-12 col-lg-12">
+                            <% for (var i = 0; i < well[1].length -1 ; i++) { %>
+                    
+                                <img id="3" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[1][0].w2_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                                <img id="4" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[1][1].w2_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                        
+                    <% } %> 
+
+                    <br>
+                    <br>
+                    </div>
+                            
+                </div>
+
+                        
+                    
+
+                <!-- WAVELENGTH_3 IMAGES -->
+                <div class="row" style="float:right">
+                    <div class="col-md-12 col-lg-12">
+                            <% for (var i = 0; i < well[2].length -1; i++) { %>
+                                <img  class="wavelength_image img-responsive" id="5" onclick="ShowImageModal(this.id)" src="/4692/<%= well[2][0].w3_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                                <img  class="wavelength_image img-responsive" id="6" onclick="ShowImageModal(this.id)" src="/4692/<%= well[2][1].w3_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                        
+                    <% } %>
+
+                    <br>
+                    <br>
+                    <p style="text-align:center;font-weight:600;"><%= well[2][1].w3 %></p>
+
+                    </div>
+
+                </div>
+
+                <br>
+
+                <!-- WAVELENGTH_4 IMAGES -->
+                <div class="row" style="float:right">
+                    
+                    <div class="col-md-12 col-lg-12">     
+                            <% for (var i = 0; i < well[3].length -1; i++) { %>
+                
+                                <img id="7" onclick="ShowImageModal(this.id)" class="wavelength_image img-responsive" src="/4692/<%= well[3][0].w4_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                                <img id="8" onclick="ShowImageModal(this.id)" class="wavelength_image img-responsive" src="/4692/<%= well[3][1].w4_filepath %>" height="200" width="200" style="display:inline-block;"/> 
+                    
                     
                             <% } %>
 
-                            <br>
-                            <br>
-                            <p style="text-align:center;font-weight:600;"><%= well[2][1].w3 %></p>
-
-                            </div>
-
-                               
-                               
-                            
-                        </div>
-
+                        <br>
                         <br>
 
-                        <!-- WAVELENGTH_4 IMAGES -->
-                        <div class="row">
-                          
-
-                            <div class="col-md-12">
-                                   
-                           
-                           
-                               
-                                    <% for (var i = 0; i < well[3].length -1; i++) { %>
-                       
-                       
-                           
-                                        <img id="7" onclick="ShowImageModal(this.id)" class="wavelength_image" src="/4664/<%= well[3][0].w4_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-                                        <img id="8" onclick="ShowImageModal(this.id)" class="wavelength_image" src="/4664/<%= well[3][1].w4_filepath %>" height="200" width="200" style="display:inline-block;"/> 
-                            
-                            
-                             <% } %>
-
-                             <br>
-                             <br>
-
-                             <p style="text-align:center;font-weight:600;"><%= well[3][1].w4 %></p>
-     
-                                
-                            
-                            
-                        
-                            
-                     
-
-                            </div>
-                             
-                             
-                            
-                        </div>
+                        <p style="text-align:center;font-weight:600;"><%= well[3][1].w4 %></p>
+                    </div>  
+                </div>
 
 
                                 
@@ -412,162 +363,147 @@
          
             </div> 
 
-            <div class="col-md-1">
+            <div class="col-md-2 col-lg-2 col-lg-2">
 
             </div>
+
             
-            <div class="col-md-1">
-
-            </div>
-
+            
+           
 
 
-            <div class="col-md-4">
-                    <h1>Stain Set 2</h1>
-                    <br>
+<!--*********************************************** STAIN SET 2 IMAGES *********************************************************-->
+
+            <div class="col-md-4 col-lg-4" >
+                    
+                    
 
                     <!-- WAVELENGTH_1 IMAGES -->
-                    <div class="row">
+                    <div class="row" style="float:left">
+                            
+                            
 
-                            <div class="col-md-12">
+                            <div class="col-md-12 col-lg-12">
+                                    <br>
+                                    <h1 style="text-align:center;">Stain Set 2</h1>
+                                   
 
                                     <% for (var i = 0; i < well[0].length-1 ; i++) { %>
                            
-                           
-                               
-                                        <img id="9"  class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[0][0].w1_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-                                        <img id="10" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[0][1].w1_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-                                
-                        
-        
-                            
-        
-                            <% } %>
+                                        <img id="9"  class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[0][0].w1_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                                        <img id="10" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[0][1].w1_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                                 <% } %>
 
                             <br>
                             <br>
-                            <p>Nuclei</p>
+                            <p style="text-align:center;font-weight:600;">Nuclei</p>
         
     
                             </div>
-    
-
-                       
-
-                          
-
-                       
-
-                       
-                           
+   
                     </div>
 
                     <br>
 
                     <!-- WAVELENGTH_2 IMAGES -->
-                    <div class="row">
+                    <div class="row" style="float:left">
 
-                        <div class="col-md-12">
+                        <div class="col-md-12 col-lg-12">
 
                                 <% for (var i = 0; i < well[1].length-1 ; i++) { %>
                        
                        
                            
-                                    <img id="11" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[1][0].w2_filepath %>" height="200" width="200" style="display:inline-block;"/> 
-                                    <img id="12" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[1][1].w2_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                                    <img id="11" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[1][0].w2_filepath %>" height="200" width="200" style="display:inline-block;"/> 
+                                    <img id="12" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[1][1].w2_filepath %>" height="200" width="200" style="display:inline-block;"/>  
                              
                             
                                     <br>
                                     <br>
                                     
-                                    <p>Actin</p>
-        
-                       
+                                    <p style="text-align:center;font-weight:600;">Actin</p> 
         
                         <% } %>
 
-                        </div>
-
-                     
-                              
-
-                     
-                           
-                        
+                        </div>   
                     </div>
 
                     <br>
                 
 
                     <!-- WAVELENGTH_3 IMAGES -->
-                    <div class="row">
+                    <div class="row" style="float:left">
 
-                        <div class="col-md-12">
+                        <div class="col-md-12 col-lg-12">
                                 <% for (var i = 0; i < well[2].length - 1 ; i++) { %>
-                       
-                       
-                           
-                                    <img id="13" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[2][0].w3_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                          
+                                    <img id="13" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[2][0].w3_filepath %>" height="200" width="200" style="display:inline-block;"/>  
 
-                                    <img id="14" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[2][1].w3_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-                            
-                    
-                
-                 
-                
+                                    <img id="14" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[2][1].w3_filepath %>" height="200" width="200" style="display:inline-block;"/>  
                         <% } %>
                         <br>
                         <br>
                                 
-                                <p>Tubulin</p>
+                                <p style="text-align:center;font-weight:600;">Tubulin</p>
 
-                        </div>
-
-                       
-
-                                
-
-
-                       
-                            
-                        
+                        </div>  
                     </div>
 
                     <br>
 
                     <!-- WAVELENGTH_4 IMAGES -->
-                    <div class="row">
-                        <div class="col-md-12">
+                    <div class="row" style="float:left">
+                        <div class="col-md-12 col-lg-12">
                                 <% for (var i = 0; i < well[3].length -1 ; i++) { %>
                        
                        
                            
-                                    <img id="15" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[3][i].w4_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-                                    <img id="16" class="wavelength_image" onclick="ShowImageModal(this.id)" src="/4664/<%= well[3][i].w4_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                                    <img id="15" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[3][i].w4_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                                    <img id="16" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[3][i].w4_filepath %>" height="200" width="200" style="display:inline-block;"/>  
                             
                         
                         
                         <% } %>
 
-                        </div>
+                        <br>
+                        <br>
+                                
+                                <p style="text-align:center;font-weight:600;">Tubulin</p>
 
-                        
-                          
-                        
+
+                        </div>   
                     </div>
 
-                    <div class="col-md-1">
 
-                        </div>
+         
+                    
         </div> 
+        <div class="col-md-1 col-lg-1"></div>
 
 
         </div>
            
 
+
+
+
+
+
+
+
+
     </div>
    
-</div>
+</div> 
+
+
+
+
+
+
+
+
+
 
 <br>
 <br>
@@ -582,7 +518,7 @@
 <script>
    
             // document.getElementById("well_image").style.filter = "brightness(200%)";
-            // document.getElementById("well_image").style.filter = "contrast(50%)";
+            // document.getElementById("well_image").style.filter = "contrast(200)";
 
 
         // TOGGLE BETWEEN COLOR BAR AND COLOR BINS
@@ -625,7 +561,7 @@
      
         document.getElementById("show_images").style.opacity = "100";
 
-        document.getElementById("show_similar_compounds").style.opacity = "50%";
+        document.getElementById("show_similar_compounds").style.opacity = "200";
 
         document.getElementById("image_tag").style.fontSize= "24px";
         document.getElementById("compound_tag").style.fontSize= "16px";
@@ -646,7 +582,7 @@
        
 
         document.getElementById("show_similar_compounds").style.opacity = "100%";
-        document.getElementById("show_images").style.opacity = "50%";
+        document.getElementById("show_images").style.opacity = "200";
         document.getElementById("compound_tag").style.fontSize= "24px";
         document.getElementById("image_tag").style.fontSize= "16px";
         
@@ -664,12 +600,12 @@
         var modalImg = document.getElementById("img01");
 
         var captionText = document.getElementById("caption");
-        img.onclick = function(){
+        // img.onclick = function(){
         modal.style.display = "block";
-        modalImg.src = this.src;
-        captionText.innerHTML = this.alt;
+        modalImg.src = img.src;
+        // captionText.innerHTML = this.alt;
 
-        }   
+        // }   
 
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
@@ -816,7 +752,7 @@
         background-color: #e74c3c;
         width: 30px;
         height: 30px;
-        border-radius: 50%;
+        border-radius: 200;
         border: 2px solid white;
         cursor: pointer;
         transition: .3s ease-in-out;
@@ -845,7 +781,7 @@
         background-color: #e74c3c;
         width: 30px;
         height: 30px;
-        border-radius: 50%;
+        border-radius: 200;
         border: 2px solid white;
         cursor: pointer;
         transition: .3s ease-in-out;
