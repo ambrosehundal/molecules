@@ -13,7 +13,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('input.typeahead').typeahead({
-            name: 'countries',
+            name: 'typeahead',
             remote: 'http://localhost:3000/search?key=%QUERY',
             limit: 10
         });
@@ -162,14 +162,15 @@
 
 
         <tbody>
-            <tr>
+           
                 <% for (var i = 0; i < print.length; i++) { %>
+                    <tr data-href= "/platelist/<%= print[i].id %> ">   
                     
                     <td><%= i + 1%></td>
                     <td>
                         <div>
                             <span style="text-align:left">
-                            <a href= "/platelist/<%= i+1 %> "><%= print[i].UCSC_CSC_plate_ID %></a>  
+                          <%= print[i].csc_plate_name %>  
                             </span>
                             
                         </div>
@@ -177,14 +178,14 @@
                     <td>
                         <div>
                             <span style="text-align:left">
-                                <a href= "/platelist/<%= i+1 %> "><%= print[i].alias_name %></a>  
+                                <%= print[i].alias %> 
                             </span>
                             
                         </div>
                     </td>
-                
-                </tr>
-                
+              
+              
+                </tr>  
                 <% } %>
 
             
@@ -223,6 +224,11 @@ a{
     color: black;
 }
 
+a:hover {
+  cursor: default;
+
+}
+
 .dataTables_filter {
     float: left !important;
 }
@@ -245,6 +251,7 @@ a{
          $('#platelist').DataTable({
              // List of options to display results
          "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+         
      
          iDisplayLength: -1, //display All entries by default
          dom: '<"float-right"f><"float-right"l>tip'
@@ -258,6 +265,14 @@ a{
         });   
      </script>
 
+<script>
+    $(document).ready(function(){
+    $('table tr').click(function(){
+        window.location = $(this).data('href');
+        return false;
+    });
+});
+</script>
 
 <script  type="text/javascript">
     /*!
