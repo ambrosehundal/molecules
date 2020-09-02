@@ -17,6 +17,8 @@
 
 
 
+
+
 <head style="margin:0">
         <nav class="navbar" style="background-color: #144878 !important;">
                 <a class="navbar-brand" href="/" style="color:white !important;">CP Image Viewer</a>
@@ -121,7 +123,7 @@
                            
                      
                                
-       <h1 style="text-align:center"><u>Compound - <%= well[4][0].molecule_name %></u> </h1>
+    
 
 
 
@@ -265,31 +267,56 @@
     <div class="row" id="well_images">
         <div class="col-md-12 col-lg-12">
           <div class="row">
-            <div class="col-md-1 col-lg-1">
-            </div>
-            <div class="col-md-4 col-lg-4">
+           
+            <div class="col-md-5 col-lg-5">
                 
-                   
-                     
+              
+                <div class="col-md-12">
+                            <h1 style="text-align: center">Stain Set 1</h1>
+
+                </div>
 
                 <!-- WAVELENGTH_1 IMAGES -->
-                <div class="row" style="float:right">       
-                    <div class="col-md-12 col-lg-12">
-                        <br>
-                        <h1 style="text-align: center">Stain Set 1</h1>
-                                <% for (var i = 0; i < well[0].length -1 ; i++) { %> 
+                <div class="row" style="float:left"> 
 
+                  
+                        <% for (var i = 0; i < well[1].length -1 ; i++) { %>
+                       
+                            <% if  (well[0][1].IXM_w1 != '') { %>
+                                <div class="col-md-1 col-lg-1" style="display:inline-block;">
+                                        <p style="text-align:center;font-weight:600;"><%= well[0][1].IXM_w1 %></p>
+                                </div>
+                                        
                     
-                                <img id="1" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[0][0].w1_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-                                <img id="2" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[0][1].w1_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+                                <div class="col-md-11 col-lg-11" style="display:inline-block;">
+                                              
+                                        
+                                                    <img id="1" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/<%= well[0][0].path_found %>/<%= well[0][0].w1_file %>" height="200" width="200" style="display:inline-block;"/>  
+                                                    <img id="2" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/<%= well[0][1].path_found %>/<%= well[0][1].w1_file %>" height="200" width="200" style="display:inline-block;"/>  
+                                            
+                                              
+                    
+                                       
+                                </div>
+            
+                            <% } else {%>
+            
+                                <div class="col-md-11 col-lg-11" style="display:inline-block;">
+                                              
+                                        
+                                        <h3>There are no images</h3>
+                                
+                                  
+            
+                           
+                                </div>
+                               
+                            <% } %>
+            
+                            <% } %>    
 
-                    <% } %> 
-
-                    <br>
-                    <br>
-                    <p style="text-align:center;font-weight:600;"><%= well[0][1].w1 %></p>
-
-                    </div>
+                        
+                  
                         
                 </div>
                 <br>
@@ -299,19 +326,42 @@
 
                 <!-- WAVELENGTH_2 IMAGES -->
                 <div class="row" style="float:right">
-                    
 
-                    <div class="col-md-12 col-lg-12">
-                            <% for (var i = 0; i < well[1].length -1 ; i++) { %>
-                    
-                                <img id="3" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[1][0].w2_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-                                <img id="4" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[1][1].w2_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-                        
-                    <% } %> 
-
-                    <br>
-                    <br>
+            <% for (var i = 0; i < well[1].length -1 ; i++) { %>
+                       
+                <% if  (well[1][1].IXM_w2 != '') { %>
+                    <div class="col-md-1 col-lg-1" style="display:inline-block;">
+                            <p style="text-align:center;font-weight:600;"><%= well[1][1].IXM_w2 %></p>
                     </div>
+                            
+        
+                    <div class="col-md-11 col-lg-11" style="display:inline-block;">
+                                  
+                            
+                                        <img id="3" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/<%= well[1][0].path_found %>/<%= well[1][0].w2_file %>" height="200" width="200" style="display:inline-block;"/>  
+                                        <img id="4" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/<%= well[1][1].path_found %>/<%= well[1][1].w2_file %>" height="200" width="200" style="display:inline-block;"/>  
+                                
+                                  
+        
+                           
+                    </div>
+
+                <% } else {%>
+
+                    <div class="col-md-11 col-lg-11" style="display:inline-block;">
+                                  
+                            
+                            <h3>There are no images</h3>
+                    
+                      
+
+               
+                    </div>
+                   
+                <% } %>
+
+                <% } %>    
+                
                             
                 </div>
 
@@ -320,40 +370,89 @@
 
                 <!-- WAVELENGTH_3 IMAGES -->
                 <div class="row" style="float:right">
-                    <div class="col-md-12 col-lg-12">
-                            <% for (var i = 0; i < well[2].length -1; i++) { %>
-                                <img  class="wavelength_image img-responsive" id="5" onclick="ShowImageModal(this.id)" src="/4692/<%= well[2][0].w3_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-                                <img  class="wavelength_image img-responsive" id="6" onclick="ShowImageModal(this.id)" src="/4692/<%= well[2][1].w3_filepath %>" height="200" width="200" style="display:inline-block;"/>  
+
+                    <% for (var i = 0; i < well[1].length -1 ; i++) { %>
+                       
+                        <% if  (well[2][1].IXM_w3 != '') { %>
+                            <div class="col-md-1 col-lg-1" style="display:inline-block;">
+                                    <p style="text-align:center;font-weight:600;"><%= well[2][1].IXM_w3 %></p>
+                            </div>
+                                    
+                
+                            <div class="col-md-11 col-lg-11" style="display:inline-block;">
+                                          
+                                    
+                                                <img id="5" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/<%= well[2][0].path_found %>/<%= well[2][0].w3_file %>" height="200" width="200" style="display:inline-block;"/>  
+                                                <img id="6" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/<%= well[2][1].path_found %>/<%= well[2][1].w3_file %>" height="200" width="200" style="display:inline-block;"/>  
+                                        
+                                          
+                
+                                   
+                            </div>
+        
+                        <% } else {%>
+        
+                            <div class="col-md-11 col-lg-11" style="display:inline-block;">
+                                          
+                                    
+                                    <h3>There are no images</h3>
+                            
+                              
+        
+                       
+                            </div>
+                           
+                        <% } %>
+        
+                        <% } %>    
                         
-                    <% } %>
-
-                    <br>
-                    <br>
-                    <p style="text-align:center;font-weight:600;"><%= well[2][1].w3 %></p>
-
-                    </div>
-
                 </div>
 
+                <br>
+                <br>
                 <br>
 
                 <!-- WAVELENGTH_4 IMAGES -->
                 <div class="row" style="float:right">
+
+                        <% for (var i = 0; i < well[1].length -1 ; i++) { %>
+                       
+                            <% if  (well[3][1].IXM_w4 != '') { %>
+                                <div class="col-md-1 col-lg-1" style="display:inline-block;">
+                                        <p style="text-align:center;font-weight:600;"><%= well[3][1].IXM_w4 %></p>
+                                </div>
+                                        
                     
-                    <div class="col-md-12 col-lg-12">     
-                            <% for (var i = 0; i < well[3].length -1; i++) { %>
-                
-                                <img id="7" onclick="ShowImageModal(this.id)" class="wavelength_image img-responsive" src="/4692/<%= well[3][0].w4_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-                                <img id="8" onclick="ShowImageModal(this.id)" class="wavelength_image img-responsive" src="/4692/<%= well[3][1].w4_filepath %>" height="200" width="200" style="display:inline-block;"/> 
+                                <div class="col-md-11 col-lg-11" style="display:inline-block;">
+                                              
+                                        
+                                                    <img id="7" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/<%= well[3][0].path_found %>/<%= well[3][0].w4_file %>" height="200" width="200" style="display:inline-block;"/>  
+                                                    <img id="8" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/<%= well[3][1].path_found %>/<%= well[3][1].w4_file %>" height="200" width="200" style="display:inline-block;"/>  
+                                            
+                                              
                     
-                    
+                                       
+                                </div>
+            
+                            <% } else {%>
+            
+                                <div class="col-md-11 col-lg-11" style="display:inline-block;">
+                                              
+                                        
+                                        <h3>There are no images</h3>
+                                
+                                  
+            
+                           
+                                </div>
+                               
                             <% } %>
+            
+                            <% } %>    
+                            
 
-                        <br>
-                        <br>
 
-                        <p style="text-align:center;font-weight:600;"><%= well[3][1].w4 %></p>
-                    </div>  
+                    
                 </div>
 
 
@@ -363,6 +462,8 @@
          
             </div> 
 
+
+            <!-- DIV FOR SPACE BETWEEN STAIN SETS -->
             <div class="col-md-2 col-lg-2 col-lg-2">
 
             </div>
@@ -374,33 +475,50 @@
 
 <!--*********************************************** STAIN SET 2 IMAGES *********************************************************-->
 
-            <div class="col-md-4 col-lg-4" >
+            <div class="col-md-5 col-lg-5" >
                     
                     
 
                     <!-- WAVELENGTH_1 IMAGES -->
                     <div class="row" style="float:left">
                             
-                            
+                            <h1 style="text-align:center;">Stain Set 2</h1>
 
-                            <div class="col-md-12 col-lg-12">
-                                    <br>
-                                    <h1 style="text-align:center;">Stain Set 2</h1>
+                            <% for (var i = 0; i < well[1].length -1 ; i++) { %>
+                       
+                                <% if  (well[4][1].IXM_w1 != '') { %>
+                                    <div class="col-md-1 col-lg-1" style="display:inline-block;">
+                                            <p style="text-align:center;font-weight:600;"><%= well[4][1].IXM_w1 %></p>
+                                    </div>
+                                            
+                        
+                                    <div class="col-md-11 col-lg-11" style="display:inline-block;">
+                                                  
+                                            
+                                                        <img id="9" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/<%= well[4][0].path_found %>/<%= well[4][0].w1_file %>" height="200" width="200" style="display:inline-block;"/>  
+                                                        <img id="10" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/<%= well[4][1].path_found %>/<%= well[4][1].w1_file %>" height="200" width="200" style="display:inline-block;"/>  
+                                                
+                                                  
+                        
+                                           
+                                    </div>
+                
+                                <% } else {%>
+                
+                                    <div class="col-md-11 col-lg-11" style="display:inline-block;">
+                                                  
+                                            
+                                            <h3>There are no images</h3>
+                                    
+                                      
+                
+                               
+                                    </div>
                                    
+                                <% } %>
+                
+                                <% } %>    
 
-                                    <% for (var i = 0; i < well[0].length-1 ; i++) { %>
-                           
-                                        <img id="9"  class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[0][0].w1_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-                                        <img id="10" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[0][1].w1_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-                                 <% } %>
-
-                            <br>
-                            <br>
-                            <p style="text-align:center;font-weight:600;">Nuclei</p>
-        
-    
-                            </div>
-   
                     </div>
 
                     <br>
@@ -408,24 +526,43 @@
                     <!-- WAVELENGTH_2 IMAGES -->
                     <div class="row" style="float:left">
 
-                        <div class="col-md-12 col-lg-12">
-
-                                <% for (var i = 0; i < well[1].length-1 ; i++) { %>
+                            <% for (var i = 0; i < well[1].length -1 ; i++) { %>
                        
-                       
-                           
-                                    <img id="11" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[1][0].w2_filepath %>" height="200" width="200" style="display:inline-block;"/> 
-                                    <img id="12" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[1][1].w2_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-                             
-                            
-                                    <br>
-                                    <br>
+                                <% if  (well[5][1].IXM_w2 != '') { %>
+                                    <div class="col-md-1 col-lg-1" style="display:inline-block;">
+                                            <p style="text-align:center;font-weight:600;"><%= well[5][1].IXM_w2 %></p>
+                                    </div>
+                                            
+                        
+                                    <div class="col-md-11 col-lg-11" style="display:inline-block;">
+                                                  
+                                            
+                                                        <img id="11" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)"  src="/<%= well[5][0].path_found %>/<%= well[5][0].w2_file %>" height="200" width="200" style="display:inline-block;"/>  
+                                                        <img id="12" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/<%= well[5][1].path_found %>/<%= well[5][1].w2_file %>" height="200" width="200" style="display:inline-block;"/>  
+                                                
+                                                  
+                        
+                                           
+                                    </div>
+                
+                                <% } else {%>
+                
+                                    <div class="col-md-11 col-lg-11" style="display:inline-block;">
+                                                  
+                                            
+                                            <h3>There are no images</h3>
                                     
-                                    <p style="text-align:center;font-weight:600;">Actin</p> 
-        
-                        <% } %>
+                                      
+                
+                               
+                                    </div>
+                                   
+                                <% } %>
+                
+                                <% } %>    
 
-                        </div>   
+
+
                     </div>
 
                     <br>
@@ -434,54 +571,87 @@
                     <!-- WAVELENGTH_3 IMAGES -->
                     <div class="row" style="float:left">
 
-                        <div class="col-md-12 col-lg-12">
-                                <% for (var i = 0; i < well[2].length - 1 ; i++) { %>
-                          
-                                    <img id="13" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[2][0].w3_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-
-                                    <img id="14" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[2][1].w3_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-                        <% } %>
-                        <br>
-                        <br>
-                                
-                                <p style="text-align:center;font-weight:600;">Tubulin</p>
-
-                        </div>  
+                            <% for (var i = 0; i < well[1].length -1 ; i++) { %>
+                       
+                                <% if  (well[6][1].IXM_w3 != '') { %>
+                                    <div class="col-md-1 col-lg-1" style="display:inline-block;">
+                                            <p style="text-align:center;font-weight:600;"><%= well[6][1].IXM_w3 %></p>
+                                    </div>
+                                            
+                        
+                                    <div class="col-md-11 col-lg-11" style="display:inline-block;">
+                                                  
+                                            
+                                                        <img id="13" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/<%= well[6][0].path_found %>/<%= well[6][0].w3_file %>" height="200" width="200" style="display:inline-block;"/>  
+                                                        <img id="14" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/<%= well[6][1].path_found %>/<%= well[6][1].w3_file %>" height="200" width="200" style="display:inline-block;"/>  
+                                                
+                                                  
+                        
+                                           
+                                    </div>
+                
+                                <% } else {%>
+                
+                                    <div class="col-md-11 col-lg-11" style="display:inline-block;">
+                                                  
+                                            
+                                            <h3>There are no images</h3>
+                                    
+                                      
+                
+                               
+                                    </div>
+                                   
+                                <% } %>
+                
+                                <% } %>    
                     </div>
 
                     <br>
 
                     <!-- WAVELENGTH_4 IMAGES -->
                     <div class="row" style="float:left">
-                        <div class="col-md-12 col-lg-12">
-                                <% for (var i = 0; i < well[3].length -1 ; i++) { %>
+                            <% for (var i = 0; i < well[1].length -1 ; i++) { %>
                        
-                       
-                           
-                                    <img id="15" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[3][i].w4_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-                                    <img id="16" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/4692/<%= well[3][i].w4_filepath %>" height="200" width="200" style="display:inline-block;"/>  
-                            
+                                <% if  (well[7][1].IXM_w4 != '') { %>
+                                    <div class="col-md-1 col-lg-1" style="display:inline-block;">
+                                            <p style="text-align:center;font-weight:600;"><%= well[7][1].IXM_w4 %></p>
+                                    </div>
+                                            
                         
+                                    <div class="col-md-11 col-lg-11" style="display:inline-block;">
+                                                  
+                                            
+                                                        <img id="15" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/<%= well[7][0].path_found %>/<%= well[7][0].w4_file %>" height="200" width="200" style="display:inline-block;"/>  
+                                                        <img id="16" class="wavelength_image img-responsive" onclick="ShowImageModal(this.id)" src="/<%= well[7][1].path_found %>/<%= well[7][1].w4_file %>"height="200" width="200" style="display:inline-block;"/>  
+                                                
+                                                  
                         
-                        <% } %>
-
-                        <br>
-                        <br>
-                                
-                                <p style="text-align:center;font-weight:600;">Tubulin</p>
-
-
-                        </div>   
+                                           
+                                    </div>
+                
+                                <% } else {%>
+                
+                                    <div class="col-md-11 col-lg-11" style="display:inline-block;">
+                                                  
+                                            
+                                            <h3>There are no images</h3>
+                                    
+                                      
+                
+                               
+                                    </div>
+                                   
+                                <% } %>
+                
+                                <% } %>    
                     </div>
 
 
          
                     
         </div> 
-        <div class="col-md-1 col-lg-1"></div>
-
-
-        </div>
+       
            
 
 
